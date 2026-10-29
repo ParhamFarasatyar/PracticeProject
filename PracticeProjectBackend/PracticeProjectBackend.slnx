@@ -1,4 +1,4 @@
 <Solution>
-  <Project Path="../PracticeProjectUI/PracticeProjectUI.csproj" />
-  <Project Path="PracticeProjectBackend.csproj" />
+  <Project Path="../PracticeProjectUI/PracticeProjectUI.csproj" Id="b524453e-b79a-40d0-9270-a5e1b9994347" />
+  <Project Path="PracticeProjectBackend.csproj" Id="e99b98e8-f0ac-42ca-b9ce-150e22b246db" />
 </Solution>
