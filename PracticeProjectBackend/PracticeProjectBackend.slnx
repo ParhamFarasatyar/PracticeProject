@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="../PracticeProjectUI/PracticeProjectUI.csproj" />
+  <Project Path="PracticeProjectBackend.csproj" />
+</Solution>
