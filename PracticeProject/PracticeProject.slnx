@@ -10,7 +10,7 @@
   </Folder>
   <Folder Name="/Src/Infrastructure/">
     <Project Path="PracticeProject.Infrastructure/PracticeProject.Infrastructure.csproj" />
-    <Project Path="PracticeProject.Persistance/PracticeProject.Persistance.csproj" />
+    <Project Path="PracticeProject.Persistance/PracticeProject.Persistence.csproj" />
   </Folder>
   <Folder Name="/Src/Presentation/">
     <Project Path="EndPoint.WebForm/EndPoint.WebForm.csproj" />

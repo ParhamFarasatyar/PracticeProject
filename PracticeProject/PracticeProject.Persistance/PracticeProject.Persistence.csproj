@@ -51,11 +51,35 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contexts\DataBaseContext.cs" />
+    <Compile Include="Migrations\202610310659388_Init.cs" />
+    <Compile Include="Migrations\202610310659388_Init.Designer.cs">
+      <DependentUpon>202610310659388_Init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202610310720202_ConfigureUserEmailAndPasswordAndFirstName.cs" />
+    <Compile Include="Migrations\202610310720202_ConfigureUserEmailAndPasswordAndFirstName.Designer.cs">
+      <DependentUpon>202610310720202_ConfigureUserEmailAndPasswordAndFirstName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PracticeProject.Domain\PracticeProject.Domain.csproj">
+      <Project>{da845681-5e67-4349-9879-6bd6bcbbd6b8}</Project>
+      <Name>PracticeProject.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202610310659388_Init.resx">
+      <DependentUpon>202610310659388_Init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202610310720202_ConfigureUserEmailAndPasswordAndFirstName.resx">
+      <DependentUpon>202610310720202_ConfigureUserEmailAndPasswordAndFirstName.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
