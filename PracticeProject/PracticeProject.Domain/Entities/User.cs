@@ -34,5 +34,9 @@ namespace PracticeProject.Domain.Entities
             Email = email;
             Password = password;
         }
+        public User()
+        {
+            
+        }
     }
 }
