@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contexts\DataBaseContext.cs" />
+    <Compile Include="DataAccess\UserDataAccess.cs" />
     <Compile Include="Migrations\202610310659388_Init.cs" />
     <Compile Include="Migrations\202610310659388_Init.Designer.cs">
       <DependentUpon>202610310659388_Init.cs</DependentUpon>
@@ -68,6 +69,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\PracticeProject.Application\PracticeProject.Application.csproj">
+      <Project>{757a67b0-3b99-462d-a5f5-301647d1bf75}</Project>
+      <Name>PracticeProject.Application</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PracticeProject.Domain\PracticeProject.Domain.csproj">
       <Project>{da845681-5e67-4349-9879-6bd6bcbbd6b8}</Project>
       <Name>PracticeProject.Domain</Name>
@@ -81,6 +86,7 @@
       <DependentUpon>202610310720202_ConfigureUserEmailAndPasswordAndFirstName.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

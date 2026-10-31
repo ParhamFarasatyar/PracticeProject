@@ -2,18 +2,20 @@
   <Folder Name="/Docs/" />
   <Folder Name="/Src/" />
   <Folder Name="/Src/Common/">
-    <Project Path="PracticeProject.Common/PracticeProject.Common.csproj" />
+    <Project Path="PracticeProject.Common/PracticeProject.Common.csproj" Id="b1304f48-cb99-4cb0-a5eb-086a0d6cdd9f" />
   </Folder>
   <Folder Name="/Src/Core/">
-    <Project Path="PracticeProject.Application/PracticeProject.Application.csproj" />
-    <Project Path="PracticeProject.Domain/PracticeProject.Domain.csproj" />
+    <Project Path="PracticeProject.Application/PracticeProject.Application.csproj" Id="757a67b0-3b99-462d-a5f5-301647d1bf75" />
+    <Project Path="PracticeProject.Domain/PracticeProject.Domain.csproj" Id="da845681-5e67-4349-9879-6bd6bcbbd6b8" />
   </Folder>
   <Folder Name="/Src/Infrastructure/">
-    <Project Path="PracticeProject.Infrastructure/PracticeProject.Infrastructure.csproj" />
-    <Project Path="PracticeProject.Persistance/PracticeProject.Persistence.csproj" />
+    <Project Path="PracticeProject.Infrastructure/PracticeProject.Infrastructure.csproj" Id="a24cc608-b5d2-42c2-aaad-4a69c7882909" />
+    <Project Path="PracticeProject.Persistance/PracticeProject.Persistence.csproj" Id="ef77e83f-5e61-4f59-9ff8-244b4e15774e" />
   </Folder>
   <Folder Name="/Src/Presentation/">
-    <Project Path="EndPoint.WebForm/EndPoint.WebForm.csproj" />
+    <Project Path="EndPoint.WebForm/EndPoint.WebForm.csproj" Id="fc887211-cda7-4a00-9649-4cfbdd2dbe24" />
   </Folder>
-  <Folder Name="/Test/" />
+  <Folder Name="/Test/">
+    <Project Path="PracticeProject.Persistance.Tests/PracticeProject.Persistence.Tests.csproj" Id="626eabbb-6d75-4599-a992-b36ac1a77cb5" />
+  </Folder>
 </Solution>
