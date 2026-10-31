@@ -57,5 +57,44 @@ namespace PracticeProject.Persistence.Tests
                 Assert.AreEqual(email, savedUser.Email);
             }
         }
+
+        [TestMethod]
+        public void GetById_ExistingUser_ReturnsUser()
+        {
+            // Arrange
+            string email = $"test_{Guid.NewGuid():N}@example.com";
+
+            var user = new User(
+                0,
+                default,
+                "Parham",
+                "Test",
+                email,
+                "TestPassword"
+                );
+
+            _context.Users.Add(user);
+
+            // Act
+            var result = _userDataAccess.GetById(user.Id);
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.AreEqual(user.Id, result.Id);
+            Assert.AreEqual(user.Email, result.Email);
+        }
+
+        [TestMethod]
+        public void GetById_NonExistingUser_ReturnsNull()
+        {
+            // Arrange
+            int id = 20;
+
+            // Act
+            var result = _userDataAccess.GetById(id);
+
+            // Assert
+            Assert.IsNull(result);
+        }
     }
 }
