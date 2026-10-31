@@ -1,1 +1,19 @@
-<Solution />
+<Solution>
+  <Folder Name="/Docs/" />
+  <Folder Name="/Src/" />
+  <Folder Name="/Src/Common/">
+    <Project Path="PracticeProject.Common/PracticeProject.Common.csproj" />
+  </Folder>
+  <Folder Name="/Src/Core/">
+    <Project Path="PracticeProject.Application/PracticeProject.Application.csproj" />
+    <Project Path="PracticeProject.Domain/PracticeProject.Domain.csproj" />
+  </Folder>
+  <Folder Name="/Src/Infrastructure/">
+    <Project Path="PracticeProject.Infrastructure/PracticeProject.Infrastructure.csproj" />
+    <Project Path="PracticeProject.Persistance/PracticeProject.Persistance.csproj" />
+  </Folder>
+  <Folder Name="/Src/Presentation/">
+    <Project Path="EndPoint.WebForm/EndPoint.WebForm.csproj" />
+  </Folder>
+  <Folder Name="/Test/" />
+</Solution>
