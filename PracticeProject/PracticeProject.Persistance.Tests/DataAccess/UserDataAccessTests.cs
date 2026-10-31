@@ -32,7 +32,7 @@ namespace PracticeProject.Persistence.Tests
         public void Create_ValidUser_UserShouldBeSaved()
         {
             // Arrange
-            string email = $"test_{Guid.NewGuid():N}@example.com";
+            string email = $"create_test_{Guid.NewGuid():N}@example.com";
 
             var user = new User(
                 0,
@@ -62,7 +62,7 @@ namespace PracticeProject.Persistence.Tests
         public void GetById_ExistingUser_ReturnsUser()
         {
             // Arrange
-            string email = $"test_{Guid.NewGuid():N}@example.com";
+            string email = $"getbyid_test_{Guid.NewGuid():N}@example.com";
 
             var user = new User(
                 0,
@@ -73,7 +73,7 @@ namespace PracticeProject.Persistence.Tests
                 "TestPassword"
                 );
 
-            _context.Users.Add(user);
+            _userDataAccess.Create(user);
 
             // Act
             var result = _userDataAccess.GetById(user.Id);
@@ -95,6 +95,44 @@ namespace PracticeProject.Persistence.Tests
 
             // Assert
             Assert.IsNull(result);
+        }
+
+        [TestMethod]
+        public void GetAll_TwoUsersExist_ReturnsBothUsers()
+        {
+            // Arrange
+            string email1 = $"getall_test_{Guid.NewGuid():N}@example.com";
+            string email2 = $"getall_test_{Guid.NewGuid():N}@example.com";
+
+            var user1 = new User(
+                0,
+                default,
+                "User1",
+                "Test",
+                email1,
+                "TestPassword"
+                );
+
+            var user2 = new User(
+                0,
+                default,
+                "User2",
+                "Test",
+                email2,
+                "TestPassword"
+                );
+
+            _userDataAccess.Create(user1);
+            _userDataAccess.Create(user2);
+
+            // Act
+            var result = _userDataAccess.GetAll();
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.IsTrue(result.Count >= 2);
+            Assert.IsTrue(result.Any(u => u.Email == user1.Email));
+            Assert.IsTrue(result.Any(u => u.Email == user2.Email));
         }
     }
 }
