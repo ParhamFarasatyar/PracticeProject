@@ -5,6 +5,7 @@ using PracticeProject.Domain.Entities;
 using PracticeProject.Domain.Enums;
 using System;
 using System.Linq;
+using System.Data.Entity;
 
 namespace PracticeProject.Persistence.Tests
 {
@@ -133,6 +134,38 @@ namespace PracticeProject.Persistence.Tests
             Assert.IsTrue(result.Count >= 2);
             Assert.IsTrue(result.Any(u => u.Email == user1.Email));
             Assert.IsTrue(result.Any(u => u.Email == user2.Email));
+        }
+
+        [TestMethod]
+        public void Update_DetachedUser_SaveChanges()
+        {
+            // Arrange
+            string email = $"update_test_{Guid.NewGuid()}@example.com";
+            var user = new User(
+                0,
+                default,
+                "Parham",
+                "UpdateTest",
+                email,
+                "TestPassword"
+                );
+
+            _userDataAccess.Create(user);
+
+            _context.Entry(user).State = EntityState.Detached;
+
+            // Act
+            user.FirstName = "Modified";
+            _userDataAccess.Update(user);
+
+            // Assert
+            using (var verificationContext = new DataBaseContext())
+            {
+                var result = verificationContext.Users.SingleOrDefault(u => u.Id == user.Id);
+                Assert.IsNotNull(result);
+                Assert.AreEqual("Modified", result.FirstName);
+                Assert.AreEqual(email, result.Email);
+            }
         }
     }
 }
