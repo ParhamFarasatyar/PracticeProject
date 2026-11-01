@@ -89,7 +89,7 @@ namespace PracticeProject.Persistence.Tests
         public void GetById_NonExistingUser_ReturnsNull()
         {
             // Arrange
-            int id = 20;
+            int id = 1;
 
             // Act
             var result = _userDataAccess.GetById(id);
@@ -166,6 +166,47 @@ namespace PracticeProject.Persistence.Tests
                 Assert.AreEqual("Modified", result.FirstName);
                 Assert.AreEqual(email, result.Email);
             }
+        }
+
+        [TestMethod]
+        public void Delete_ExistingDetachedUser_RemovesUser()
+        {
+            // Arrange
+            string email = $"delete_test_{Guid.NewGuid()}@example.com";
+            var user = new User(
+                0,
+                default,
+                "Parham",
+                "DeleteTest",
+                email,
+                "TestPassword"
+                );
+
+            _userDataAccess.Create(user);
+
+            _context.Entry(user).State = EntityState.Detached;
+
+            // Act
+            _userDataAccess.Delete(user.Id);
+
+            // Assert
+            using (var verificationContext = new DataBaseContext())
+            {
+                var result = verificationContext.Users.SingleOrDefault(u => u.Id == user.Id);
+                Assert.IsNull(result);
+            }
+        }
+
+        [TestMethod]
+        public void Delete_NonExistingUser_DoesNotThrow()
+        {
+            // Arrange
+            int id = 99999;
+
+            // Act
+            _userDataAccess.Delete(id);
+
+            // Assert
         }
     }
 }
