@@ -61,6 +61,10 @@
     <Compile Include="Migrations\202610310720202_ConfigureUserEmailAndPasswordAndFirstName.Designer.cs">
       <DependentUpon>202610310720202_ConfigureUserEmailAndPasswordAndFirstName.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202611020925144_ConfigureLastNameLength.cs" />
+    <Compile Include="Migrations\202611020925144_ConfigureLastNameLength.Designer.cs">
+      <DependentUpon>202611020925144_ConfigureLastNameLength.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -84,6 +88,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202610310720202_ConfigureUserEmailAndPasswordAndFirstName.resx">
       <DependentUpon>202610310720202_ConfigureUserEmailAndPasswordAndFirstName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202611020925144_ConfigureLastNameLength.resx">
+      <DependentUpon>202611020925144_ConfigureLastNameLength.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
