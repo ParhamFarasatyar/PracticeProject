@@ -240,8 +240,6 @@ namespace PracticeProject.Persistence.Tests
 
             // Act
             _userDataAccess.Delete(id);
-
-            // Assert
         }
     }
 }
