@@ -138,6 +138,19 @@ namespace PracticeProject.Persistence.Tests
         }
 
         [TestMethod]
+        public void GetAll_NoUserExist_ReturnsEmptyList()
+        {
+            // Arrange
+            _context.Database.ExecuteSqlCommand("DELETE Users");
+
+            // Act
+            var result = _userDataAccess.GetAll();
+
+            // Assert
+            Assert.AreEqual(0, result.Count);
+        }
+
+        [TestMethod]
         public void Update_DetachedUser_SaveChanges()
         {
             // Arrange
