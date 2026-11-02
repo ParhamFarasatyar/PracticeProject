@@ -47,5 +47,10 @@ namespace PracticeProject.Persistence.DataAccess
             _context.Entry(user).State = System.Data.Entity.EntityState.Modified;
             _context.SaveChanges();
         }
+
+        public bool ExistsByEmail(string email)
+        {
+            return _context.Users.Any(u => u.Email == email);
+        }
     }
 }
