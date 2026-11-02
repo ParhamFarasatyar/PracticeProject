@@ -241,5 +241,29 @@ namespace PracticeProject.Persistence.Tests
             // Act
             _userDataAccess.Delete(id);
         }
+
+        [TestMethod]
+        public void ExistsByEmail_ExistingDetachedUser_ReturnsTrue()
+        {
+            // Arrange
+            string email = $"existsbyemail_test_{Guid.NewGuid()}@example.com";
+            var user = new User(
+                0,
+                default,
+                "Parham",
+                "ExistsByEmailTest",
+                email,
+                "TestPassword"
+                );
+
+            _userDataAccess.Create(user);
+            _context.Entry(user).State = EntityState.Detached;
+
+            // Act
+            bool isExist = _userDataAccess.ExistsByEmail(email);
+
+            // Assert
+            Assert.IsTrue(isExist);
+        }
     }
 }
