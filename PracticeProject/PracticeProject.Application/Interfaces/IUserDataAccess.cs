@@ -14,5 +14,6 @@ namespace PracticeProject.Application.Interfaces
         void Update(User user);
 
         void Delete(int id);
+        bool ExistsByEmail(string email);
     }
 }
