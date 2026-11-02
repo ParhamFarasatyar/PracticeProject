@@ -43,9 +43,9 @@
   <ItemGroup>
     <Compile Include="Interfaces\IUserDataAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UserUseCases\CreateUser\CreateUserRequest.cs" />
-    <Compile Include="UserUseCases\CreateUser\CreateUserResponse.cs" />
-    <Compile Include="UserUseCases\CreateUser\CreateUserUseCase.cs" />
+    <Compile Include="BaseInfo\UserManagement\CreateUser\CreateUserRequest.cs" />
+    <Compile Include="BaseInfo\UserManagement\CreateUser\CreateUserResponse.cs" />
+    <Compile Include="BaseInfo\UserManagement\CreateUser\CreateUserUseCase.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PracticeProject.Domain\PracticeProject.Domain.csproj">
@@ -53,5 +53,6 @@
       <Name>PracticeProject.Domain</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
