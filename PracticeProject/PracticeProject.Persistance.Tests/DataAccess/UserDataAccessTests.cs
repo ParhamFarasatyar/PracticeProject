@@ -1,8 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PracticeProject.Persistence.DataAccess;
 using PracticeProject.Persistence.Contexts;
-using PracticeProject.Domain.Entities;
-using PracticeProject.Domain.Enums;
+using PracticeProject.Domain.BaseInfo.Person;
 using System;
 using System.Linq;
 using System.Data.Entity;

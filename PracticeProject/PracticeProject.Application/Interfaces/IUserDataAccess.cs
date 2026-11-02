@@ -1,5 +1,5 @@
-﻿using PracticeProject.Domain.Entities;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using PracticeProject.Domain.BaseInfo.Person;
 
 namespace PracticeProject.Application.Interfaces
 {

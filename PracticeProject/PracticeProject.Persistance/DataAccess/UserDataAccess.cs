@@ -1,5 +1,5 @@
 ﻿using PracticeProject.Application.Interfaces;
-using PracticeProject.Domain.Entities;
+using PracticeProject.Domain.BaseInfo.Person;
 using PracticeProject.Persistence.Contexts;
 using System.Collections.Generic;
 using System.Linq;

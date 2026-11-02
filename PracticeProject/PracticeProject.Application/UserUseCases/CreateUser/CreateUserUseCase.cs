@@ -1,6 +1,5 @@
 ﻿using PracticeProject.Application.Interfaces;
-using PracticeProject.Domain.Entities;
-using PracticeProject.Domain.Enums;
+using PracticeProject.Domain.BaseInfo.Person;
 using System;
 
 namespace PracticeProject.Application.UserUseCases.CreateUser

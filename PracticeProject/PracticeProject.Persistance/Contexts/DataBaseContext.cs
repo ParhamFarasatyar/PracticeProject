@@ -1,5 +1,5 @@
 ﻿using System.Data.Entity;
-using PracticeProject.Domain.Entities;
+using PracticeProject.Domain.BaseInfo.Person;
 
 namespace PracticeProject.Persistence.Contexts
 {
