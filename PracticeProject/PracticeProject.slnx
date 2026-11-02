@@ -1,9 +1,6 @@
 <Solution>
   <Folder Name="/Docs/" />
   <Folder Name="/Src/" />
-  <Folder Name="/Src/Common/">
-    <Project Path="PracticeProject.Common/PracticeProject.Common.csproj" Id="b1304f48-cb99-4cb0-a5eb-086a0d6cdd9f" />
-  </Folder>
   <Folder Name="/Src/Core/">
     <Project Path="PracticeProject.Application/PracticeProject.Application.csproj" Id="757a67b0-3b99-462d-a5f5-301647d1bf75" />
     <Project Path="PracticeProject.Domain/PracticeProject.Domain.csproj" Id="da845681-5e67-4349-9879-6bd6bcbbd6b8" />
