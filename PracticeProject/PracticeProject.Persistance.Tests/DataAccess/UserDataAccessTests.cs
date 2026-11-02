@@ -6,6 +6,7 @@ using PracticeProject.Domain.Enums;
 using System;
 using System.Linq;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 
 namespace PracticeProject.Persistence.Tests
 {
@@ -166,6 +167,27 @@ namespace PracticeProject.Persistence.Tests
                 Assert.AreEqual("Modified", result.FirstName);
                 Assert.AreEqual(email, result.Email);
             }
+        }
+
+        [TestMethod]
+        public void Update_NonExistingUser_ThrowException()
+        {
+            // Arrange
+            string email = $"updatenonexisting_test_{Guid.NewGuid()}@example.com";
+            var user = new User(
+                0,
+                default,
+                "Parham",
+                "UpdateNonExistingTest",
+                email,
+                "TestPassword"
+                );
+
+            // Act
+            Action act = () => _userDataAccess.Update(user);
+
+            // Assert
+            Assert.ThrowsException<DbUpdateConcurrencyException>(act);
         }
 
         [TestMethod]
