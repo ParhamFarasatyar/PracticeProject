@@ -1,8 +1,9 @@
-﻿using PracticeProject.Domain.Enums;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace PracticeProject.Domain.Entities
 {
+    public enum Role { Admin, User }
+
     public class User
     {
         public int Id { get; set; }
