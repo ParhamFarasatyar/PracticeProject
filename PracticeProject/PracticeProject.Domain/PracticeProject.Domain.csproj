@@ -44,8 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\User.cs" />
-    <Compile Include="Enums\Role.cs" />
+    <Compile Include="BaseInfo\Person\Entities\User.cs" />
+    <Compile Include="BaseInfo\Person\Enums\Role.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

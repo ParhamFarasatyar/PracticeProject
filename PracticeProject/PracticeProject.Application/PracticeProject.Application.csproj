@@ -43,9 +43,9 @@
   <ItemGroup>
     <Compile Include="Interfaces\IUserDataAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UserUseCases\Person\CreateUser\CreateUserRequest.cs" />
-    <Compile Include="UserUseCases\Person\CreateUser\CreateUserResponse.cs" />
-    <Compile Include="UserUseCases\Person\CreateUser\CreateUserUseCase.cs" />
+    <Compile Include="UserUseCases\CreateUser\CreateUserRequest.cs" />
+    <Compile Include="UserUseCases\CreateUser\CreateUserResponse.cs" />
+    <Compile Include="UserUseCases\CreateUser\CreateUserUseCase.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PracticeProject.Domain\PracticeProject.Domain.csproj">
