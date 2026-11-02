@@ -265,5 +265,18 @@ namespace PracticeProject.Persistence.Tests
             // Assert
             Assert.IsTrue(isExist);
         }
+
+        [TestMethod]
+        public void ExistsByEmail_NonExistingEmail_ReturnsFalse()
+        {
+            // Arrange
+            string email = $"nonexistingemail_test_{Guid.NewGuid()}@example.com";
+
+            // Act
+            bool isExist = _userDataAccess.ExistsByEmail(email);
+
+            // Assert
+            Assert.IsFalse(isExist);
+        }
     }
 }
