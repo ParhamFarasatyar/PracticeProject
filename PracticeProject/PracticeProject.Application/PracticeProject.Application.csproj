@@ -42,8 +42,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseInfo\Interfaces\ICreateUserUseCase.cs" />
+    <Compile Include="BaseInfo\Interfaces\IGetAllUsersUseCase.cs" />
     <Compile Include="BaseInfo\Interfaces\IUserDataAccess.cs" />
     <Compile Include="BaseInfo\UserManagement\GetAllUsers\GetAllUsersResponse.cs" />
+    <Compile Include="BaseInfo\UserManagement\GetAllUsers\GetAllUsersUseCase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BaseInfo\UserManagement\CreateUser\CreateUserRequest.cs" />
     <Compile Include="BaseInfo\UserManagement\CreateUser\CreateUserResponse.cs" />
