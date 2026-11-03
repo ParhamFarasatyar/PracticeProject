@@ -1,4 +1,4 @@
-﻿namespace PracticeProject.Application.UserUseCases.CreateUser
+﻿namespace PracticeProject.Application.UserManagement.CreateUser
 {
     public class CreateUserRequest
     {
