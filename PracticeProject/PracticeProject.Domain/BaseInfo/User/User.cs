@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace PracticeProject.Domain.BaseInfo.Person
+namespace PracticeProject.Domain.BaseInfo.User
 {
     public enum Role { Admin, User }
 
