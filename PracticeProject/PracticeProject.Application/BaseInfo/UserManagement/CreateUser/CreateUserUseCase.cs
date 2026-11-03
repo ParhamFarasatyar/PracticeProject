@@ -1,4 +1,4 @@
-﻿using PracticeProject.Application.Interfaces;
+﻿using PracticeProject.Application.BaseInfo.Interfaces;
 using PracticeProject.Domain.BaseInfo.User;
 using System;
 

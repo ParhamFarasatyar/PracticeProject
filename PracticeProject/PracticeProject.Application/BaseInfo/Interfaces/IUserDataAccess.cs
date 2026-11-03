@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using PracticeProject.Domain.BaseInfo.User;
 
-namespace PracticeProject.Application.Interfaces
+namespace PracticeProject.Application.BaseInfo.Interfaces
 {
     public interface IUserDataAccess
     {
