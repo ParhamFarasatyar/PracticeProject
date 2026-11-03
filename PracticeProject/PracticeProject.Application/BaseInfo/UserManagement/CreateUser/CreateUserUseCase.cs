@@ -4,7 +4,7 @@ using System;
 
 namespace PracticeProject.Application.UserUseCases.CreateUser
 {
-    public class CreateUserUseCase
+    public class CreateUserUseCase : ICreateUserUseCase
     {
         private readonly IUserDataAccess _userDataAccess;
 
