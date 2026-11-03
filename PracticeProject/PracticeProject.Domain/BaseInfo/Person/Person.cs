@@ -1,8 +1,10 @@
-﻿namespace PracticeProject.Domain.BaseInfo.Person
+﻿using PracticeProject.Domain.BaseInfo.Interfaces;
+
+namespace PracticeProject.Domain.BaseInfo.Person
 {
     public enum Gender { Male, Female }
 
-    public class Person
+    public class Person : IEntity
     {
         public int Id { get; set; }
         public string FirstName { get; set; }
