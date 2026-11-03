@@ -2,9 +2,9 @@
 using PracticeProject.Domain.BaseInfo.User;
 using System;
 
-namespace PracticeProject.Application.UserUseCases.CreateUser
+namespace PracticeProject.Application.UserManagement.CreateUser
 {
-    public class CreateUser : ICreateUserUseCase
+    public class CreateUser : ICreateUser
     {
         private readonly IUserDataAccess _userDataAccess;
 
