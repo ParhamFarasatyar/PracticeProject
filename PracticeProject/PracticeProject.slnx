@@ -6,7 +6,6 @@
     <Project Path="PracticeProject.Domain/PracticeProject.Domain.csproj" Id="da845681-5e67-4349-9879-6bd6bcbbd6b8" />
   </Folder>
   <Folder Name="/Src/Infrastructure/">
-    <Project Path="PracticeProject.Infrastructure/PracticeProject.Infrastructure.csproj" Id="a24cc608-b5d2-42c2-aaad-4a69c7882909" />
     <Project Path="PracticeProject.Persistance/PracticeProject.Persistence.csproj" Id="ef77e83f-5e61-4f59-9ff8-244b4e15774e" />
   </Folder>
   <Folder Name="/Src/Presentation/">
