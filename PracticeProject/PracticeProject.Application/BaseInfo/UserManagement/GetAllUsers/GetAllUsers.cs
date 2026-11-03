@@ -4,11 +4,11 @@ using System.Collections.Generic;
 
 namespace PracticeProject.Application.BaseInfo.UserManagement.GetAllUsers
 {
-    public class GetAllUsersUseCase : IGetAllUsersUseCase
+    public class GetAllUsers : IGetAllUsers
     {
         private readonly IUserDataAccess _userDataAccess;
 
-        public GetAllUsersUseCase(IUserDataAccess userDataAccess)
+        public GetAllUsers(IUserDataAccess userDataAccess)
         {
             _userDataAccess = userDataAccess;
         }

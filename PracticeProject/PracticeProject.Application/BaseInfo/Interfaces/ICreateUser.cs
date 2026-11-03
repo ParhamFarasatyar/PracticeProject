@@ -1,8 +1,8 @@
-﻿using PracticeProject.Application.UserUseCases.CreateUser;
+﻿using PracticeProject.Application.UserManagement.CreateUser;
 
 namespace PracticeProject.Application.BaseInfo.Interfaces
 {
-    public interface ICreateUserUseCase
+    public interface ICreateUser
     {
         CreateUserResponse Execute(CreateUserRequest request);
     }

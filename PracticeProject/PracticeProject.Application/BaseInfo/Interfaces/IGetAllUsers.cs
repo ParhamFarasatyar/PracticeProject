@@ -2,7 +2,7 @@
 
 namespace PracticeProject.Application.BaseInfo.Interfaces
 {
-    public interface IGetAllUsersUseCase
+    public interface IGetAllUsers
     {
         GetAllUsersResponse Execute();
     }
