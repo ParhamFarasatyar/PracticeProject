@@ -4,11 +4,11 @@ using System;
 
 namespace PracticeProject.Application.UserUseCases.CreateUser
 {
-    public class CreateUserUseCase : ICreateUserUseCase
+    public class CreateUser : ICreateUserUseCase
     {
         private readonly IUserDataAccess _userDataAccess;
 
-        public CreateUserUseCase(IUserDataAccess userDataAccess)
+        public CreateUser(IUserDataAccess userDataAccess)
         {
             _userDataAccess = userDataAccess ?? throw new ArgumentNullException(nameof(userDataAccess));
         }

@@ -49,7 +49,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BaseInfo\UserManagement\CreateUser\CreateUserRequest.cs" />
     <Compile Include="BaseInfo\UserManagement\CreateUser\CreateUserResponse.cs" />
-    <Compile Include="BaseInfo\UserManagement\CreateUser\CreateUserUseCase.cs" />
+    <Compile Include="BaseInfo\UserManagement\CreateUser\CreateUser.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PracticeProject.Domain\PracticeProject.Domain.csproj">
