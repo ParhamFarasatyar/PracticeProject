@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseInfo\Interfaces\ICreateUser.cs" />
+    <Compile Include="BaseInfo\Interfaces\IDb.cs" />
     <Compile Include="BaseInfo\Interfaces\IGetAllUsers.cs" />
     <Compile Include="BaseInfo\Interfaces\IUserDataAccess.cs" />
     <Compile Include="BaseInfo\UserManagement\GetAllUsers\GetAllUsersResponse.cs" />
