@@ -1,10 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using PracticeProject.Domain.BaseInfo.Interfaces;
+using System.ComponentModel.DataAnnotations;
 
 namespace PracticeProject.Domain.BaseInfo.User
 {
     public enum Role { Admin, User }
 
-    public class User
+    public class User : IEntity
     {
         public int Id { get; set; }
         public Role Role { get; set; }
