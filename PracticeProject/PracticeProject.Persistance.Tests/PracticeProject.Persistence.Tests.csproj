@@ -72,6 +72,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Application\UserManagement\CreateUserTests\CreateUserTests.cs" />
+    <Compile Include="Contexts\DataBaseContextTests.cs" />
     <Compile Include="DataAccess\UserDataAccessTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
