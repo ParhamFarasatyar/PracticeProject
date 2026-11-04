@@ -162,5 +162,52 @@ namespace PracticeProject.Persistance.Tests.Application.UserManagement.CreateUse
             _userDataAccessMock.Verify(u => u.Create(It.IsAny<User>()), Times.Never);
             _userDataAccessMock.Verify(u => u.ExistsByEmail(It.IsAny<string>()), Times.Never);
         }
+
+        [DataTestMethod]
+        [DataRow("FirstName")]
+        [DataRow("LastName")]
+        [DataRow("Email")]
+        [DataRow("Password")]
+        public void Create_FieldExceedsMaximumLength_ReturnFailure(string fieldName)
+        {
+            // Arrange
+            string longText = new string('A', 300);
+
+            CreateUserRequest request = new CreateUserRequest
+            {
+                FirstName = "Parham",
+                LastName = "CreateMaximumLengthTest",
+                Email = $"exceedmaximumlength_test_{Guid.NewGuid()}@example.com",
+                Password = "PasswordTest"
+            };
+
+            switch (fieldName)
+            {
+                case "FirstName":
+                    request.FirstName = longText;
+                    break;
+
+                case "LastName":
+                    request.LastName = longText;
+                    break;
+
+                case "Email":
+                    request.Email = longText;
+                    break;
+
+                case "Password":
+                    request.Password = longText;
+                    break;
+            }
+
+            // Act
+            CreateUserResponse response = _useCase.Execute(request);
+
+            // Assert
+            Assert.IsFalse(response.IsSuccess);
+            Assert.IsNull(response.UserId);
+            _userDataAccessMock.Verify(u => u.ExistsByEmail(It.IsAny<string>()), Times.Never);
+            _userDataAccessMock.Verify(u => u.Create(It.IsAny<User>()), Times.Never);
+        }
     }
 }
