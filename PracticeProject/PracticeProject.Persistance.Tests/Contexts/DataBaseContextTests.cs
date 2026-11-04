@@ -58,5 +58,38 @@ namespace PracticeProject.Persistance.Tests.Contexts
             // Assert
             Assert.AreEqual("Parham", firstname);
         }
+
+        [TestMethod]
+        public void Set_ShouldTrackEntities()
+        {
+            // Arrange
+            string email = $"settracking_test_{Guid.NewGuid()}@example.com";
+            User user = new User(
+                0,
+                default,
+                "Parham",
+                "SetTrackingTest",
+                email,
+                "TestPassword"
+                );
+
+            _context.Add<User>(user);
+            _context.SaveChanges();
+            int id = user.Id;
+
+            IDb getSavedUserContext = new DataBaseContext();
+            User savedUser = getSavedUserContext.Set<User>().FirstOrDefault(u => u.Id == id);
+            savedUser.FirstName = "Modified";
+            getSavedUserContext.SaveChanges();
+            getSavedUserContext.Dispose();
+
+            // Act
+            IDb verificationContext = new DataBaseContext();
+            string modifiedUserFirstName= verificationContext.Query<User>().FirstOrDefault(u => u.Id == id).FirstName;
+            verificationContext.Dispose();
+
+            // Assert
+            Assert.AreEqual("Modified", modifiedUserFirstName);
+        }
     }
 }
