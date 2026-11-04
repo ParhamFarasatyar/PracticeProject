@@ -38,9 +38,7 @@ namespace PracticeProject.Application.UserManagement.CreateUser
 
             Role role = Role.User;
             if (string.Equals(request.FirstName, "Parham", StringComparison.OrdinalIgnoreCase))
-            {
                 role = Role.Admin;
-            }
 
             var user = new User(
                 0,
