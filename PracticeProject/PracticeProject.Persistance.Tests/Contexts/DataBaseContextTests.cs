@@ -3,6 +3,7 @@ using PracticeProject.Application.BaseInfo.Interfaces;
 using PracticeProject.Domain.BaseInfo.User;
 using PracticeProject.Persistence.Contexts;
 using System;
+using System.Data.Entity;
 using System.Linq;
 
 namespace PracticeProject.Persistance.Tests.Contexts
@@ -90,6 +91,30 @@ namespace PracticeProject.Persistance.Tests.Contexts
 
             // Assert
             Assert.AreEqual("Modified", modifiedUserFirstName);
+        }
+
+        [TestMethod]
+        public void Add_ShouldSetEntityStateToAdded()
+        {
+            // Arrange
+            DataBaseContext context = new DataBaseContext();
+            string email = $"addsetstatetoadded_test_{Guid.NewGuid()}@example.com";
+            User user = new User(
+                0,
+                default,
+                "Parham",
+                "AddSetStateToAddedTest",
+                email,
+                "TestPassword"
+                );
+
+            // Act
+            context.Users.Add(user);
+            EntityState state = context.Entry<User>(user).State;
+            context.Dispose();
+
+            // Assert
+            Assert.AreEqual(EntityState.Added, state);
         }
     }
 }
