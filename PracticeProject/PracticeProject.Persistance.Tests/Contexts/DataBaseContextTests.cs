@@ -143,5 +143,59 @@ namespace PracticeProject.Persistance.Tests.Contexts
             Assert.IsNotNull(savedUser);
             Assert.AreEqual(user.Id, savedUser.Id);
         }
+
+        [TestMethod]
+        public void Remove_ShouldSetEntityStateToDeleted()
+        {
+            // Arrange
+            string email = $"removesetentitytodeleted_test_{Guid.NewGuid()}@example.com";
+            User user = new User(
+                0,
+                default,
+                "Parham",
+                "RemoveSetStateToDeletedTest",
+                email,
+                "TestPassword"
+                );
+            _db.Add<User>(user);
+            _db.SaveChanges();
+
+            //Act
+            User savedUser = _db.Set<User>().FirstOrDefault(u => u.Id == user.Id);
+            _db.Remove<User>(savedUser);
+            EntityState state = _context.Entry<User>(savedUser).State;
+
+            // Assert
+            Assert.AreEqual(EntityState.Deleted, state);
+        }
+
+        [TestMethod]
+        public void Remove_ShouldDeleteEntityFromDatabase()
+        {
+            // Arrange
+            string email = $"removedeletefromdatabase_test_{Guid.NewGuid()}@example.com";
+            User user = new User(
+                0,
+                default,
+                "Parham",
+                "RemoveDeleteFromDatabase",
+                email,
+                "TestPassword"
+                );
+
+            _db.Add<User>(user);
+            _db.SaveChanges();
+
+            _db.Remove<User>(user);
+            _db.SaveChanges();
+
+            // Act
+            IDb verificationContext = new DataBaseContext();
+            User deletedUser = verificationContext.Query<User>().FirstOrDefault(u => u.Id == user.Id);
+            verificationContext.Dispose();
+
+            // Assert
+            Assert.IsNull(deletedUser);
+        }
     }
 }
