@@ -197,5 +197,38 @@ namespace PracticeProject.Persistance.Tests.Contexts
             // Assert
             Assert.IsNull(deletedUser);
         }
+
+        [TestMethod]
+        public void DeleteById_ShouldDeleteEntityFromDatabase()
+        {
+            // Arrange
+            string email = $"deletebyiddeletefromdatabase_test_{Guid.NewGuid()}@example.com";
+            User user = new User(
+                0,
+                default,
+                "Parham",
+                "DeleteByIdDeleteFromDatabaseTest",
+                email,
+                "TestPassword"
+                );
+
+            _db.Add<User>(user);
+            _db.SaveChanges();
+
+            int id = user.Id;
+
+            IDb deleteContext = new DataBaseContext();
+            deleteContext.DeleteById<User>(id);
+            deleteContext.SaveChanges();
+            deleteContext.Dispose();
+
+            // Act
+            IDb verificationContext = new DataBaseContext();
+            User deletedUser = verificationContext.Query<User>().FirstOrDefault(u => u.Id == id);
+            verificationContext.Dispose();
+
+            // Assert
+            Assert.IsNull(deletedUser);
+        }
     }
 }
