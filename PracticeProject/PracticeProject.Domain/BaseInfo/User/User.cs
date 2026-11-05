@@ -1,18 +1,17 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using PracticeProject.Domain.BaseInfo.Person;
+using System.ComponentModel.DataAnnotations;
 
 namespace PracticeProject.Domain.BaseInfo.User
 {
     public class User : IEntity
     {
         public int Id { get; set; }
+
+        public int PersonId { get; set; }
+        
+        public Person.Person Person { get; set; }
+
         public Role Role { get; set; }
-
-        [Required]
-        [StringLength(100)]
-        public string FirstName { get; set; }
-
-        [StringLength(100)]
-        public string LastName { get; set; }
 
         [Required]
         [StringLength(250)]
@@ -30,8 +29,6 @@ namespace PracticeProject.Domain.BaseInfo.User
         {
             Id = id;
             Role = role;
-            FirstName = firstName;
-            LastName = lastName;
             Email = email;
             Password = password;
         }
