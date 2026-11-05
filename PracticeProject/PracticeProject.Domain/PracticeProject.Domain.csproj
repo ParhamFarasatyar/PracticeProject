@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="BaseInfo\Interfaces\IEntity.cs" />
     <Compile Include="BaseInfo\Person\Person.cs" />
+    <Compile Include="BaseInfo\User\Role.cs" />
     <Compile Include="BaseInfo\User\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
