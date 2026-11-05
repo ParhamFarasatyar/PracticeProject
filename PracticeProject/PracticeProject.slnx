@@ -12,6 +12,7 @@
     <Project Path="EndPoint.WebForm/EndPoint.WebForm.csproj" Id="fc887211-cda7-4a00-9649-4cfbdd2dbe24" />
   </Folder>
   <Folder Name="/Test/">
+    <Project Path="PracticeProject.Application.Tests/PracticeProject.Application.Tests.csproj" Id="5fe7edc3-1f57-4c53-9227-965c6ba2157b" />
     <Project Path="PracticeProject.Persistance.Tests/PracticeProject.Persistence.Tests.csproj" Id="626eabbb-6d75-4599-a992-b36ac1a77cb5" />
   </Folder>
 </Solution>

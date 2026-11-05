@@ -4,10 +4,8 @@ using PracticeProject.Application.BaseInfo.Interfaces;
 using PracticeProject.Application.UserManagement.CreateUser;
 using PracticeProject.Domain.BaseInfo.User;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace PracticeProject.Persistance.Tests.Application.UserManagement.CreateUserTests
+namespace PracticeProject.Application.Tests.UserManagement.CreateUserTests
 {
     [TestClass]
     public class CreateUserTests
