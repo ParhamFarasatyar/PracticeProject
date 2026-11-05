@@ -116,5 +116,32 @@ namespace PracticeProject.Persistance.Tests.Contexts
             // Assert
             Assert.AreEqual(EntityState.Added, state);
         }
+
+        [TestMethod]
+        public void Add_ShouldPersistEntity()
+        {
+            // Arrange
+            string email = $"addpersistentity_test_{Guid.NewGuid()}@example.com";
+            User user = new User(
+                0,
+                default,
+                "Parham",
+                "AddPersistEntityTest",
+                email,
+                "TestPassword"
+                );
+
+            _context.Add<User>(user);
+            _context.SaveChanges();
+
+            // Act
+            IDb verificationContext = new DataBaseContext();
+            User savedUser = verificationContext.Set<User>().AsNoTracking().FirstOrDefault(u => u.Id == user.Id);
+            verificationContext.Dispose();
+
+            // Assert
+            Assert.IsNotNull(savedUser);
+            Assert.AreEqual(user.Id, savedUser.Id);
+        }
     }
 }
