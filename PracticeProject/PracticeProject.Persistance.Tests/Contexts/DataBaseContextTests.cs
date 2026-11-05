@@ -4,6 +4,7 @@ using PracticeProject.Domain.BaseInfo.User;
 using PracticeProject.Persistence.Contexts;
 using System;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 
 namespace PracticeProject.Persistance.Tests.Contexts
@@ -229,6 +230,20 @@ namespace PracticeProject.Persistance.Tests.Contexts
 
             // Assert
             Assert.IsNull(deletedUser);
+        }
+
+        [TestMethod]
+        public void DeleteById_NonExistingEntity_ShouldThrowException()
+        {
+            // Arrange
+            int id = 999999999;
+
+            // Act
+            _db.DeleteById<User>(id);
+            Action act = () => _db.SaveChanges();
+
+            // Assert
+            Assert.ThrowsException<DbUpdateConcurrencyException>(act);
         }
     }
 }
