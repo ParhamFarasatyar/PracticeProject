@@ -11,12 +11,14 @@ namespace PracticeProject.Persistance.Tests.Contexts
     [TestClass]
     public class DataBaseContextTests
     {
-        private IDb _context;
+        private DataBaseContext _context;
+        private IDb _db;
 
         [TestInitialize]
         public void Setup()
         {
             _context = new DataBaseContext();
+            _db = _context;
         }
 
         [TestCleanup]
@@ -40,8 +42,8 @@ namespace PracticeProject.Persistance.Tests.Contexts
                 "TestPassword"
                 );
 
-            _context.Add<User>(user);
-            _context.SaveChanges();
+            _db.Add<User>(user);
+            _db.SaveChanges();
             int id = user.Id;
 
             IDb getSavedUserContext = new DataBaseContext();
@@ -74,8 +76,8 @@ namespace PracticeProject.Persistance.Tests.Contexts
                 "TestPassword"
                 );
 
-            _context.Add<User>(user);
-            _context.SaveChanges();
+            _db.Add<User>(user);
+            _db.SaveChanges();
             int id = user.Id;
 
             IDb getSavedUserContext = new DataBaseContext();
@@ -97,7 +99,6 @@ namespace PracticeProject.Persistance.Tests.Contexts
         public void Add_ShouldSetEntityStateToAdded()
         {
             // Arrange
-            DataBaseContext context = new DataBaseContext();
             string email = $"addsetstatetoadded_test_{Guid.NewGuid()}@example.com";
             User user = new User(
                 0,
@@ -109,9 +110,8 @@ namespace PracticeProject.Persistance.Tests.Contexts
                 );
 
             // Act
-            context.Users.Add(user);
-            EntityState state = context.Entry<User>(user).State;
-            context.Dispose();
+            _db.Add(user);
+            EntityState state = _context.Entry<User>(user).State;
 
             // Assert
             Assert.AreEqual(EntityState.Added, state);
@@ -131,8 +131,8 @@ namespace PracticeProject.Persistance.Tests.Contexts
                 "TestPassword"
                 );
 
-            _context.Add<User>(user);
-            _context.SaveChanges();
+            _db.Add<User>(user);
+            _db.SaveChanges();
 
             // Act
             IDb verificationContext = new DataBaseContext();
