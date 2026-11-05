@@ -1,4 +1,4 @@
-﻿namespace PracticeProject.Domain.BaseInfo.Interfaces
+﻿namespace PracticeProject.Domain
 {
     public interface IEntity
     {

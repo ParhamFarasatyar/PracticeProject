@@ -1,7 +1,6 @@
 ﻿using System.Data.Entity;
 using System.Linq;
 using PracticeProject.Application.BaseInfo.Interfaces;
-using PracticeProject.Domain.BaseInfo.Interfaces;
 using PracticeProject.Domain.BaseInfo.User;
 
 namespace PracticeProject.Persistence.Contexts

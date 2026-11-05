@@ -1,4 +1,4 @@
-﻿using PracticeProject.Domain.BaseInfo.Interfaces;
+﻿using PracticeProject.Domain;
 using System;
 using System.Linq;
 

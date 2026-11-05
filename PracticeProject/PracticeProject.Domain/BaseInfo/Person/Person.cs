@@ -1,6 +1,4 @@
-﻿using PracticeProject.Domain.BaseInfo.Interfaces;
-
-namespace PracticeProject.Domain.BaseInfo.Person
+﻿namespace PracticeProject.Domain.BaseInfo.Person
 {
     public enum Gender { Male, Female }
 

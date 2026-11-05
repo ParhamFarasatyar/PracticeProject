@@ -1,5 +1,4 @@
-﻿using PracticeProject.Domain.BaseInfo.Interfaces;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace PracticeProject.Domain.BaseInfo.User
 {
