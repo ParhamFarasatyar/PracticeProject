@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseInfo\Person\Gender.cs" />
     <Compile Include="IEntity.cs" />
     <Compile Include="BaseInfo\Person\Person.cs" />
     <Compile Include="BaseInfo\User\Role.cs" />
