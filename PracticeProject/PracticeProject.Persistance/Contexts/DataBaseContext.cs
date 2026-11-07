@@ -2,6 +2,7 @@
 using System.Linq;
 using PracticeProject.Application;
 using PracticeProject.Domain.BaseInfo.User;
+using PracticeProject.Domain.BaseInfo.Person;
 
 namespace PracticeProject.Persistence.Contexts
 {
@@ -36,6 +37,9 @@ namespace PracticeProject.Persistence.Contexts
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<User>().HasRequired(u => u.Person)
+                .WithMany().HasForeignKey(u => u.PersonId);
         }
     }
 }
