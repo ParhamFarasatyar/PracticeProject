@@ -65,6 +65,14 @@
     <Compile Include="Migrations\202611020925144_ConfigureLastNameLength.Designer.cs">
       <DependentUpon>202611020925144_ConfigureLastNameLength.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202611070613226_AddUniqueIndexToUserPersonId.cs" />
+    <Compile Include="Migrations\202611070613226_AddUniqueIndexToUserPersonId.Designer.cs">
+      <DependentUpon>202611070613226_AddUniqueIndexToUserPersonId.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202611070626155_ConfigureFieldsLengthAndNullable.cs" />
+    <Compile Include="Migrations\202611070626155_ConfigureFieldsLengthAndNullable.Designer.cs">
+      <DependentUpon>202611070626155_ConfigureFieldsLengthAndNullable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -91,6 +99,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202611020925144_ConfigureLastNameLength.resx">
       <DependentUpon>202611020925144_ConfigureLastNameLength.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202611070613226_AddUniqueIndexToUserPersonId.resx">
+      <DependentUpon>202611070613226_AddUniqueIndexToUserPersonId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202611070626155_ConfigureFieldsLengthAndNullable.resx">
+      <DependentUpon>202611070626155_ConfigureFieldsLengthAndNullable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
