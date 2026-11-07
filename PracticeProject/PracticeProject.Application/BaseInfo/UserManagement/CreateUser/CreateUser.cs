@@ -8,9 +8,12 @@ namespace PracticeProject.Application.BaseInfo.UserManagement.CreateUser
     {
         private readonly IUserDataAccess _userDataAccess;
 
-        public CreateUser(IUserDataAccess userDataAccess)
+        private readonly IUnitOfWork _unitOfWork;
+
+        public CreateUser(IUserDataAccess userDataAccess, IUnitOfWork unitOfWork)
         {
             _userDataAccess = userDataAccess ?? throw new ArgumentNullException(nameof(userDataAccess));
+            _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
         }
 
         public CreateUserResponse Execute(CreateUserRequest request)
@@ -59,6 +62,7 @@ namespace PracticeProject.Application.BaseInfo.UserManagement.CreateUser
             };
 
             _userDataAccess.Create(user);
+            _unitOfWork.SaveChanges();
 
             CreateUserResponse response = new CreateUserResponse
             {
