@@ -30,5 +30,12 @@ namespace PracticeProject.Application.BaseInfo.UserManagement.GetAllUsers
             response.Users = users;
             return response;
         }
+
+        public class GetAllUsersResponse
+        {
+            public bool IsSuccess { get; set; }
+            public string Message { get; set; }
+            public List<User> Users { get; set; } = new List<User>();
+        }
     }
 }

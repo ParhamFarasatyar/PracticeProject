@@ -2,6 +2,6 @@
 {
     public interface IGetAllUsers
     {
-        GetAllUsersResponse Execute();
+        GetAllUsers.GetAllUsersResponse Execute();
     }
 }
