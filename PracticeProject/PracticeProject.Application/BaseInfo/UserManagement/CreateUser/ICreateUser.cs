@@ -1,6 +1,6 @@
 ﻿using PracticeProject.Application.UserManagement.CreateUser;
 
-namespace PracticeProject.Application.BaseInfo.Interfaces
+namespace PracticeProject.Application.BaseInfo.UserManagement.CreateUser
 {
     public interface ICreateUser
     {

@@ -41,10 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseInfo\Interfaces\ICreateUser.cs" />
+    <Compile Include="BaseInfo\UserManagement\CreateUser\ICreateUser.cs" />
     <Compile Include="IDb.cs" />
     <Compile Include="BaseInfo\Interfaces\IGetAllUsers.cs" />
-    <Compile Include="BaseInfo\Interfaces\IUserDataAccess.cs" />
+    <Compile Include="BaseInfo\IUserDataAccess.cs" />
     <Compile Include="BaseInfo\UserManagement\GetAllUsers\GetAllUsersResponse.cs" />
     <Compile Include="BaseInfo\UserManagement\GetAllUsers\GetAllUsers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
