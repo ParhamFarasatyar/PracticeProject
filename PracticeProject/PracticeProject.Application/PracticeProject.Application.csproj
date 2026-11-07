@@ -46,6 +46,7 @@
     <Compile Include="BaseInfo\UserManagement\GetAllUsers\IGetAllUsers.cs" />
     <Compile Include="BaseInfo\IUserDataAccess.cs" />
     <Compile Include="BaseInfo\UserManagement\GetAllUsers\GetAllUsers.cs" />
+    <Compile Include="IUnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BaseInfo\UserManagement\CreateUser\CreateUser.cs" />
   </ItemGroup>
