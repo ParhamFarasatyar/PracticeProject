@@ -2,7 +2,7 @@
 using System;
 using System.Linq;
 
-namespace PracticeProject.Application.BaseInfo.Interfaces
+namespace PracticeProject.Application
 {
     public interface IDb : IDisposable
     {

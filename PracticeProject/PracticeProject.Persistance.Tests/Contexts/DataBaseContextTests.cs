@@ -1,5 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using PracticeProject.Application.BaseInfo.Interfaces;
+using PracticeProject.Application;
 using PracticeProject.Domain.BaseInfo.User;
 using PracticeProject.Persistence.Contexts;
 using System;
