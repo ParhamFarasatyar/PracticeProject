@@ -1,5 +1,5 @@
-﻿using PracticeProject.Domain.BaseInfo.Person;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PracticeProject.Domain.BaseInfo.User
 {
@@ -7,6 +7,7 @@ namespace PracticeProject.Domain.BaseInfo.User
     {
         public int Id { get; set; }
 
+        [Index("IX_User_PersonId", IsUnique = true)]
         public int PersonId { get; set; }
         
         public Person.Person Person { get; set; }
