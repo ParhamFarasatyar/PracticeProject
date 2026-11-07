@@ -1,5 +1,6 @@
 ﻿using PracticeProject.Domain.BaseInfo.User;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace PracticeProject.Application.BaseInfo.UserManagement.GetAllUsers
 {
@@ -18,7 +19,7 @@ namespace PracticeProject.Application.BaseInfo.UserManagement.GetAllUsers
 
             List<User> users = _userDataAccess.GetAll();
 
-            if (users.Count == 0)
+            if (!users.Any())
             {
                 response.IsSuccess = true;
                 response.Message = "No users found.";
