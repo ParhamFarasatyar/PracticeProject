@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PracticeProject.Application;
+using PracticeProject.Domain.BaseInfo.Person;
 using PracticeProject.Domain.BaseInfo.User;
 using PracticeProject.Persistence.Contexts;
 using System;
@@ -14,12 +15,14 @@ namespace PracticeProject.Persistance.Tests.Contexts
     {
         private DataBaseContext _context;
         private IDb _db;
+        private IUnitOfWork _unitOfWork;
 
         [TestInitialize]
         public void Setup()
         {
             _context = new DataBaseContext();
             _db = _context;
+            _unitOfWork = _context;
         }
 
         [TestCleanup]
@@ -34,31 +37,42 @@ namespace PracticeProject.Persistance.Tests.Contexts
             // Arrange
             string email = $"querynontracking_test_{Guid.NewGuid()}@example.com";
 
+            var person = new Person
+            {
+                FirstName = "Parham",
+                LastName = "QueryShouldNotTrackEntitiesTest",
+                Age = 23,
+                Gender = default
+            };
+
             var user = new User(
                 0,
                 default,
                 email,
                 "TestPassword"
-                );
+                )
+            { Person = person };
 
             _db.Add<User>(user);
-            _db.SaveChanges();
+            _unitOfWork.SaveChanges();
             int id = user.Id;
 
-            IDb getSavedUserContext = new DataBaseContext();
-            User savedUser = getSavedUserContext.Query<User>().FirstOrDefault(u => u.Id == id);
+            DataBaseContext getSavedUserContext = new DataBaseContext();
+            IDb getSavedUserDb = getSavedUserContext;
+            IUnitOfWork unitOfWork = getSavedUserContext;
+            User savedUser = getSavedUserDb.Query<User>().FirstOrDefault(u => u.Id == id);
 
-            //savedUser.FirstName = "Modified";
-            getSavedUserContext.SaveChanges();
+            savedUser.Password = "Modified";
+            unitOfWork.SaveChanges();
             getSavedUserContext.Dispose();
 
             // Act
             IDb verificationContext = new DataBaseContext();
-            //string firstname = verificationContext.Query<User>().FirstOrDefault(u => u.Id == id).FirstName;
+            string password = verificationContext.Query<User>().FirstOrDefault(u => u.Id == id).Password;
             verificationContext.Dispose();
 
             // Assert
-            //Assert.AreEqual("Parham", firstname);
+            Assert.AreEqual("TestPassword", password);
         }
 
         [TestMethod]
@@ -66,30 +80,42 @@ namespace PracticeProject.Persistance.Tests.Contexts
         {
             // Arrange
             string email = $"settracking_test_{Guid.NewGuid()}@example.com";
+
+            var person = new Person
+            {
+                FirstName = "Parham",
+                LastName = "SetShouldTrackEntitiesTest",
+                Age = 23,
+                Gender = default
+            };
+
             User user = new User(
                 0,
                 default,
                 email,
                 "TestPassword"
-                );
+                )
+            { Person = person };
 
             _db.Add<User>(user);
-            _db.SaveChanges();
+            _unitOfWork.SaveChanges();
             int id = user.Id;
 
-            IDb getSavedUserContext = new DataBaseContext();
-            User savedUser = getSavedUserContext.Set<User>().FirstOrDefault(u => u.Id == id);
-            //savedUser.FirstName = "Modified";
-            getSavedUserContext.SaveChanges();
+            DataBaseContext getSavedUserContext = new DataBaseContext();
+            IDb getSavedUserDb = getSavedUserContext;
+            IUnitOfWork unitOfWork = getSavedUserContext;
+            User savedUser = getSavedUserDb.Set<User>().FirstOrDefault(u => u.Id == id);
+            savedUser.Password = "Modified";
+            unitOfWork.SaveChanges();
             getSavedUserContext.Dispose();
 
             // Act
             IDb verificationContext = new DataBaseContext();
-            //string modifiedUserFirstName= verificationContext.Query<User>().FirstOrDefault(u => u.Id == id).FirstName;
+            string modifiedPassword = verificationContext.Query<User>().FirstOrDefault(u => u.Id == id).Password;
             verificationContext.Dispose();
 
             // Assert
-            //Assert.AreEqual("Modified", modifiedUserFirstName);
+            Assert.AreEqual("Modified", modifiedPassword);
         }
 
         [TestMethod]
@@ -97,12 +123,22 @@ namespace PracticeProject.Persistance.Tests.Contexts
         {
             // Arrange
             string email = $"addsetstatetoadded_test_{Guid.NewGuid()}@example.com";
+
+            var person = new Person
+            {
+                FirstName = "Parham",
+                LastName = "AddSetStateToAddedTest",
+                Age = 23,
+                Gender = default
+            };
+
             User user = new User(
                 0,
                 default,
                 email,
                 "TestPassword"
-                );
+                )
+            { Person = person };
 
             // Act
             _db.Add(user);
@@ -117,19 +153,29 @@ namespace PracticeProject.Persistance.Tests.Contexts
         {
             // Arrange
             string email = $"addpersistentity_test_{Guid.NewGuid()}@example.com";
+
+            var person = new Person
+            {
+                FirstName = "Parham",
+                LastName = "AddShouldPersistEntityTest",
+                Age = 23,
+                Gender = default
+            };
+
             User user = new User(
                 0,
                 default,
                 email,
                 "TestPassword"
-                );
+                )
+            { Person = person };
 
             _db.Add<User>(user);
-            _db.SaveChanges();
+            _unitOfWork.SaveChanges();
 
             // Act
             IDb verificationContext = new DataBaseContext();
-            User savedUser = verificationContext.Set<User>().AsNoTracking().FirstOrDefault(u => u.Id == user.Id);
+            User savedUser = verificationContext.Query<User>().FirstOrDefault(u => u.Id == user.Id);
             verificationContext.Dispose();
 
             // Assert
@@ -142,14 +188,25 @@ namespace PracticeProject.Persistance.Tests.Contexts
         {
             // Arrange
             string email = $"removesetentitytodeleted_test_{Guid.NewGuid()}@example.com";
+
+            var person = new Person
+            {
+                FirstName = "Parham",
+                LastName = "RemoveShouldSetStateToDeletedTest",
+                Age = 23,
+                Gender = default
+            };
+
             User user = new User(
                 0,
                 default,
                 email,
                 "TestPassword"
-                );
+                )
+            { Person = person };
+
             _db.Add<User>(user);
-            _db.SaveChanges();
+            _unitOfWork.SaveChanges();
 
             //Act
             User savedUser = _db.Set<User>().FirstOrDefault(u => u.Id == user.Id);
@@ -165,18 +222,28 @@ namespace PracticeProject.Persistance.Tests.Contexts
         {
             // Arrange
             string email = $"removedeletefromdatabase_test_{Guid.NewGuid()}@example.com";
+
+            var person = new Person
+            {
+                FirstName = "Parham",
+                LastName = "RemoveShouldDeleteEntityFromDatabaseTest",
+                Age = 23,
+                Gender = default
+            };
+
             User user = new User(
                 0,
                 default,
                 email,
                 "TestPassword"
-                );
+                )
+            { Person = person };
 
             _db.Add<User>(user);
-            _db.SaveChanges();
+            _unitOfWork.SaveChanges();
 
             _db.Remove<User>(user);
-            _db.SaveChanges();
+            _unitOfWork.SaveChanges();
 
             // Act
             IDb verificationContext = new DataBaseContext();
@@ -192,21 +259,33 @@ namespace PracticeProject.Persistance.Tests.Contexts
         {
             // Arrange
             string email = $"deletebyiddeletefromdatabase_test_{Guid.NewGuid()}@example.com";
+
+            var person = new Person
+            {
+                FirstName = "Parham",
+                LastName = "DeleteByIdShouldDeleteEntityFromDatabaseTest",
+                Age = 23,
+                Gender = default
+            };
+
             User user = new User(
                 0,
                 default,
                 email,
                 "TestPassword"
-                );
+                )
+            { Person = person };
 
             _db.Add<User>(user);
-            _db.SaveChanges();
+            _unitOfWork.SaveChanges();
 
             int id = user.Id;
 
-            IDb deleteContext = new DataBaseContext();
-            deleteContext.DeleteById<User>(id);
-            deleteContext.SaveChanges();
+            DataBaseContext deleteContext = new DataBaseContext();
+            IDb deleteDb = deleteContext;
+            IUnitOfWork unitOfWork = deleteContext;
+            deleteDb.DeleteById<User>(id);
+            unitOfWork.SaveChanges();
             deleteContext.Dispose();
 
             // Act
@@ -226,7 +305,7 @@ namespace PracticeProject.Persistance.Tests.Contexts
 
             // Act
             _db.DeleteById<User>(id);
-            Action act = () => _db.SaveChanges();
+            Action act = () => _unitOfWork.SaveChanges();
 
             // Assert
             Assert.ThrowsException<DbUpdateConcurrencyException>(act);
