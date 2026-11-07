@@ -2,7 +2,6 @@
 using System.Linq;
 using PracticeProject.Application;
 using PracticeProject.Domain.BaseInfo.User;
-using PracticeProject.Domain.BaseInfo.Person;
 
 namespace PracticeProject.Persistence.Contexts
 {
@@ -33,6 +32,10 @@ namespace PracticeProject.Persistence.Contexts
             base.Set<TEntity>().Attach(entity);
             base.Set<TEntity>().Remove(entity);
         }
+
+        void IDb.Update<TEntity>(TEntity entity) => base.Entry(entity).State = EntityState.Modified;
+
+        
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
