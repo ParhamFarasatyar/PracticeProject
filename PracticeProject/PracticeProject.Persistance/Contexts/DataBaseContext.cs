@@ -32,5 +32,10 @@ namespace PracticeProject.Persistence.Contexts
             base.Set<TEntity>().Attach(entity);
             base.Set<TEntity>().Remove(entity);
         }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }
