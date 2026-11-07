@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using PracticeProject.Application.BaseInfo.Interfaces;
+using PracticeProject.Application.BaseInfo;
 using PracticeProject.Application.UserManagement.CreateUser;
 using PracticeProject.Domain.BaseInfo.User;
 using System;

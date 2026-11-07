@@ -1,4 +1,4 @@
-﻿using PracticeProject.Application.BaseInfo.Interfaces;
+﻿using PracticeProject.Application.BaseInfo;
 using PracticeProject.Domain.BaseInfo.User;
 using PracticeProject.Persistence.Contexts;
 using System.Collections.Generic;
