@@ -23,7 +23,6 @@ namespace PracticeProject.Domain.BaseInfo.User
 
         public User(
             int id, Role role,
-            string firstName, string lastName,
             string email, string password
             )
         {
