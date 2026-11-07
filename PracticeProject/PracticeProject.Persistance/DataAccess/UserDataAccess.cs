@@ -1,6 +1,6 @@
-﻿using PracticeProject.Application.BaseInfo;
+﻿using PracticeProject.Application;
+using PracticeProject.Application.BaseInfo;
 using PracticeProject.Domain.BaseInfo.User;
-using PracticeProject.Persistence.Contexts;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -8,49 +8,23 @@ namespace PracticeProject.Persistence.DataAccess
 {
     public class UserDataAccess : IUserDataAccess
     {
-        private readonly DataBaseContext _context;
+        private readonly IDb _context;
 
-        public UserDataAccess(DataBaseContext context)
+        public UserDataAccess(IDb context)
         {
             _context = context;
         }
 
-        public void Create(User user)
-        {
-            _context.Users.Add(user);
-            _context.SaveChanges();
-        }
+        public void Create(User user) => _context.Add<User>(user);
 
-        public void Delete(int id)
-        {
-            User user = GetById(id);
+        public void Delete(int id) => _context.DeleteById<User>(id);
 
-            if (user == null)
-                return;
+        public List<User> GetAll() => _context.Query<User>().ToList();
 
-            _context.Users.Remove(user);
-            _context.SaveChanges();
-        }
+        public User GetById(int id) => _context.Query<User>().FirstOrDefault(u => u.Id == id);
 
-        public List<User> GetAll()
-        {
-            return _context.Users.ToList();
-        }
+        public void Update(User user) => _context.Update<User>(user);
 
-        public User GetById(int id)
-        {
-            return _context.Users.Find(id);
-        }
-
-        public void Update(User user)
-        {
-            _context.Entry(user).State = System.Data.Entity.EntityState.Modified;
-            _context.SaveChanges();
-        }
-
-        public bool ExistsByEmail(string email)
-        {
-            return _context.Users.Any(u => u.Email == email);
-        }
+        public bool ExistsByEmail(string email) => _context.Query<User>().Any(u => u.Email == email);
     }
 }
