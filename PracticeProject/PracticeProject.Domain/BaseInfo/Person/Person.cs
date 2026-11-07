@@ -14,7 +14,7 @@ namespace PracticeProject.Domain.BaseInfo.Person
         public string LastName { get; set; }
 
         [Required]
-        public int? Age { get; set; }
+        public int Age { get; set; }
         public Gender Gender { get; set; }
     }
 }
