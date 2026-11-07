@@ -38,8 +38,6 @@ namespace PracticeProject.Persistence.Tests
             var user = new User(
                 0,
                 default,
-                "Parham",
-                "Test",
                 email,
                 "TestPassword"
                 );
@@ -53,8 +51,8 @@ namespace PracticeProject.Persistence.Tests
                 var savedUser = verificationContext.Users.SingleOrDefault(u => u.Email == email);
 
                 Assert.IsNotNull(savedUser);
-                Assert.AreEqual("Parham", savedUser.FirstName);
-                Assert.AreEqual("Test", savedUser.LastName);
+                //Assert.AreEqual("Parham", savedUser.FirstName);
+                //Assert.AreEqual("Test", savedUser.LastName);
                 Assert.AreEqual(email, savedUser.Email);
             }
         }
@@ -68,8 +66,6 @@ namespace PracticeProject.Persistence.Tests
             var user = new User(
                 0,
                 default,
-                "Parham",
-                "Test",
                 email,
                 "TestPassword"
                 );
@@ -108,8 +104,6 @@ namespace PracticeProject.Persistence.Tests
             var user1 = new User(
                 0,
                 default,
-                "User1",
-                "Test",
                 email1,
                 "TestPassword"
                 );
@@ -117,8 +111,6 @@ namespace PracticeProject.Persistence.Tests
             var user2 = new User(
                 0,
                 default,
-                "User2",
-                "Test",
                 email2,
                 "TestPassword"
                 );
@@ -157,8 +149,6 @@ namespace PracticeProject.Persistence.Tests
             var user = new User(
                 0,
                 default,
-                "Parham",
-                "UpdateTest",
                 email,
                 "TestPassword"
                 );
@@ -168,7 +158,7 @@ namespace PracticeProject.Persistence.Tests
             _context.Entry(user).State = EntityState.Detached;
 
             // Act
-            user.FirstName = "Modified";
+            //user.FirstName = "Modified";
             _userDataAccess.Update(user);
 
             // Assert
@@ -176,7 +166,7 @@ namespace PracticeProject.Persistence.Tests
             {
                 var result = verificationContext.Users.SingleOrDefault(u => u.Id == user.Id);
                 Assert.IsNotNull(result);
-                Assert.AreEqual("Modified", result.FirstName);
+                //Assert.AreEqual("Modified", result.FirstName);
                 Assert.AreEqual(email, result.Email);
             }
         }
@@ -189,8 +179,6 @@ namespace PracticeProject.Persistence.Tests
             var user = new User(
                 0,
                 default,
-                "Parham",
-                "UpdateNonExistingTest",
                 email,
                 "TestPassword"
                 );
@@ -210,8 +198,6 @@ namespace PracticeProject.Persistence.Tests
             var user = new User(
                 0,
                 default,
-                "Parham",
-                "DeleteTest",
                 email,
                 "TestPassword"
                 );
@@ -249,8 +235,6 @@ namespace PracticeProject.Persistence.Tests
             var user = new User(
                 0,
                 default,
-                "Parham",
-                "ExistsByEmailTest",
                 email,
                 "TestPassword"
                 );
