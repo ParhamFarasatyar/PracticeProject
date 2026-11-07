@@ -1,4 +1,5 @@
-﻿using PracticeProject.Domain.BaseInfo.User;
+﻿using PracticeProject.Domain.BaseInfo.Person;
+using PracticeProject.Domain.BaseInfo.User;
 using System;
 
 namespace PracticeProject.Application.BaseInfo.UserManagement.CreateUser
@@ -66,6 +67,23 @@ namespace PracticeProject.Application.BaseInfo.UserManagement.CreateUser
                 UserId = null
             };
             return response;
+        }
+
+        public class CreateUserRequest
+        {
+            public string FirstName { get; set; }
+            public string LastName { get; set; }
+            public int? Age { get; set; }
+            public Gender Gender { get; set; }
+            public string Email { get; set; }
+            public string Password { get; set; }
+        }
+
+        public class CreateUserResponse
+        {
+            public bool IsSuccess { get; set; }
+            public string Message { get; set; }
+            public int? UserId { get; set; }
         }
     }
 }

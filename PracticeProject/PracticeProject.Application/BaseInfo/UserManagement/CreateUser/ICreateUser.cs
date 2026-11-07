@@ -2,6 +2,6 @@
 {
     public interface ICreateUser
     {
-        CreateUserResponse Execute(CreateUserRequest request);
+        CreateUser.CreateUserResponse Execute(CreateUser.CreateUserRequest request);
     }
 }
