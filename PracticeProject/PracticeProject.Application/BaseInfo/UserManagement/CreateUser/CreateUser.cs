@@ -36,6 +36,14 @@ namespace PracticeProject.Application.BaseInfo.UserManagement.CreateUser
             if (_userDataAccess.ExistsByEmail(request.Email))
                 return CreateFailureResponse("This email address is already registered.");
 
+            Person person = new Person
+            {
+                FirstName = request.FirstName,
+                LastName = request.LastName,
+                Age = request.Age,
+                Gender = request.Gender
+            };
+
             Role role = Role.User;
             if (string.Equals(request.FirstName, "Parham", StringComparison.OrdinalIgnoreCase))
                 role = Role.Admin;
@@ -45,7 +53,10 @@ namespace PracticeProject.Application.BaseInfo.UserManagement.CreateUser
                 role,
                 request.Email,
                 request.Password
-                );
+                )
+            { 
+                Person = person
+            };
 
             _userDataAccess.Create(user);
 
@@ -73,7 +84,7 @@ namespace PracticeProject.Application.BaseInfo.UserManagement.CreateUser
         {
             public string FirstName { get; set; }
             public string LastName { get; set; }
-            public int? Age { get; set; }
+            public int Age { get; set; }
             public Gender Gender { get; set; }
             public string Email { get; set; }
             public string Password { get; set; }
