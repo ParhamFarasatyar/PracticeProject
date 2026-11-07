@@ -35,7 +35,7 @@ namespace PracticeProject.Persistence.Contexts
 
         void IDb.Update<TEntity>(TEntity entity) => base.Entry(entity).State = EntityState.Modified;
 
-        
+        int IDb.SaveChanges() => base.SaveChanges();
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
