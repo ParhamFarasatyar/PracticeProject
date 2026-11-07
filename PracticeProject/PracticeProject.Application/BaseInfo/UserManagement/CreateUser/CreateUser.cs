@@ -42,8 +42,6 @@ namespace PracticeProject.Application.BaseInfo.UserManagement.CreateUser
             var user = new User(
                 0,
                 role,
-                request.FirstName,
-                request.LastName,
                 request.Email,
                 request.Password
                 );
