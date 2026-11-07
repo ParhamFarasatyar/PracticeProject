@@ -1,5 +1,4 @@
-﻿using PracticeProject.Application.BaseInfo.Interfaces;
-using PracticeProject.Domain.BaseInfo.User;
+﻿using PracticeProject.Domain.BaseInfo.User;
 using System.Collections.Generic;
 
 namespace PracticeProject.Application.BaseInfo.UserManagement.GetAllUsers

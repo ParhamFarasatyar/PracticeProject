@@ -1,4 +1,4 @@
-﻿namespace PracticeProject.Application.UserManagement.CreateUser
+﻿namespace PracticeProject.Application.BaseInfo.UserManagement.CreateUser
 {
     public class CreateUserResponse
     {

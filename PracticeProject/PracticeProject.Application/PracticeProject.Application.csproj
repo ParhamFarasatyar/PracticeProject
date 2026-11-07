@@ -43,7 +43,7 @@
   <ItemGroup>
     <Compile Include="BaseInfo\UserManagement\CreateUser\ICreateUser.cs" />
     <Compile Include="IDb.cs" />
-    <Compile Include="BaseInfo\Interfaces\IGetAllUsers.cs" />
+    <Compile Include="BaseInfo\UserManagement\GetAllUsers\IGetAllUsers.cs" />
     <Compile Include="BaseInfo\IUserDataAccess.cs" />
     <Compile Include="BaseInfo\UserManagement\GetAllUsers\GetAllUsersResponse.cs" />
     <Compile Include="BaseInfo\UserManagement\GetAllUsers\GetAllUsers.cs" />
@@ -58,6 +58,8 @@
       <Name>PracticeProject.Domain</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="BaseInfo\Interfaces\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
