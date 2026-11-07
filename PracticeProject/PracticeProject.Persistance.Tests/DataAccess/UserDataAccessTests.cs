@@ -6,6 +6,7 @@ using System;
 using System.Linq;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using PracticeProject.Domain.BaseInfo.Person;
 
 namespace PracticeProject.Persistence.Tests
 {
@@ -35,12 +36,23 @@ namespace PracticeProject.Persistence.Tests
             // Arrange
             string email = $"create_test_{Guid.NewGuid():N}@example.com";
 
+            var person = new Person
+            {
+                FirstName = "Parham",
+                LastName = "CreateUserSavedTest",
+                Age = 23,
+                Gender = default
+            };
+
             var user = new User(
                 0,
                 default,
                 email,
                 "TestPassword"
-                );
+                )
+            {
+                Person = person
+            };
 
             // Act
             _userDataAccess.Create(user);
@@ -48,11 +60,16 @@ namespace PracticeProject.Persistence.Tests
             // Assert
             using (var verificationContext = new DataBaseContext())
             {
-                var savedUser = verificationContext.Users.SingleOrDefault(u => u.Email == email);
+                var savedUser = verificationContext.Users
+                    .Include(u => u.Person)
+                    .SingleOrDefault(u => u.Email == email);
 
                 Assert.IsNotNull(savedUser);
-                //Assert.AreEqual("Parham", savedUser.FirstName);
-                //Assert.AreEqual("Test", savedUser.LastName);
+                Assert.IsNotNull(savedUser.Person);
+                Assert.AreEqual(person.Id, savedUser.PersonId);
+                Assert.AreEqual(person.FirstName, savedUser.Person.FirstName);
+                Assert.AreEqual(person.LastName, savedUser.Person.LastName);
+                Assert.AreEqual(person.Age, savedUser.Person.Age);
                 Assert.AreEqual(email, savedUser.Email);
             }
         }
@@ -63,12 +80,23 @@ namespace PracticeProject.Persistence.Tests
             // Arrange
             string email = $"getbyid_test_{Guid.NewGuid():N}@example.com";
 
+            var person = new Person
+            {
+                FirstName = "Parham",
+                LastName = "GetByIdExistingUserTest",
+                Age = 23,
+                Gender = default
+            };
+
             var user = new User(
                 0,
                 default,
                 email,
                 "TestPassword"
-                );
+                )
+            {
+                Person = person
+            };
 
             _userDataAccess.Create(user);
 
@@ -77,7 +105,9 @@ namespace PracticeProject.Persistence.Tests
 
             // Assert
             Assert.IsNotNull(result);
+            Assert.IsNotNull(result.Person);
             Assert.AreEqual(user.Id, result.Id);
+            Assert.AreEqual(person.Id, result.PersonId);
             Assert.AreEqual(user.Email, result.Email);
         }
 
@@ -101,19 +131,41 @@ namespace PracticeProject.Persistence.Tests
             string email1 = $"getall_test_{Guid.NewGuid():N}@example.com";
             string email2 = $"getall_test_{Guid.NewGuid():N}@example.com";
 
+            var person1 = new Person
+            {
+                FirstName = "Parham",
+                LastName = "GetAllExistingUser1Test",
+                Age = 23,
+                Gender = default
+            };
+
             var user1 = new User(
                 0,
                 default,
                 email1,
                 "TestPassword"
-                );
+                )
+            {
+                Person = person1
+            };
+
+            var person2 = new Person
+            {
+                FirstName = "Parham",
+                LastName = "GetAllExistingUser2Test",
+                Age = 23,
+                Gender = default
+            };
 
             var user2 = new User(
                 0,
                 default,
                 email2,
                 "TestPassword"
-                );
+                )
+            {
+                Person = person2
+            };
 
             _userDataAccess.Create(user1);
             _userDataAccess.Create(user2);
@@ -123,9 +175,11 @@ namespace PracticeProject.Persistence.Tests
 
             // Assert
             Assert.IsNotNull(result);
-            Assert.IsTrue(result.Count >= 2);
+            Assert.AreEqual(2, result.Count(u => u.Email == user1.Email || u.Email == user2.Email));
             Assert.IsTrue(result.Any(u => u.Email == user1.Email));
             Assert.IsTrue(result.Any(u => u.Email == user2.Email));
+            Assert.IsTrue(result.Any(u => u.PersonId == user1.PersonId));
+            Assert.IsTrue(result.Any(u => u.PersonId == user2.PersonId));
         }
 
         [TestMethod]
@@ -146,19 +200,31 @@ namespace PracticeProject.Persistence.Tests
         {
             // Arrange
             string email = $"update_test_{Guid.NewGuid()}@example.com";
+
+            var person = new Person
+            {
+                FirstName = "Parham",
+                LastName = "UpdateDetachedUserTest",
+                Age = 23,
+                Gender = default
+            };
+
             var user = new User(
                 0,
                 default,
                 email,
                 "TestPassword"
-                );
+                )
+            {
+                Person = person
+            };
 
             _userDataAccess.Create(user);
 
             _context.Entry(user).State = EntityState.Detached;
 
             // Act
-            //user.FirstName = "Modified";
+            user.Password = "ModifiedPassword";
             _userDataAccess.Update(user);
 
             // Assert
@@ -166,7 +232,7 @@ namespace PracticeProject.Persistence.Tests
             {
                 var result = verificationContext.Users.SingleOrDefault(u => u.Id == user.Id);
                 Assert.IsNotNull(result);
-                //Assert.AreEqual("Modified", result.FirstName);
+                Assert.AreEqual("ModifiedPassword", result.Password);
                 Assert.AreEqual(email, result.Email);
             }
         }
@@ -176,12 +242,22 @@ namespace PracticeProject.Persistence.Tests
         {
             // Arrange
             string email = $"updatenonexisting_test_{Guid.NewGuid()}@example.com";
+
+            var person = new Person
+            {
+                FirstName = "Parham",
+                LastName = "UpdateNonExistingUserTest",
+                Age = 23,
+                Gender = default
+            };
+
             var user = new User(
                 0,
                 default,
                 email,
                 "TestPassword"
-                );
+                )
+            { Person = person };
 
             // Act
             Action act = () => _userDataAccess.Update(user);
@@ -195,12 +271,22 @@ namespace PracticeProject.Persistence.Tests
         {
             // Arrange
             string email = $"delete_test_{Guid.NewGuid()}@example.com";
+
+            var person = new Person
+            {
+                FirstName = "Parham",
+                LastName = "DeleteExistingUserTest",
+                Age = 23,
+                Gender = default
+            };
+
             var user = new User(
                 0,
                 default,
                 email,
                 "TestPassword"
-                );
+                )
+            { Person = person };
 
             _userDataAccess.Create(user);
 
@@ -214,6 +300,11 @@ namespace PracticeProject.Persistence.Tests
             {
                 var result = verificationContext.Users.SingleOrDefault(u => u.Id == user.Id);
                 Assert.IsNull(result);
+
+                var savedPerson = verificationContext.Set<Person>()
+                    .SingleOrDefault(p => p.Id == person.Id);
+
+                Assert.IsNotNull(savedPerson);
             }
         }
 
@@ -232,12 +323,22 @@ namespace PracticeProject.Persistence.Tests
         {
             // Arrange
             string email = $"existsbyemail_test_{Guid.NewGuid()}@example.com";
+
+            var person = new Person
+            {
+                FirstName = "Parham",
+                LastName = "ExistsByEmailExistingUserTest",
+                Age = 23,
+                Gender = default
+            };
+
             var user = new User(
                 0,
                 default,
                 email,
                 "TestPassword"
-                );
+                )
+            { Person = person };
 
             _userDataAccess.Create(user);
             _context.Entry(user).State = EntityState.Detached;
