@@ -2,5 +2,6 @@
 {
     public interface IGetUserById
     {
+        GetUserById.GetUserByIdResponse Execute(GetUserById.GetUserByIdRequest request);
     }
 }
