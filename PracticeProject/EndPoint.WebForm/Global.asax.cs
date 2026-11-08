@@ -1,18 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Autofac.Integration.Web;
+using EndPoint.WebForm.App_Start;
+using System;
 using System.Web;
-using System.Web.Security;
-using System.Web.SessionState;
 
 namespace EndPoint.WebForm
 {
-    public class Global : System.Web.HttpApplication
+    public class Global : HttpApplication, IContainerProviderAccessor
     {
+        private IContainerProvider _containerProvider;
+
+        public IContainerProvider ContainerProvider { get { return _containerProvider; } }
 
         protected void Application_Start(object sender, EventArgs e)
         {
+            var container = AutofacConfig.BuildContainer();
 
+            _containerProvider = new ContainerProvider(container);
         }
 
         protected void Session_Start(object sender, EventArgs e)
