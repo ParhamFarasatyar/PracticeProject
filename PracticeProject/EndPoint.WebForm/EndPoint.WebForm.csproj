@@ -123,7 +123,16 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\PracticeProject.Application\PracticeProject.Application.csproj">
+      <Project>{757a67b0-3b99-462d-a5f5-301647d1bf75}</Project>
+      <Name>PracticeProject.Application</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PracticeProject.Persistance\PracticeProject.Persistence.csproj">
+      <Project>{EF77E83F-5E61-4F59-9FF8-244B4E15774E}</Project>
+      <Name>PracticeProject.Persistence</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
