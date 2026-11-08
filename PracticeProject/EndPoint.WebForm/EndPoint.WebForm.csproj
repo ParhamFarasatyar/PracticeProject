@@ -96,11 +96,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Styles\RegisterStyle.css" />
+    <Content Include="Global.asax" />
     <Content Include="Register.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\AutofacConfig.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Register.aspx.cs">
       <DependentUpon>Register.aspx</DependentUpon>
