@@ -26,5 +26,8 @@ namespace PracticeProject.Persistence.DataAccess
         public void Update(User user) => _context.Update<User>(user);
 
         public bool ExistsByEmail(string email) => _context.Query<User>().Any(u => u.Email == email);
+
+        public bool ExistsByEmail(string email, int excludedUserId) => _context.Query<User>()
+            .Any(u => u.Email == email && u.Id != excludedUserId);
     }
 }
