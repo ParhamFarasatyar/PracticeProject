@@ -2,5 +2,6 @@
 {
     public interface IDeleteUser
     {
+        DeleteUser.DeleteUserResponse Execute(DeleteUser.DeleteUserRequest request);
     }
 }
