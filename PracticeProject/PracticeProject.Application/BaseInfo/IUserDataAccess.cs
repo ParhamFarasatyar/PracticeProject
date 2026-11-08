@@ -15,5 +15,6 @@ namespace PracticeProject.Application.BaseInfo
 
         void Delete(int id);
         bool ExistsByEmail(string email);
+        bool ExistsByEmail(string email, int excludedUserId);
     }
 }
