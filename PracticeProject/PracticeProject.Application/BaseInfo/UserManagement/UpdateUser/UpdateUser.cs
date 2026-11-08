@@ -13,40 +13,54 @@ namespace PracticeProject.Application.BaseInfo.UserManagement.UpdateUser
         public UpdateUser(IUserDataAccess userDataAccess, IUnitOfWork unitOfWork)
         {
             _userDataAccess = userDataAccess ?? throw new ArgumentNullException(nameof(userDataAccess));
-            _unitOfWork = unitOfWork;
+            _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
         }
 
         public UpdateUserResponse Execute(UpdateUserRequest request)
         {
-            UpdateUserResponse response = new UpdateUserResponse();
-
             if (request is null)
                 return CreateFailureResponse("Request cannot be null.");
 
-            if (request.Email is null || request.Password is null)
+            if (string.IsNullOrWhiteSpace(request.Email)  || string.IsNullOrWhiteSpace(request.Password))
                 return CreateFailureResponse("Email and password cannot be null.");
 
             if (request.Id <= 0)
                 return CreateFailureResponse("ID cannot be zero or negative.");
 
-            if (_userDataAccess.ExistsByEmail(request.Email))
-                return CreateFailureResponse("Email already exist.");
+            if (!Enum.IsDefined(typeof(Role), request.Role))
+                return CreateFailureResponse("Invalid user role.");
 
-            User user = new User(request.Id, request.Role, request.Email, request.Password);
+            User user = _userDataAccess.GetById(request.Id);
+
+            if (user is null)
+                return CreateFailureResponse($"No user found with ID {request.Id}");
+
+            if (_userDataAccess.ExistsByEmail(request.Email, request.Id))
+                return CreateFailureResponse("Email already exists.");
+
+            user.Role = request.Role;
+            user.Email = request.Email;
+            user.Password = request.Password;
 
             try
             {
                 _userDataAccess.Update(user);
                 _unitOfWork.SaveChanges();
 
-                response.IsSuccess = true;
-                response.Message = "User modified successfully";
-                response.ModifiedUser = user;
-                return response;
+                return new UpdateUserResponse
+                {
+                    IsSuccess = true,
+                    Message = "User modified successfully",
+                    ModifiedUser = user
+                };
             }
-            catch (DbUpdateConcurrencyException ex)
+            catch (DbUpdateConcurrencyException)
             {
-                return CreateFailureResponse(ex.Message);
+                return CreateFailureResponse("The user was modified or deleted by another operation.");
+            }
+            catch (DbUpdateException)
+            {
+                return CreateFailureResponse("Could not update user due to a database error.");
             }
         }
 
@@ -67,14 +81,12 @@ namespace PracticeProject.Application.BaseInfo.UserManagement.UpdateUser
 
         private UpdateUserResponse CreateFailureResponse(string message)
         {
-            UpdateUserResponse response = new UpdateUserResponse
+            return new UpdateUserResponse
             {
                 IsSuccess = false,
                 Message = message,
                 ModifiedUser = null
             };
-
-            return response;
         }
     }
 }
