@@ -2,5 +2,6 @@
 {
     public interface IUpdateUser
     {
+        UpdateUser.UpdateUserResponse Execute(UpdateUser.UpdateUserRequest request);
     }
 }
