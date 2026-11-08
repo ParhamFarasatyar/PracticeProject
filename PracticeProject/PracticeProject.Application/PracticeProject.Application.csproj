@@ -44,6 +44,7 @@
     <Compile Include="BaseInfo\UserManagement\CreateUser\ICreateUser.cs" />
     <Compile Include="BaseInfo\UserManagement\GetUserById\GetUserById.cs" />
     <Compile Include="BaseInfo\UserManagement\GetUserById\IGetUserById.cs" />
+    <Compile Include="BaseInfo\UserManagement\UpdateUser\IUpdateUser.cs" />
     <Compile Include="BaseInfo\UserManagement\UpdateUser\UpdateUser.cs" />
     <Compile Include="IDb.cs" />
     <Compile Include="BaseInfo\UserManagement\GetAllUsers\IGetAllUsers.cs" />
