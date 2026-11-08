@@ -28,6 +28,7 @@ namespace PracticeProject.Application.BaseInfo.UserManagement.GetUserById
                 return CreateFailureResponse($"No user found with ID {request.Id}");
 
             response.IsSuccess = true;
+            response.Message = "User found successfully.";
             response.User = user;
             return response;
         }
