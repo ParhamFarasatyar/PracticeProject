@@ -15,7 +15,7 @@ namespace PracticeProject.Application.BaseInfo.UserManagement.DeleteUser
             _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
         }
 
-        public DeleteUserResponse Execute(DeleteUserRequest request)
+        public IDeleteUser.DeleteUserResponse Execute(IDeleteUser.DeleteUserRequest request)
         {
             if (request is null)
                 return CreateFailureResponse("Request cannot be null.");
@@ -28,7 +28,7 @@ namespace PracticeProject.Application.BaseInfo.UserManagement.DeleteUser
                 _userDataAccess.Delete(request.Id);
                 _unitOfWork.SaveChanges();
 
-                return new DeleteUserResponse
+                return new IDeleteUser.DeleteUserResponse
                 {
                     IsSuccess = true,
                     Message = "User deleted successfully.",
@@ -45,20 +45,9 @@ namespace PracticeProject.Application.BaseInfo.UserManagement.DeleteUser
             }
         }
 
-        public class DeleteUserRequest
+        private IDeleteUser.DeleteUserResponse CreateFailureResponse(string message)
         {
-            public int Id { get; set; }
-        }
-        public class DeleteUserResponse
-        {
-            public bool IsSuccess { get; set; }
-            public string Message { get; set; }
-            public int? UserId { get; set; }
-        }
-
-        private DeleteUserResponse CreateFailureResponse(string message)
-        {
-            return new DeleteUserResponse
+            return new IDeleteUser.DeleteUserResponse
             {
                 IsSuccess = false,
                 Message = message,
