@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using PracticeProject.Domain.BaseInfo.Person;
+using System.Threading;
 
 namespace EndPoint.WebForm
 {
@@ -39,6 +40,12 @@ namespace EndPoint.WebForm
             {
                 lblMessage.ForeColor = System.Drawing.Color.Green;
                 lblMessage.Text = response.Message;
+
+                Session["WelcomeMessage"] = $"Welcome to Practice Project {request.FirstName}";
+
+                Thread.Sleep(3000);
+
+                Response.Redirect("Admin.aspx");
             }
             else
             {
