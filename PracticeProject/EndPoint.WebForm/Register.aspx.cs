@@ -43,8 +43,6 @@ namespace EndPoint.WebForm
 
                 Session["WelcomeMessage"] = $"Welcome to Practice Project {request.FirstName}";
 
-                Thread.Sleep(3000);
-
                 Response.Redirect("Admin.aspx");
             }
             else
