@@ -13,7 +13,7 @@ namespace EndPoint.WebForm.App_Start
         {
             var builder = new ContainerBuilder();
 
-            builder.RegisterType<DataBaseContext>().As<IDb>().As<IUnitOfWork>().InstancePerRequest();
+            builder.RegisterType<DataBaseContext>().As<IDb>().InstancePerRequest();
 
             builder.RegisterType<UserDataAccess>().As<IUserDataAccess>().InstancePerRequest();
 

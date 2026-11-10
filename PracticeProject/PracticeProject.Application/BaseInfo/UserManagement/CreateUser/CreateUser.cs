@@ -8,12 +8,12 @@ namespace PracticeProject.Application.BaseInfo.UserManagement.CreateUser
     {
         private readonly IUserDataAccess _userDataAccess;
 
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IDb _db;
 
-        public CreateUser(IUserDataAccess userDataAccess, IUnitOfWork unitOfWork)
+        public CreateUser(IUserDataAccess userDataAccess, IDb db)
         {
             _userDataAccess = userDataAccess ?? throw new ArgumentNullException(nameof(userDataAccess));
-            _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
+            _db = db ?? throw new ArgumentNullException(nameof(db));
         }
 
         public ICreateUser.CreateUserResponse Execute(ICreateUser.CreateUserRequest request)
@@ -62,7 +62,7 @@ namespace PracticeProject.Application.BaseInfo.UserManagement.CreateUser
             };
 
             _userDataAccess.Create(user);
-            _unitOfWork.SaveChanges();
+            _db.SaveChanges();
 
             ICreateUser.CreateUserResponse response = new ICreateUser.CreateUserResponse
             {

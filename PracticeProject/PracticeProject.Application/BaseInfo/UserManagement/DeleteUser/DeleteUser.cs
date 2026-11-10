@@ -7,12 +7,12 @@ namespace PracticeProject.Application.BaseInfo.UserManagement.DeleteUser
     {
         private readonly IUserDataAccess _userDataAccess;
 
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IDb _db;
 
-        public DeleteUser(IUserDataAccess userDataAccess, IUnitOfWork unitOfWork)
+        public DeleteUser(IUserDataAccess userDataAccess, IDb db)
         {
             _userDataAccess = userDataAccess ?? throw new ArgumentNullException(nameof(userDataAccess));
-            _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
+            _db = db ?? throw new ArgumentNullException(nameof(db));
         }
 
         public IDeleteUser.DeleteUserResponse Execute(IDeleteUser.DeleteUserRequest request)
@@ -26,7 +26,7 @@ namespace PracticeProject.Application.BaseInfo.UserManagement.DeleteUser
             try
             {
                 _userDataAccess.Delete(request.Id);
-                _unitOfWork.SaveChanges();
+                _db.SaveChanges();
 
                 return new IDeleteUser.DeleteUserResponse
                 {

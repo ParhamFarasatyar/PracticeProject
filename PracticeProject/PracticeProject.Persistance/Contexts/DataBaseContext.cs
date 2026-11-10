@@ -5,7 +5,7 @@ using PracticeProject.Domain.BaseInfo.User;
 
 namespace PracticeProject.Persistence.Contexts
 {
-    public class DataBaseContext : DbContext, IDb, IUnitOfWork
+    public class DataBaseContext : DbContext, IDb
     {
         public DataBaseContext() : base("name=PracticeProject")
         {
@@ -35,7 +35,7 @@ namespace PracticeProject.Persistence.Contexts
 
         void IDb.Update<TEntity>(TEntity entity) => base.Entry(entity).State = EntityState.Modified;
 
-        int IUnitOfWork.SaveChanges() => base.SaveChanges();
+        int IDb.SaveChanges() => base.SaveChanges();
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

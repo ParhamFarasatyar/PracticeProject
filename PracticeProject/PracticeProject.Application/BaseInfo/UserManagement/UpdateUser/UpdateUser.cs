@@ -8,12 +8,12 @@ namespace PracticeProject.Application.BaseInfo.UserManagement.UpdateUser
     {
         private readonly IUserDataAccess _userDataAccess;
 
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IDb _db;
 
-        public UpdateUser(IUserDataAccess userDataAccess, IUnitOfWork unitOfWork)
+        public UpdateUser(IUserDataAccess userDataAccess, IDb db)
         {
             _userDataAccess = userDataAccess ?? throw new ArgumentNullException(nameof(userDataAccess));
-            _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
+            _db = db ?? throw new ArgumentNullException(nameof(db));
         }
 
         public IUpdateUser.UpdateUserResponse Execute(IUpdateUser.UpdateUserRequest request)
@@ -45,7 +45,7 @@ namespace PracticeProject.Application.BaseInfo.UserManagement.UpdateUser
             try
             {
                 _userDataAccess.Update(user);
-                _unitOfWork.SaveChanges();
+                _db.SaveChanges();
 
                 return new IUpdateUser.UpdateUserResponse
                 {

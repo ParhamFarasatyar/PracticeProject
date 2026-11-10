@@ -15,14 +15,12 @@ namespace PracticeProject.Persistance.Tests.Contexts
     {
         private DataBaseContext _context;
         private IDb _db;
-        private IUnitOfWork _unitOfWork;
 
         [TestInitialize]
         public void Setup()
         {
             _context = new DataBaseContext();
             _db = _context;
-            _unitOfWork = _context;
         }
 
         [TestCleanup]
@@ -54,16 +52,15 @@ namespace PracticeProject.Persistance.Tests.Contexts
             { Person = person };
 
             _db.Add<User>(user);
-            _unitOfWork.SaveChanges();
+            _db.SaveChanges();
             int id = user.Id;
 
             DataBaseContext getSavedUserContext = new DataBaseContext();
             IDb getSavedUserDb = getSavedUserContext;
-            IUnitOfWork unitOfWork = getSavedUserContext;
             User savedUser = getSavedUserDb.Query<User>().FirstOrDefault(u => u.Id == id);
 
             savedUser.Password = "Modified";
-            unitOfWork.SaveChanges();
+            getSavedUserDb.SaveChanges();
             getSavedUserContext.Dispose();
 
             // Act
@@ -98,15 +95,14 @@ namespace PracticeProject.Persistance.Tests.Contexts
             { Person = person };
 
             _db.Add<User>(user);
-            _unitOfWork.SaveChanges();
+            _db.SaveChanges();
             int id = user.Id;
 
             DataBaseContext getSavedUserContext = new DataBaseContext();
             IDb getSavedUserDb = getSavedUserContext;
-            IUnitOfWork unitOfWork = getSavedUserContext;
             User savedUser = getSavedUserDb.Set<User>().FirstOrDefault(u => u.Id == id);
             savedUser.Password = "Modified";
-            unitOfWork.SaveChanges();
+            getSavedUserDb.SaveChanges();
             getSavedUserContext.Dispose();
 
             // Act
@@ -171,7 +167,7 @@ namespace PracticeProject.Persistance.Tests.Contexts
             { Person = person };
 
             _db.Add<User>(user);
-            _unitOfWork.SaveChanges();
+            _db.SaveChanges();
 
             // Act
             IDb verificationContext = new DataBaseContext();
@@ -206,7 +202,7 @@ namespace PracticeProject.Persistance.Tests.Contexts
             { Person = person };
 
             _db.Add<User>(user);
-            _unitOfWork.SaveChanges();
+            _db.SaveChanges();
 
             //Act
             User savedUser = _db.Set<User>().FirstOrDefault(u => u.Id == user.Id);
@@ -240,10 +236,10 @@ namespace PracticeProject.Persistance.Tests.Contexts
             { Person = person };
 
             _db.Add<User>(user);
-            _unitOfWork.SaveChanges();
+            _db.SaveChanges();
 
             _db.Remove<User>(user);
-            _unitOfWork.SaveChanges();
+            _db.SaveChanges();
 
             // Act
             IDb verificationContext = new DataBaseContext();
@@ -277,15 +273,14 @@ namespace PracticeProject.Persistance.Tests.Contexts
             { Person = person };
 
             _db.Add<User>(user);
-            _unitOfWork.SaveChanges();
+            _db.SaveChanges();
 
             int id = user.Id;
 
             DataBaseContext deleteContext = new DataBaseContext();
             IDb deleteDb = deleteContext;
-            IUnitOfWork unitOfWork = deleteContext;
             deleteDb.DeleteById<User>(id);
-            unitOfWork.SaveChanges();
+            deleteDb.SaveChanges();
             deleteContext.Dispose();
 
             // Act
@@ -305,7 +300,7 @@ namespace PracticeProject.Persistance.Tests.Contexts
 
             // Act
             _db.DeleteById<User>(id);
-            Action act = () => _unitOfWork.SaveChanges();
+            Action act = () => _db.SaveChanges();
 
             // Assert
             Assert.ThrowsException<DbUpdateConcurrencyException>(act);

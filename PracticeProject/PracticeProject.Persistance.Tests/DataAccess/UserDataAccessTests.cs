@@ -16,7 +16,7 @@ namespace PracticeProject.Persistence.Tests
     {
         private DataBaseContext _context;
 
-        private IUnitOfWork _unitOfWork;
+        private IDb _db;
 
         private UserDataAccess _userDataAccess;
 
@@ -24,7 +24,7 @@ namespace PracticeProject.Persistence.Tests
         public void Setup()
         {
             _context = new DataBaseContext();
-            _unitOfWork = _context;
+            _db = _context;
             _userDataAccess = new UserDataAccess(_context);
         }
 
@@ -60,7 +60,7 @@ namespace PracticeProject.Persistence.Tests
 
             // Act
             _userDataAccess.Create(user);
-            _unitOfWork.SaveChanges();
+            _db.SaveChanges();
 
             // Assert
             using (var verificationContext = new DataBaseContext())
@@ -104,7 +104,7 @@ namespace PracticeProject.Persistence.Tests
             };
 
             _userDataAccess.Create(user);
-            _unitOfWork.SaveChanges();
+            _db.SaveChanges();
 
             // Act
             var result = _userDataAccess.GetById(user.Id);
@@ -174,7 +174,7 @@ namespace PracticeProject.Persistence.Tests
 
             _userDataAccess.Create(user1);
             _userDataAccess.Create(user2);
-            _unitOfWork.SaveChanges();
+            _db.SaveChanges();
 
             // Act
             var result = _userDataAccess.GetAll();
@@ -226,14 +226,14 @@ namespace PracticeProject.Persistence.Tests
             };
 
             _userDataAccess.Create(user);
-            _unitOfWork.SaveChanges();
+            _db.SaveChanges();
 
             _context.Entry(user).State = EntityState.Detached;
 
             // Act
             user.Password = "ModifiedPassword";
             _userDataAccess.Update(user);
-            _unitOfWork.SaveChanges();
+            _db.SaveChanges();
 
             // Assert
             using (var verificationContext = new DataBaseContext())
@@ -269,7 +269,7 @@ namespace PracticeProject.Persistence.Tests
 
             // Act
             _userDataAccess.Update(user);
-            Action act = () => _unitOfWork.SaveChanges();
+            Action act = () => _db.SaveChanges();
 
             // Assert
             Assert.ThrowsException<DbUpdateConcurrencyException>(act);
@@ -298,13 +298,13 @@ namespace PracticeProject.Persistence.Tests
             { Person = person };
 
             _userDataAccess.Create(user);
-            _unitOfWork.SaveChanges();
+            _db.SaveChanges();
 
             _context.Entry(user).State = EntityState.Detached;
 
             // Act
             _userDataAccess.Delete(user.Id);
-            _unitOfWork.SaveChanges();
+            _db.SaveChanges();
 
             // Assert
             using (var verificationContext = new DataBaseContext())
@@ -327,7 +327,7 @@ namespace PracticeProject.Persistence.Tests
 
             // Act
             _userDataAccess.Delete(id);
-            Action act = () => _unitOfWork.SaveChanges();
+            Action act = () => _db.SaveChanges();
 
             // Assert
             Assert.ThrowsException<DbUpdateConcurrencyException>(act);
@@ -356,7 +356,7 @@ namespace PracticeProject.Persistence.Tests
             { Person = person };
 
             _userDataAccess.Create(user);
-            _unitOfWork.SaveChanges();
+            _db.SaveChanges();
             _context.Entry(user).State = EntityState.Detached;
 
             // Act

@@ -11,16 +11,16 @@ namespace PracticeProject.Application.Tests.UserManagement.CreateUserTests
     public class CreateUserTests
     {
         private Mock<IUserDataAccess> _userDataAccessMock;
-        private Mock<IUnitOfWork> _unitOfWorkMock;
+        private Mock<IDb> _dbMock;
         private CreateUser _useCase;
 
         [TestInitialize]
         public void Setup()
         {
             _userDataAccessMock = new Mock<IUserDataAccess>();
-            _unitOfWorkMock = new Mock<IUnitOfWork>();
+            _dbMock = new Mock<IDb>();
 
-            _useCase = new CreateUser(_userDataAccessMock.Object, _unitOfWorkMock.Object);
+            _useCase = new CreateUser(_userDataAccessMock.Object, _dbMock.Object);
         }
 
         [TestMethod]
