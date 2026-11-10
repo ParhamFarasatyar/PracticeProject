@@ -7,7 +7,7 @@ namespace EndPoint.WebForm
 {
     public class Global : HttpApplication, IContainerProviderAccessor
     {
-        private IContainerProvider _containerProvider;
+        private static IContainerProvider _containerProvider;
 
         public IContainerProvider ContainerProvider { get { return _containerProvider; } }
 

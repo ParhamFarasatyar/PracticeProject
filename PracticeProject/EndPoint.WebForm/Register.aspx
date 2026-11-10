@@ -20,7 +20,7 @@
             
             <asp:TextBox ID="tboxLastName" runat="server" placeholder="LastName" CssClass="form-control"></asp:TextBox>
 
-            <asp:TextBox ID="tboxAge" runat="server" placeholder="Age" CssClass="form-control"></asp:TextBox>
+            <asp:TextBox ID="tboxAge" TextMode="Number" runat="server" placeholder="Age" CssClass="form-control"></asp:TextBox>
             <asp:RequiredFieldValidator ID="rfvAge" runat="server" ErrorMessage="Age required" ForeColor="Red" ControlToValidate="tboxAge" Display="Dynamic"></asp:RequiredFieldValidator>
             <asp:RangeValidator ID="rvAge" runat="server" ErrorMessage="Age should between 18 to 80" ForeColor="Red" ControlToValidate="tboxAge" Display="Dynamic" Type="Integer" MinimumValue="18" MaximumValue="80"></asp:RangeValidator>
 
