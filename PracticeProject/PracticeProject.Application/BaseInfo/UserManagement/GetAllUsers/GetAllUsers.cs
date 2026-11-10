@@ -13,9 +13,9 @@ namespace PracticeProject.Application.BaseInfo.UserManagement.GetAllUsers
             _userDataAccess = userDataAccess;
         }
 
-        public GetAllUsersResponse Execute()
+        public IGetAllUsers.GetAllUsersResponse Execute()
         {
-            GetAllUsersResponse response = new GetAllUsersResponse();
+            IGetAllUsers.GetAllUsersResponse response = new IGetAllUsers.GetAllUsersResponse();
 
             List<User> users = _userDataAccess.GetAll();
 
@@ -29,13 +29,6 @@ namespace PracticeProject.Application.BaseInfo.UserManagement.GetAllUsers
             response.IsSuccess = true;
             response.Users = users;
             return response;
-        }
-
-        public class GetAllUsersResponse
-        {
-            public bool IsSuccess { get; set; }
-            public string Message { get; set; }
-            public List<User> Users { get; set; } = new List<User>();
         }
     }
 }
