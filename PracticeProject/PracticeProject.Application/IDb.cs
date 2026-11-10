@@ -17,5 +17,7 @@ namespace PracticeProject.Application
         void DeleteById<TEntity>(int id) where TEntity: class, IEntity, new();
 
         void Update<TEntity>(TEntity entity) where TEntity : class, IEntity;
+
+        int SaveChanges();
     }
 }
