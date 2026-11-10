@@ -1,7 +1,21 @@
-﻿namespace PracticeProject.Application.BaseInfo.UserManagement.GetUserById
+﻿using PracticeProject.Domain.BaseInfo.User;
+
+namespace PracticeProject.Application.BaseInfo.UserManagement.GetUserById
 {
     public interface IGetUserById
     {
-        GetUserById.GetUserByIdResponse Execute(GetUserById.GetUserByIdRequest request);
+        GetUserByIdResponse Execute(GetUserByIdRequest request);
+
+        public class GetUserByIdRequest
+        {
+            public int Id { get; set; }
+        }
+
+        public class GetUserByIdResponse
+        {
+            public bool IsSuccess { get; set; }
+            public string Message { get; set; }
+            public User User { get; set; }
+        }
     }
 }
