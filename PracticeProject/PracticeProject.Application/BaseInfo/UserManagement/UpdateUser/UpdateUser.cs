@@ -16,7 +16,7 @@ namespace PracticeProject.Application.BaseInfo.UserManagement.UpdateUser
             _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
         }
 
-        public UpdateUserResponse Execute(UpdateUserRequest request)
+        public IUpdateUser.UpdateUserResponse Execute(IUpdateUser.UpdateUserRequest request)
         {
             if (request is null)
                 return CreateFailureResponse("Request cannot be null.");
@@ -47,7 +47,7 @@ namespace PracticeProject.Application.BaseInfo.UserManagement.UpdateUser
                 _userDataAccess.Update(user);
                 _unitOfWork.SaveChanges();
 
-                return new UpdateUserResponse
+                return new IUpdateUser.UpdateUserResponse
                 {
                     IsSuccess = true,
                     Message = "User modified successfully",
@@ -64,24 +64,9 @@ namespace PracticeProject.Application.BaseInfo.UserManagement.UpdateUser
             }
         }
 
-        public class UpdateUserRequest
+        private IUpdateUser.UpdateUserResponse CreateFailureResponse(string message)
         {
-            public int Id { get; set; }
-            public Role Role { get; set; }
-            public string Email { get; set; }
-            public string Password { get; set; }
-        }
-
-        public class UpdateUserResponse
-        {
-            public bool IsSuccess { get; set; }
-            public string Message { get; set; }
-            public User ModifiedUser { get; set; }
-        }
-
-        private UpdateUserResponse CreateFailureResponse(string message)
-        {
-            return new UpdateUserResponse
+            return new IUpdateUser.UpdateUserResponse
             {
                 IsSuccess = false,
                 Message = message,
