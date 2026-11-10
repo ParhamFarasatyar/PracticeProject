@@ -16,7 +16,7 @@ namespace PracticeProject.Application.BaseInfo.UserManagement.CreateUser
             _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
         }
 
-        public CreateUserResponse Execute(CreateUserRequest request)
+        public ICreateUser.CreateUserResponse Execute(ICreateUser.CreateUserRequest request)
         {
             if (request == null)
                 return CreateFailureResponse("Request cannot be null.");
@@ -64,7 +64,7 @@ namespace PracticeProject.Application.BaseInfo.UserManagement.CreateUser
             _userDataAccess.Create(user);
             _unitOfWork.SaveChanges();
 
-            CreateUserResponse response = new CreateUserResponse
+            ICreateUser.CreateUserResponse response = new ICreateUser.CreateUserResponse
             {
                 IsSuccess = true,
                 Message = "User created successfully.",
@@ -73,32 +73,15 @@ namespace PracticeProject.Application.BaseInfo.UserManagement.CreateUser
             return response;
         }
 
-        private CreateUserResponse CreateFailureResponse(string message)
+        private ICreateUser.CreateUserResponse CreateFailureResponse(string message)
         {
-            CreateUserResponse response = new CreateUserResponse
+            ICreateUser.CreateUserResponse response = new ICreateUser.CreateUserResponse
             {
                 IsSuccess = false,
                 Message = message,
                 UserId = null
             };
             return response;
-        }
-
-        public class CreateUserRequest
-        {
-            public string FirstName { get; set; }
-            public string LastName { get; set; }
-            public int Age { get; set; }
-            public Gender Gender { get; set; }
-            public string Email { get; set; }
-            public string Password { get; set; }
-        }
-
-        public class CreateUserResponse
-        {
-            public bool IsSuccess { get; set; }
-            public string Message { get; set; }
-            public int? UserId { get; set; }
         }
     }
 }

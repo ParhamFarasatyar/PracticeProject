@@ -1,7 +1,26 @@
-﻿namespace PracticeProject.Application.BaseInfo.UserManagement.CreateUser
+﻿using PracticeProject.Domain.BaseInfo.Person;
+
+namespace PracticeProject.Application.BaseInfo.UserManagement.CreateUser
 {
     public interface ICreateUser
     {
-        CreateUser.CreateUserResponse Execute(CreateUser.CreateUserRequest request);
+        CreateUserResponse Execute(CreateUserRequest request);
+
+        class CreateUserRequest
+        {
+            public string FirstName { get; set; }
+            public string LastName { get; set; }
+            public int Age { get; set; }
+            public Gender Gender { get; set; }
+            public string Email { get; set; }
+            public string Password { get; set; }
+        }
+
+        class CreateUserResponse
+        {
+            public bool IsSuccess { get; set; }
+            public string Message { get; set; }
+            public int? UserId { get; set; }
+        }
     }
 }
