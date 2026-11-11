@@ -14,12 +14,8 @@ namespace PracticeProject.Domain.BaseInfo.User
 
         public Role Role { get; set; }
 
-        [Required]
-        [StringLength(250)]
         public string Email { get; set; }
 
-        [Required]
-        [StringLength(150)]
         public string Password { get; set; }
 
         public User(Role role, string email, string password, Person.Person person)
