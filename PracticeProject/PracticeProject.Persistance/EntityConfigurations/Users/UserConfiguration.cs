@@ -15,10 +15,13 @@ namespace PracticeProject.Persistance.EntityConfigurations.Users
 
             Property(u => u.PersonId).HasColumnAnnotation(
                 IndexAnnotation.AnnotationName,
-                new IndexAttribute("IX_User_PersonId")
-                {
-                    IsUnique = true
-                });
+                new IndexAnnotation(
+                    new IndexAttribute("IX_User_PersonId")
+                    {
+                        IsUnique = true
+                    }
+                    )
+                );
 
             Property(u => u.Email).IsRequired().HasMaxLength(250);
 
