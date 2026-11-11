@@ -18,26 +18,10 @@ namespace PracticeProject.Application.BaseInfo.UserManagement.CreateUser
 
         public ICreateUser.CreateUserResponse Execute(ICreateUser.CreateUserRequest request)
         {
-            if (request == null)
-                return CreateFailureResponse("Request cannot be null.");
+            bool isRequestValid = IsRequestValid(request, out string errorMessage);
 
-            if (
-                string.IsNullOrWhiteSpace(request.FirstName) ||
-                string.IsNullOrWhiteSpace(request.Email) ||
-                string.IsNullOrWhiteSpace(request.Password)
-                )
-                return CreateFailureResponse("Firstname, email, and password are required.");
-
-            if (
-                request.FirstName.Length > 100 ||
-                (request.LastName != null && request.LastName.Length > 100) ||
-                request.Email.Length > 250 ||
-                request.Password.Length > 150
-                )
-                return CreateFailureResponse("One or more fields exceed the maximum allowed length.");
-
-            if (_userDataAccess.ExistsByEmail(request.Email))
-                return CreateFailureResponse("This email address is already registered.");
+            if (!isRequestValid)
+                return CreateFailureResponse(errorMessage);
 
             Person person = new Person
             {
@@ -82,6 +66,45 @@ namespace PracticeProject.Application.BaseInfo.UserManagement.CreateUser
                 UserId = null
             };
             return response;
+        }
+
+        private bool IsRequestValid(ICreateUser.CreateUserRequest request, out string errorMessage)
+        {
+            if (request == null)
+            {
+                errorMessage = "Request cannot be null.";
+                return false;
+            }
+
+            if (
+                string.IsNullOrWhiteSpace(request.FirstName) ||
+                string.IsNullOrWhiteSpace(request.Email) ||
+                string.IsNullOrWhiteSpace(request.Password)
+                )
+            {
+                errorMessage = "Firstname, email, and password are required.";
+                return false;
+            }
+
+            if (
+                request.FirstName.Length > 100 ||
+                (request.LastName != null && request.LastName.Length > 100) ||
+                request.Email.Length > 250 ||
+                request.Password.Length > 150
+                )
+            {
+                errorMessage = "One or more fields exceed the maximum allowed length.";
+                return false;
+            }
+
+            if (_userDataAccess.ExistsByEmail(request.Email))
+            {
+                errorMessage = "This email address is already registered.";
+                return false;
+            }
+
+            errorMessage = null;
+            return true;
         }
     }
 }
