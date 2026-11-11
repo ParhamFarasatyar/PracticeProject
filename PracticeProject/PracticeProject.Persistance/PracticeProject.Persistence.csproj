@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="Contexts\DataBaseContext.cs" />
     <Compile Include="DataAccess\UserDataAccess.cs" />
+    <Compile Include="EntityConfigurations\Users\UserConfiguration.cs" />
     <Compile Include="Migrations\202610310659388_Init.cs" />
     <Compile Include="Migrations\202610310659388_Init.Designer.cs">
       <DependentUpon>202610310659388_Init.cs</DependentUpon>
