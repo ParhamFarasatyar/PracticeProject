@@ -44,12 +44,11 @@ namespace PracticeProject.Persistance.Tests.Contexts
             };
 
             var user = new User(
-                0,
                 default,
                 email,
-                "TestPassword"
-                )
-            { Person = person };
+                "TestPassword",
+                person
+                );
 
             _db.Add<User>(user);
             _db.SaveChanges();
@@ -87,12 +86,11 @@ namespace PracticeProject.Persistance.Tests.Contexts
             };
 
             User user = new User(
-                0,
                 default,
                 email,
-                "TestPassword"
-                )
-            { Person = person };
+                "TestPassword",
+                person
+                );
 
             _db.Add<User>(user);
             _db.SaveChanges();
@@ -129,12 +127,11 @@ namespace PracticeProject.Persistance.Tests.Contexts
             };
 
             User user = new User(
-                0,
                 default,
                 email,
-                "TestPassword"
-                )
-            { Person = person };
+                "TestPassword",
+                person
+                );
 
             // Act
             _db.Add(user);
@@ -159,12 +156,11 @@ namespace PracticeProject.Persistance.Tests.Contexts
             };
 
             User user = new User(
-                0,
                 default,
                 email,
-                "TestPassword"
-                )
-            { Person = person };
+                "TestPassword",
+                person
+                );
 
             _db.Add<User>(user);
             _db.SaveChanges();
@@ -194,12 +190,11 @@ namespace PracticeProject.Persistance.Tests.Contexts
             };
 
             User user = new User(
-                0,
                 default,
                 email,
-                "TestPassword"
-                )
-            { Person = person };
+                "TestPassword",
+                person
+                );
 
             _db.Add<User>(user);
             _db.SaveChanges();
@@ -228,12 +223,11 @@ namespace PracticeProject.Persistance.Tests.Contexts
             };
 
             User user = new User(
-                0,
                 default,
                 email,
-                "TestPassword"
-                )
-            { Person = person };
+                "TestPassword",
+                person
+                );
 
             _db.Add<User>(user);
             _db.SaveChanges();
@@ -265,12 +259,11 @@ namespace PracticeProject.Persistance.Tests.Contexts
             };
 
             User user = new User(
-                0,
                 default,
                 email,
-                "TestPassword"
-                )
-            { Person = person };
+                "TestPassword",
+                person
+                );
 
             _db.Add<User>(user);
             _db.SaveChanges();

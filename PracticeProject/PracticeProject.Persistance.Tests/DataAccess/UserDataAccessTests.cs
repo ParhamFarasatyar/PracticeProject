@@ -49,14 +49,11 @@ namespace PracticeProject.Persistence.Tests
             };
 
             var user = new User(
-                0,
                 default,
                 email,
-                "TestPassword"
-                )
-            {
-                Person = person
-            };
+                "TestPassword",
+                person
+                );
 
             // Act
             _userDataAccess.Create(user);
@@ -94,14 +91,11 @@ namespace PracticeProject.Persistence.Tests
             };
 
             var user = new User(
-                0,
                 default,
                 email,
-                "TestPassword"
-                )
-            {
-                Person = person
-            };
+                "TestPassword",
+                person
+                );
 
             _userDataAccess.Create(user);
             _db.SaveChanges();
@@ -145,14 +139,11 @@ namespace PracticeProject.Persistence.Tests
             };
 
             var user1 = new User(
-                0,
                 default,
                 email1,
-                "TestPassword"
-                )
-            {
-                Person = person1
-            };
+                "TestPassword",
+                person1
+                );
 
             var person2 = new Person
             {
@@ -163,14 +154,11 @@ namespace PracticeProject.Persistence.Tests
             };
 
             var user2 = new User(
-                0,
                 default,
                 email2,
-                "TestPassword"
-                )
-            {
-                Person = person2
-            };
+                "TestPassword",
+                person2
+                );
 
             _userDataAccess.Create(user1);
             _userDataAccess.Create(user2);
@@ -216,14 +204,11 @@ namespace PracticeProject.Persistence.Tests
             };
 
             var user = new User(
-                0,
                 default,
                 email,
-                "TestPassword"
-                )
-            {
-                Person = person
-            };
+                "TestPassword",
+                person
+                );
 
             _userDataAccess.Create(user);
             _db.SaveChanges();
@@ -260,12 +245,11 @@ namespace PracticeProject.Persistence.Tests
             };
 
             var user = new User(
-                0,
                 default,
                 email,
-                "TestPassword"
-                )
-            { Person = person };
+                "TestPassword",
+                person
+                );
 
             // Act
             _userDataAccess.Update(user);
@@ -290,12 +274,11 @@ namespace PracticeProject.Persistence.Tests
             };
 
             var user = new User(
-                0,
                 default,
                 email,
-                "TestPassword"
-                )
-            { Person = person };
+                "TestPassword",
+                person
+                );
 
             _userDataAccess.Create(user);
             _db.SaveChanges();
@@ -348,12 +331,11 @@ namespace PracticeProject.Persistence.Tests
             };
 
             var user = new User(
-                0,
                 default,
                 email,
-                "TestPassword"
-                )
-            { Person = person };
+                "TestPassword",
+                person
+                );
 
             _userDataAccess.Create(user);
             _db.SaveChanges();

@@ -36,14 +36,11 @@ namespace PracticeProject.Application.BaseInfo.UserManagement.CreateUser
                 role = Role.Admin;
 
             var user = new User(
-                0,
                 role,
                 request.Email,
-                request.Password
-                )
-            { 
-                Person = person
-            };
+                request.Password,
+                person
+                );
 
             _userDataAccess.Create(user);
             _db.SaveChanges();
