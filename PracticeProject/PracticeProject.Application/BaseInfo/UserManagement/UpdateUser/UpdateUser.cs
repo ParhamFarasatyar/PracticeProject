@@ -1,4 +1,5 @@
-﻿using PracticeProject.Domain.BaseInfo.User;
+﻿using PracticeProject.Application.BaseInfo.UserManagement.CreateUser;
+using PracticeProject.Domain.BaseInfo.User;
 using System;
 using System.Data.Entity.Infrastructure;
 
@@ -18,25 +19,10 @@ namespace PracticeProject.Application.BaseInfo.UserManagement.UpdateUser
 
         public IUpdateUser.UpdateUserResponse Execute(IUpdateUser.UpdateUserRequest request)
         {
-            if (request is null)
-                return CreateFailureResponse("Request cannot be null.");
+            bool isRequestValid = IsRequestValid(request, out User user, out string errorMessage);
 
-            if (string.IsNullOrWhiteSpace(request.Email)  || string.IsNullOrWhiteSpace(request.Password))
-                return CreateFailureResponse("Email and password cannot be null.");
-
-            if (request.Id <= 0)
-                return CreateFailureResponse("ID cannot be zero or negative.");
-
-            if (!Enum.IsDefined(typeof(Role), request.Role))
-                return CreateFailureResponse("Invalid user role.");
-
-            User user = _userDataAccess.GetById(request.Id);
-
-            if (user is null)
-                return CreateFailureResponse($"No user found with ID {request.Id}");
-
-            if (_userDataAccess.ExistsByEmail(request.Email, request.Id))
-                return CreateFailureResponse("Email already exists.");
+            if (!isRequestValid)
+                return CreateFailureResponse(errorMessage);
 
             user.Role = request.Role;
             user.Email = request.Email;
@@ -72,6 +58,54 @@ namespace PracticeProject.Application.BaseInfo.UserManagement.UpdateUser
                 Message = message,
                 ModifiedUser = null
             };
+        }
+
+        private bool IsRequestValid(IUpdateUser.UpdateUserRequest request, out User user, out string errorMessage)
+        {
+            if (request is null)
+            {
+                user = null;
+                errorMessage = "Request cannot be null.";
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(request.Email) || string.IsNullOrWhiteSpace(request.Password))
+            {
+                user = null;
+                errorMessage = "Email and password cannot be null.";
+                return false;
+            }
+
+            if (request.Id <= 0)
+            {
+                user = null;
+                errorMessage = "ID cannot be zero or negative.";
+                return false;
+            }
+
+            if (!Enum.IsDefined(typeof(Role), request.Role))
+            {
+                user = null;
+                errorMessage = "Invalid user role.";
+                return false;
+            }
+
+            user = _userDataAccess.GetById(request.Id);
+
+            if (user is null)
+            {
+                errorMessage = $"No user found with ID {request.Id}";
+                return false;
+            }
+
+            if (_userDataAccess.ExistsByEmail(request.Email, request.Id))
+            {
+                errorMessage = "Email already exists.";
+                return false;
+            }
+
+            errorMessage = null;
+            return true;
         }
     }
 }
