@@ -20,6 +20,10 @@ namespace PracticeProject.Persistance.EntityConfigurations.Users
                 {
                     IsUnique = true
                 });
+
+            Property(u => u.Email).IsRequired().HasMaxLength(250);
+
+            Property(u => u.Password).IsRequired().HasMaxLength(150);
         }
     }
 }
