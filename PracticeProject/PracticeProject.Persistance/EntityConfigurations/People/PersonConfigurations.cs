@@ -11,7 +11,7 @@ namespace PracticeProject.Persistance.EntityConfigurations.People
 
             Property(p => p.FirstName).IsRequired().HasMaxLength(100);
 
-            Property(p => p.LastName).HasMaxLength(100);
+            Property(p => p.LastName).IsOptional().HasMaxLength(100);
 
             Property(p => p.Age).IsRequired();
         }
