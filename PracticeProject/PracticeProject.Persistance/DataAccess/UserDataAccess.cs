@@ -1,7 +1,9 @@
 ﻿using PracticeProject.Application;
 using PracticeProject.Application.BaseInfo;
+using PracticeProject.Domain.BaseInfo.People;
 using PracticeProject.Domain.BaseInfo.Users;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 
 namespace PracticeProject.Persistence.DataAccess
@@ -24,6 +26,7 @@ namespace PracticeProject.Persistence.DataAccess
         public User GetById(int id) => _context.Query<User>().FirstOrDefault(u => u.Id == id);
 
         public User GetByEmail(string email, string includedPassword) => _context.Query<User>()
+            .Include(u => u.Person)
             .FirstOrDefault(u => u.Email == email && u.Password == includedPassword);
 
         public void Update(User user) => _context.Update<User>(user);
