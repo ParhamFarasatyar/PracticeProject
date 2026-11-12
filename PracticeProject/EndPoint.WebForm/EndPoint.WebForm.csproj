@@ -105,7 +105,7 @@
     <Content Include="Assets\Styles\LoginStyle.css" />
     <Content Include="Login.aspx" />
     <Content Include="Users.aspx" />
-    <Content Include="Assets\Styles\Users.css" />
+    <Content Include="Assets\Styles\UsersStyle.css" />
     <Content Include="Assets\Styles\RegisterStyle.css" />
     <Content Include="Global.asax" />
     <Content Include="Register.aspx" />
