@@ -5,6 +5,7 @@ using PracticeProject.Persistence.DataAccess;
 using PracticeProject.Application.BaseInfo;
 using PracticeProject.Application.BaseInfo.UserManagement.CreateUser;
 using PracticeProject.Application.BaseInfo.UserManagement.LoginUser;
+using PracticeProject.Application.BaseInfo.UserManagement.SearchUsers;
 
 namespace EndPoint.WebForm.App_Start
 {
@@ -21,6 +22,8 @@ namespace EndPoint.WebForm.App_Start
             builder.RegisterType<CreateUser>().As<ICreateUser>().InstancePerRequest();
 
             builder.RegisterType<LoginUser>().As<ILoginUser>().InstancePerRequest();
+
+            builder.RegisterType<SearchUsers>().As<ISearchUsers>().InstancePerRequest();
 
             return builder.Build();
         }
