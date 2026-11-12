@@ -1,4 +1,5 @@
 ﻿using PracticeProject.Application.BaseInfo.UserManagement.LoginUser;
+using PracticeProject.Domain.BaseInfo.Users;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,8 +33,14 @@ namespace EndPoint.WebForm
 
             if (response.IsSuccess)
             {
-                lblMessage.ForeColor = System.Drawing.Color.Green;
-                lblMessage.Text = response.Message;
+                if (response.User.Role == Role.Admin)
+                {
+                    Response.Redirect("./Administrator.aspx");
+                }
+                else
+                {
+                    Response.Redirect("./Users.aspx");
+                }
             }
             else
             {
