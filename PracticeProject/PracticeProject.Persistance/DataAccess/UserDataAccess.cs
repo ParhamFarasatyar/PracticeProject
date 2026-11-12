@@ -21,7 +21,7 @@ namespace PracticeProject.Persistence.DataAccess
 
         public void Delete(int id) => _context.DeleteById<User>(id);
 
-        public List<User> GetAll() => _context.Query<User>().ToList();
+        public List<User> GetAll() => _context.Query<User>().Include(u => u.Person).ToList();
 
         public User GetById(int id) => _context.Query<User>().FirstOrDefault(u => u.Id == id);
 
@@ -39,7 +39,7 @@ namespace PracticeProject.Persistence.DataAccess
         public List<User> SearchUsers(string searchString) =>
             _context.Query<User>()
                 .Include(u => u.Person)
-                .Where(u => 
+                .Where(u =>
                 u.Person.FirstName.Contains(searchString) ||
                 u.Person.LastName.Contains(searchString) ||
                 u.Email.Contains(searchString)).ToList();
