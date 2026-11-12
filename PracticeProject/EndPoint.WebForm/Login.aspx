@@ -20,6 +20,13 @@
 
             <asp:Button ID="btnSubmit" runat="server" Text="Submit" CssClass="btn-subtle theme-primary" OnClick="btnSubmit_Click"/>
 
+            <div>
+                <span>
+                    Don't have account?
+                </span>
+                <a href="./Register.aspx">Register</a>
+            </div>
+
             <asp:Label ID="lblMessage" runat="server"></asp:Label>
         </div>
     </form>
