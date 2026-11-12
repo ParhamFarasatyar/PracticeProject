@@ -10,6 +10,9 @@
     <link href="./Assets/Styles/UsersStyle.css" rel="stylesheet" />
 </head>
 <body>
+    <header>
+        <h1>Users Page</h1>
+    </header>
     <form id="form1" runat="server">
         <div>
             <h1><asp:Label ID="lblHeader" runat="server"></asp:Label></h1>
