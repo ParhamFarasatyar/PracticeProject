@@ -7,6 +7,8 @@ namespace PracticeProject.Application.BaseInfo
     {
         void Create(User user);
 
+        List<User> SearchUsers(string searchString);
+
         User GetById(int id);
 
         User GetByEmail(string email, string includedPassword);
