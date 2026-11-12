@@ -28,26 +28,15 @@ namespace PracticeProject.Application.BaseInfo.UserManagement.UpdateUser
             user.Email = request.Email;
             user.Password = request.Password;
 
-            try
-            {
-                _userDataAccess.Update(user);
-                _db.SaveChanges();
+            _userDataAccess.Update(user);
+            _db.SaveChanges();
 
-                return new IUpdateUser.UpdateUserResponse
-                {
-                    IsSuccess = true,
-                    Message = "User modified successfully",
-                    ModifiedUser = user
-                };
-            }
-            catch (DbUpdateConcurrencyException)
+            return new IUpdateUser.UpdateUserResponse
             {
-                return CreateFailureResponse("The user was modified or deleted by another operation.");
-            }
-            catch (DbUpdateException)
-            {
-                return CreateFailureResponse("Could not update user due to a database error.");
-            }
+                IsSuccess = true,
+                Message = "User modified successfully",
+                ModifiedUser = user
+            };
         }
 
         private IUpdateUser.UpdateUserResponse CreateFailureResponse(string message)
