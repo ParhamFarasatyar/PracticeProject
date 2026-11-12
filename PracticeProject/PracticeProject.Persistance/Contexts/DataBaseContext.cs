@@ -1,6 +1,7 @@
 ﻿using System.Data.Entity;
 using System.Linq;
 using PracticeProject.Application;
+using PracticeProject.Domain.BaseInfo.Person;
 using PracticeProject.Domain.BaseInfo.User;
 using PracticeProject.Persistance.EntityConfigurations.Users;
 
@@ -14,6 +15,8 @@ namespace PracticeProject.Persistence.Contexts
         }
 
         public DbSet<User> Users { get; set; }
+
+        public DbSet<Person> People { get; set; }
 
         IQueryable<TEntity> IDb.Query<TEntity>() => base.Set<TEntity>().AsNoTracking();
 
