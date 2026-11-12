@@ -57,6 +57,8 @@
     <Compile Include="BaseInfo\UserManagement\DeleteUser\IDeleteUser.cs" />
     <Compile Include="BaseInfo\UserManagement\GetUserById\GetUserById.cs" />
     <Compile Include="BaseInfo\UserManagement\GetUserById\IGetUserById.cs" />
+    <Compile Include="BaseInfo\UserManagement\LoginUser\ILoginUser.cs" />
+    <Compile Include="BaseInfo\UserManagement\LoginUser\LoginUser.cs" />
     <Compile Include="BaseInfo\UserManagement\UpdateUser\IUpdateUser.cs" />
     <Compile Include="BaseInfo\UserManagement\UpdateUser\UpdateUser.cs" />
     <Compile Include="IDb.cs" />
