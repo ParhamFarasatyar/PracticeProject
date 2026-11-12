@@ -23,6 +23,9 @@ namespace PracticeProject.Persistence.DataAccess
 
         public User GetById(int id) => _context.Query<User>().FirstOrDefault(u => u.Id == id);
 
+        public User GetByEmail(string email, string includedPassword) => _context.Query<User>()
+            .FirstOrDefault(u => u.Email == email && u.Password == includedPassword);
+
         public void Update(User user) => _context.Update<User>(user);
 
         public bool ExistsByEmail(string email) => _context.Query<User>().Any(u => u.Email == email);
