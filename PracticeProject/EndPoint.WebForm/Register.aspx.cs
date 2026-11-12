@@ -41,8 +41,6 @@ namespace EndPoint.WebForm
                 lblMessage.ForeColor = System.Drawing.Color.Green;
                 lblMessage.Text = response.Message;
 
-                Session["WelcomeMessage"] = $"Welcome to Practice Project {request.FirstName}";
-
                 Response.Redirect("Users.aspx");
             }
             else

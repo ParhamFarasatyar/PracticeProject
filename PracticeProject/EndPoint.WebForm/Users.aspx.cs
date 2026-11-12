@@ -11,8 +11,7 @@ namespace EndPoint.WebForm
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-                lblHeader.Text = Session["WelcomeMessage"]?.ToString();
+            
         }
     }
 }
