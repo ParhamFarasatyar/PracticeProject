@@ -8,6 +8,11 @@ namespace PracticeProject.Application.BaseInfo.UserManagement.SearchUsers
     {
         private readonly IUserDataAccess _userDataAccess;
 
+        public SearchUsers(IUserDataAccess userDataAccess)
+        {
+            _userDataAccess = userDataAccess;
+        }
+
         public ISearchUsers.SearchUsersResponse Execute(ISearchUsers.SearchUsersRequest request)
         {
             if (request is null)
