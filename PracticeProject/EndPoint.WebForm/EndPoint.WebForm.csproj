@@ -103,6 +103,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Administrator.aspx" />
+    <Content Include="Assets\Styles\AdministratorStyle.css" />
     <Content Include="Assets\Styles\LoginStyle.css" />
     <Content Include="Login.aspx" />
     <Content Include="Users.aspx" />
