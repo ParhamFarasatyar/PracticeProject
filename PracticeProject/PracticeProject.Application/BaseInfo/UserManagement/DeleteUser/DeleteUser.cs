@@ -23,26 +23,15 @@ namespace PracticeProject.Application.BaseInfo.UserManagement.DeleteUser
             if (request.Id <= 0)
                 return CreateFailureResponse("ID cannot be zero or negative.");
 
-            try
-            {
-                _userDataAccess.Delete(request.Id);
-                _db.SaveChanges();
+            _userDataAccess.Delete(request.Id);
+            _db.SaveChanges();
 
-                return new IDeleteUser.DeleteUserResponse
-                {
-                    IsSuccess = true,
-                    Message = "User deleted successfully.",
-                    UserId = request.Id
-                };
-            }
-            catch (DbUpdateConcurrencyException)
+            return new IDeleteUser.DeleteUserResponse
             {
-                return CreateFailureResponse("The user was modified or deleted by another operation.");
-            }
-            catch (DbUpdateException)
-            {
-                return CreateFailureResponse("Could not delete user due to a database error.");
-            }
+                IsSuccess = true,
+                Message = "User deleted successfully.",
+                UserId = request.Id
+            };
         }
 
         private IDeleteUser.DeleteUserResponse CreateFailureResponse(string message)
