@@ -35,5 +35,13 @@ namespace PracticeProject.Persistence.DataAccess
 
         public bool ExistsByEmail(string email, int excludedUserId) => _context.Query<User>()
             .Any(u => u.Email == email && u.Id != excludedUserId);
+
+        public List<User> SearchUsers(string searchString) =>
+            _context.Query<User>()
+                .Include(u => u.Person)
+                .Where(u => 
+                u.Person.FirstName.Contains(searchString) ||
+                u.Person.LastName.Contains(searchString) ||
+                u.Email.Contains(searchString)).ToList();
     }
 }
