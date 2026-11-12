@@ -53,6 +53,9 @@
                 Display="Dynamic" 
                 ValidationExpression="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$]).{8,}$"></asp:RegularExpressionValidator>
 
+            <asp:TextBox ID="tboxConfirmPassword" runat="server" placeholder="Password" CssClass="form-control" TextMode="Password"></asp:TextBox>
+            <asp:CompareValidator ID="cvConfirmPassword" runat="server" ErrorMessage="Password doesn't match" ControlToCompare="tboxPassword" ControlToValidate="tboxConfirmPassword" Display="Dynamic" ForeColor="Red"></asp:CompareValidator>
+
             <asp:Button ID="btnSubmit" runat="server" Text="Submit" CssClass="btn-subtle theme-primary" OnClick="btnSubmit_Click"/>
 
             <div id="linkToLogin">
