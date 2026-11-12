@@ -13,8 +13,47 @@
     <header>
         <h1>Admin Page</h1>
     </header>
-    <form id="form1" runat="server">
+    <form id="adminForm" runat="server">
         <div>
+            <asp:TextBox ID="tboxSearch" runat="server"></asp:TextBox>
+
+            <asp:Button ID="btnSearch" runat="server" Text="Search" OnClick="btnSearch_Click" />
+
+            <asp:GridView ID="gvUsers" runat="server" AutoGenerateColumns="false" EmptyDataText="No users found">
+                <Columns>
+                    <asp:BoundField DataField="Id" HeaderText="ID" />
+
+                    <asp:TemplateField HeaderText="FirstName">
+                        <ItemTemplate>
+                            <%# Eval("Person.FirstName") %>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+
+                    <asp:TemplateField HeaderText="LastName">
+                        <ItemTemplate>
+                            <%# Eval("Person.LastName") %>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+
+                    <asp:TemplateField HeaderText="Age">
+                        <ItemTemplate>
+                            <%# Eval("Person.Age") %>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+
+                    <asp:TemplateField HeaderText="Gender">
+                        <ItemTemplate>
+                            <%# Eval("Person.Gender") %>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+
+                    <asp:BoundField DataField="Email" HeaderText="Email" />
+
+                    <asp:BoundField DataField="Role" HeaderText="Role" />
+                </Columns>
+            </asp:GridView>
+
+            <asp:Label ID="lblMessage" runat="server"></asp:Label>
         </div>
     </form>
 </body>
