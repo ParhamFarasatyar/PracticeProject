@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using PracticeProject.Domain.BaseInfo.People;
+using PracticeProject.Domain.BaseInfo.Users;
 using System.Threading;
 
 namespace EndPoint.WebForm
@@ -38,10 +39,10 @@ namespace EndPoint.WebForm
 
             if (response.IsSuccess)
             {
-                lblMessage.ForeColor = System.Drawing.Color.Green;
-                lblMessage.Text = response.Message;
-
-                Response.Redirect("Users.aspx");
+                if (response.User.Role == Role.User)
+                    Response.Redirect("./Users.aspx");
+                else
+                    Response.Redirect("./Administrator.aspx");
             }
             else
             {
