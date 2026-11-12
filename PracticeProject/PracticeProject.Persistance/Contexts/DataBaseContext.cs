@@ -3,6 +3,7 @@ using System.Linq;
 using PracticeProject.Application;
 using PracticeProject.Domain.BaseInfo.Person;
 using PracticeProject.Domain.BaseInfo.User;
+using PracticeProject.Persistance.EntityConfigurations.People;
 using PracticeProject.Persistance.EntityConfigurations.Users;
 
 namespace PracticeProject.Persistence.Contexts
@@ -44,6 +45,7 @@ namespace PracticeProject.Persistence.Contexts
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Configurations.Add(new UserConfiguration());
+            modelBuilder.Configurations.Add(new PersonConfiguration());
 
             base.OnModelCreating(modelBuilder);
         }

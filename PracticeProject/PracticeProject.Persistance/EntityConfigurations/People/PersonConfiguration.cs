@@ -3,9 +3,9 @@ using System.Data.Entity.ModelConfiguration;
 
 namespace PracticeProject.Persistance.EntityConfigurations.People
 {
-    public class PersonConfigurations : EntityTypeConfiguration<Person>
+    public class PersonConfiguration : EntityTypeConfiguration<Person>
     {
-        public PersonConfigurations()
+        public PersonConfiguration()
         {
             HasKey(p => p.Id);
 
