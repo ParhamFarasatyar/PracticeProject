@@ -18,10 +18,72 @@ namespace PracticeProject.Application.BaseInfo.UserManagement.CreateUser
 
         public ICreateUser.CreateUserResponse Execute(ICreateUser.CreateUserRequest request)
         {
-            bool isRequestValid = IsRequestValid(request, out string errorMessage);
+            bool isRequestValid = IsRequestValid(request, out string errorMessage, out User user);
 
             if (!isRequestValid)
                 return CreateFailureResponse(errorMessage);
+
+            _userDataAccess.Create(user);
+            _db.SaveChanges();
+
+            ICreateUser.CreateUserResponse response = new ICreateUser.CreateUserResponse
+            {
+                IsSuccess = true,
+                Message = "User created successfully.",
+                User = user
+            };
+            return response;
+        }
+
+        private ICreateUser.CreateUserResponse CreateFailureResponse(string message)
+        {
+            ICreateUser.CreateUserResponse response = new ICreateUser.CreateUserResponse
+            {
+                IsSuccess = false,
+                Message = message,
+                User = null
+            };
+            return response;
+        }
+
+        private bool IsRequestValid(ICreateUser.CreateUserRequest request, out string errorMessage, out User user)
+        {
+            if (request == null)
+            {
+                errorMessage = "Request cannot be null.";
+                user = null;
+                return false;
+            }
+
+            if (
+                string.IsNullOrWhiteSpace(request.FirstName) ||
+                string.IsNullOrWhiteSpace(request.Email) ||
+                string.IsNullOrWhiteSpace(request.Password)
+                )
+            {
+                errorMessage = "Firstname, email, and password are required.";
+                user = null;
+                return false;
+            }
+
+            if (
+                request.FirstName.Length > 100 ||
+                (request.LastName != null && request.LastName.Length > 100) ||
+                request.Email.Length > 250 ||
+                request.Password.Length > 150
+                )
+            {
+                errorMessage = "One or more fields exceed the maximum allowed length.";
+                user = null;
+                return false;
+            }
+
+            if (_userDataAccess.ExistsByEmail(request.Email))
+            {
+                errorMessage = "This email address is already registered.";
+                user = null;
+                return false;
+            }
 
             Person person = new Person
             {
@@ -35,70 +97,12 @@ namespace PracticeProject.Application.BaseInfo.UserManagement.CreateUser
             if (string.Equals(request.FirstName, "Parham", StringComparison.OrdinalIgnoreCase))
                 role = Role.Admin;
 
-            var user = new User(
+            user = new User(
                 role,
                 request.Email,
                 request.Password,
                 person
                 );
-
-            _userDataAccess.Create(user);
-            _db.SaveChanges();
-
-            ICreateUser.CreateUserResponse response = new ICreateUser.CreateUserResponse
-            {
-                IsSuccess = true,
-                Message = "User created successfully.",
-                UserId = user.Id
-            };
-            return response;
-        }
-
-        private ICreateUser.CreateUserResponse CreateFailureResponse(string message)
-        {
-            ICreateUser.CreateUserResponse response = new ICreateUser.CreateUserResponse
-            {
-                IsSuccess = false,
-                Message = message,
-                UserId = null
-            };
-            return response;
-        }
-
-        private bool IsRequestValid(ICreateUser.CreateUserRequest request, out string errorMessage)
-        {
-            if (request == null)
-            {
-                errorMessage = "Request cannot be null.";
-                return false;
-            }
-
-            if (
-                string.IsNullOrWhiteSpace(request.FirstName) ||
-                string.IsNullOrWhiteSpace(request.Email) ||
-                string.IsNullOrWhiteSpace(request.Password)
-                )
-            {
-                errorMessage = "Firstname, email, and password are required.";
-                return false;
-            }
-
-            if (
-                request.FirstName.Length > 100 ||
-                (request.LastName != null && request.LastName.Length > 100) ||
-                request.Email.Length > 250 ||
-                request.Password.Length > 150
-                )
-            {
-                errorMessage = "One or more fields exceed the maximum allowed length.";
-                return false;
-            }
-
-            if (_userDataAccess.ExistsByEmail(request.Email))
-            {
-                errorMessage = "This email address is already registered.";
-                return false;
-            }
 
             errorMessage = null;
             return true;
