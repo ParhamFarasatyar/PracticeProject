@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using PracticeProject.Domain.BaseInfo.Person;
+using PracticeProject.Domain.BaseInfo.People;
 using System.Threading;
 
 namespace EndPoint.WebForm

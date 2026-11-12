@@ -51,11 +51,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseInfo\Person\Gender.cs" />
+    <Compile Include="BaseInfo\People\Gender.cs" />
     <Compile Include="IEntity.cs" />
-    <Compile Include="BaseInfo\Person\Person.cs" />
-    <Compile Include="BaseInfo\User\Role.cs" />
-    <Compile Include="BaseInfo\User\User.cs" />
+    <Compile Include="BaseInfo\People\Person.cs" />
+    <Compile Include="BaseInfo\Users\Role.cs" />
+    <Compile Include="BaseInfo\Users\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

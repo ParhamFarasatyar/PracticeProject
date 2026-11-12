@@ -2,7 +2,7 @@
 using Moq;
 using PracticeProject.Application.BaseInfo;
 using PracticeProject.Application.BaseInfo.UserManagement.CreateUser;
-using PracticeProject.Domain.BaseInfo.User;
+using PracticeProject.Domain.BaseInfo.Users;
 using System;
 
 namespace PracticeProject.Application.Tests.UserManagement.CreateUserTests

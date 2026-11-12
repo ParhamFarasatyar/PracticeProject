@@ -1,4 +1,4 @@
-﻿using PracticeProject.Domain.BaseInfo.Person;
+﻿using PracticeProject.Domain.BaseInfo.People;
 
 namespace PracticeProject.Application.BaseInfo.UserManagement.CreateUser
 {

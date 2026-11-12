@@ -1,6 +1,6 @@
 ﻿using PracticeProject.Application;
 using PracticeProject.Application.BaseInfo;
-using PracticeProject.Domain.BaseInfo.User;
+using PracticeProject.Domain.BaseInfo.Users;
 using System.Collections.Generic;
 using System.Linq;
 

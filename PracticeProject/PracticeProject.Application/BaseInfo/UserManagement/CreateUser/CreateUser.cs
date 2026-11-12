@@ -1,5 +1,5 @@
-﻿using PracticeProject.Domain.BaseInfo.Person;
-using PracticeProject.Domain.BaseInfo.User;
+﻿using PracticeProject.Domain.BaseInfo.People;
+using PracticeProject.Domain.BaseInfo.Users;
 using System;
 
 namespace PracticeProject.Application.BaseInfo.UserManagement.CreateUser

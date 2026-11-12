@@ -1,5 +1,5 @@
 ﻿using PracticeProject.Application.BaseInfo.UserManagement.CreateUser;
-using PracticeProject.Domain.BaseInfo.User;
+using PracticeProject.Domain.BaseInfo.Users;
 using System;
 using System.Data.Entity.Infrastructure;
 

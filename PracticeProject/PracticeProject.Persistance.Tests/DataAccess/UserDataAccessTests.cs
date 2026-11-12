@@ -1,12 +1,12 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PracticeProject.Persistence.DataAccess;
 using PracticeProject.Persistence.Contexts;
-using PracticeProject.Domain.BaseInfo.User;
+using PracticeProject.Domain.BaseInfo.Users;
 using System;
 using System.Linq;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
-using PracticeProject.Domain.BaseInfo.Person;
+using PracticeProject.Domain.BaseInfo.People;
 using PracticeProject.Application;
 
 namespace PracticeProject.Persistence.Tests

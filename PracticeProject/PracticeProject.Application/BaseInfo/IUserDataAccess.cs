@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using PracticeProject.Domain.BaseInfo.User;
+using PracticeProject.Domain.BaseInfo.Users;
 
 namespace PracticeProject.Application.BaseInfo
 {
