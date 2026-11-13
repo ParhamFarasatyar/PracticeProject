@@ -102,7 +102,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AddUser.aspx" />
     <Content Include="Administrator.aspx" />
+    <Content Include="Assets\Styles\AddUserStyle.css" />
     <Content Include="Assets\Styles\AdministratorStyle.css" />
     <Content Include="Assets\Styles\EditUserStyle.css" />
     <Content Include="Assets\Styles\LoginStyle.css" />
@@ -116,6 +118,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddUser.aspx.cs">
+      <DependentUpon>AddUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddUser.aspx.designer.cs">
+      <DependentUpon>AddUser.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Administrator.aspx.cs">
       <DependentUpon>Administrator.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
