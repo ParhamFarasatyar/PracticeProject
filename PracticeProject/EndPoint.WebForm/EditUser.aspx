@@ -15,6 +15,7 @@
             Edit User
         </h1>
     </header>
+    <a href="./Administrator.aspx" class="theme-primary underline-offset-2 underline-20 hover:underline-100"><< Back</a>
     <form id="editForm" runat="server">
         <div class="d-flex flex-column mb-3 row-gap-5">
             <asp:TextBox ID="tboxFirstName" runat="server" placeholder="FirstName" CssClass="form-control"></asp:TextBox>
@@ -132,6 +133,8 @@
                 Text="Submit" 
                 CssClass="btn-subtle theme-primary" 
                 OnClick="btnSubmit_Click"/>
+
+            <asp:Label ID="lblMessage" runat="server"></asp:Label>
         </div>
     </form>
 </body>
