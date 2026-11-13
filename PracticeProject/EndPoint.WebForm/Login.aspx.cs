@@ -25,7 +25,7 @@ namespace EndPoint.WebForm
 
             var request = new ILoginUser.LoginUserRequest
             {
-                Email = tboxEmail.Text.Trim(),
+                Email = tboxEmail.Text.Trim().ToLower(),
                 Password = tboxPassword.Text.Trim(),
             };
 

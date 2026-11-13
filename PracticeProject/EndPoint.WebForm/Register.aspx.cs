@@ -31,7 +31,7 @@ namespace EndPoint.WebForm
                 LastName = tboxLastName.Text.Trim(),
                 Age = Convert.ToInt32(tboxAge.Text.Trim()),
                 Gender = (Gender)Convert.ToInt32(ddlGender.SelectedValue),
-                Email = tboxEmail.Text.Trim(),
+                Email = tboxEmail.Text.Trim().ToLower(),
                 Password = tboxPassword.Text.Trim()
             };
 
