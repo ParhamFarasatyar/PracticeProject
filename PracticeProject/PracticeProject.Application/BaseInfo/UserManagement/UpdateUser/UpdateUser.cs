@@ -1,4 +1,5 @@
 ﻿using PracticeProject.Application.BaseInfo.UserManagement.CreateUser;
+using PracticeProject.Domain.BaseInfo.People;
 using PracticeProject.Domain.BaseInfo.Users;
 using System;
 using System.Data.Entity.Infrastructure;
@@ -24,6 +25,10 @@ namespace PracticeProject.Application.BaseInfo.UserManagement.UpdateUser
             if (!isRequestValid)
                 return CreateFailureResponse(errorMessage);
 
+            user.Person.FirstName = request.FirstName;
+            user.Person.LastName = request.LastName;
+            user.Person.Age = request.Age;
+            user.Person.Gender = request.Gender;
             user.Role = request.Role;
             user.Email = request.Email;
             user.Password = request.Password;
@@ -58,10 +63,21 @@ namespace PracticeProject.Application.BaseInfo.UserManagement.UpdateUser
                 return false;
             }
 
-            if (string.IsNullOrWhiteSpace(request.Email) || string.IsNullOrWhiteSpace(request.Password))
+            if (
+                string.IsNullOrWhiteSpace(request.Email) || 
+                string.IsNullOrWhiteSpace(request.Password) ||
+                string.IsNullOrWhiteSpace(request.FirstName)
+                )
             {
                 user = null;
                 errorMessage = "Email and password cannot be null.";
+                return false;
+            }
+
+            if (request.Age < 18 ||  request.Age > 80)
+            {
+                user = null;
+                errorMessage = "Age must be higher than 18 and lower than 80.";
                 return false;
             }
 
@@ -76,6 +92,13 @@ namespace PracticeProject.Application.BaseInfo.UserManagement.UpdateUser
             {
                 user = null;
                 errorMessage = "Invalid user role.";
+                return false;
+            }
+
+            if (!Enum.IsDefined(typeof(Gender), request.Gender))
+            {
+                user = null;
+                errorMessage = "Invalid user gender.";
                 return false;
             }
 
