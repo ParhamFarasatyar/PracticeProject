@@ -40,3 +40,66 @@ h1 {
     font-size: 20px;
     line-height: 1;
 }
+
+.password-field {
+    position: relative;
+    width: 100%;
+}
+
+.password-field input {
+    padding-right: 48px;
+}
+
+.password-toggle {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    color: #8b949e;
+    cursor: pointer;
+    padding: 4px;
+    transition: color 0.2s ease;
+}
+
+.password-toggle:hover {
+    color: #3b82f6;
+}
+
+.password-toggle svg {
+    position: absolute;
+    width: 21px;
+    height: 21px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: opacity 0.2s ease, transform 0.25s ease;
+}
+
+.password-toggle .eye-icon {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+}
+
+.password-toggle .eye-off-icon {
+    opacity: 0;
+    transform: scale(0.5) rotate(-20deg);
+}
+
+.password-toggle.show-password .eye-icon {
+    opacity: 0;
+    transform: scale(0.5) rotate(20deg);
+}
+
+.password-toggle.show-password .eye-off-icon {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+}

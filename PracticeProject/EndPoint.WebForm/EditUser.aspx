@@ -107,7 +107,34 @@
                 TextMode="Email">
             </asp:RegularExpressionValidator>
 
-            <asp:TextBox ID="tboxPassword" runat="server" TextMode="Password" placeholder="Password" CssClass="form-control"></asp:TextBox>
+            <div class="password-field">
+                <asp:TextBox
+                    ID="tboxPassword"
+                    runat="server"
+                    placeholder="Password"
+                    CssClass="form-control"
+                    TextMode="Password">
+                </asp:TextBox>
+
+                <button type="button"
+                        class="password-toggle"
+                        onclick="togglePassword(this)"
+                        aria-label="Show password">
+
+                    <svg class="eye-icon" viewBox="0 0 24 24">
+                        <path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7Z"/>
+                        <circle cx="12" cy="12" r="3"/>
+                    </svg>
+
+                    <svg class="eye-off-icon" viewBox="0 0 24 24">
+                        <path d="m3 3 18 18"/>
+                        <path d="M10.6 10.6a2 2 0 0 0 2.8 2.8"/>
+                        <path d="M9.9 5.2A11 11 0 0 1 12 5c6.4 0 10 7 10 7a16 16 0 0 1-3.1 3.8"/>
+                        <path d="M6.2 6.2C3.5 8 2 12 2 12s3.6 7 10 7a10 10 0 0 0 4-.8"/>
+                    </svg>
+
+                </button>
+            </div>
             <asp:RequiredFieldValidator 
                 ID="rfvPassword" 
                 runat="server" 
@@ -125,7 +152,34 @@
                 ValidationExpression="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$]).{8,}$">
             </asp:RegularExpressionValidator>
 
-            <asp:TextBox ID="tboxConfirmPassword" runat="server" placeholder="Confirm Password" CssClass="form-control" TextMode="Password"></asp:TextBox>
+            <div class="password-field">
+                <asp:TextBox
+                    ID="tboxConfirmPassword"
+                    runat="server"
+                    placeholder="Confirm Password"
+                    CssClass="form-control"
+                    TextMode="Password">
+                </asp:TextBox>
+
+                <button type="button"
+                        class="password-toggle"
+                        onclick="togglePassword(this)"
+                        aria-label="Show password">
+
+                    <svg class="eye-icon" viewBox="0 0 24 24">
+                        <path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7Z"/>
+                        <circle cx="12" cy="12" r="3"/>
+                    </svg>
+
+                    <svg class="eye-off-icon" viewBox="0 0 24 24">
+                        <path d="m3 3 18 18"/>
+                        <path d="M10.6 10.6a2 2 0 0 0 2.8 2.8"/>
+                        <path d="M9.9 5.2A11 11 0 0 1 12 5c6.4 0 10 7 10 7a16 16 0 0 1-3.1 3.8"/>
+                        <path d="M6.2 6.2C3.5 8 2 12 2 12s3.6 7 10 7a10 10 0 0 0 4-.8"/>
+                    </svg>
+
+                </button>
+            </div>
             <asp:CompareValidator 
                 ID="cvConfirmPassword" 
                 runat="server" 
@@ -146,5 +200,22 @@
             <asp:Label ID="lblMessage" runat="server"></asp:Label>
         </div>
     </form>
+    <script>
+        function togglePassword(button) {
+            const wrapper = button.closest(".password-field");
+            const input = wrapper.querySelector("input");
+
+            const isPassword = input.type === "password";
+
+            input.type = isPassword ? "text" : "password";
+
+            button.classList.toggle("show-password", isPassword);
+
+            button.setAttribute(
+                "aria-label",
+                isPassword ? "Hide password" : "Show password"
+            );
+            }
+    </script>
 </body>
 </html>
