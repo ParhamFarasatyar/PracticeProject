@@ -16,8 +16,20 @@
     <form id="loginForm" runat="server">
         <div class="d-flex flex-column mb-3 row-gap-8">
             <asp:TextBox ID="tboxEmail" runat="server" placeholder="Email" TextMode="Email" CssClass="form-control"></asp:TextBox>
+            <asp:RequiredFieldValidator ID="rfvEmail" runat="server" ErrorMessage="Email required" ForeColor="Red" ControlToValidate="tboxEmail" Display="Dynamic"></asp:RequiredFieldValidator>
+            <asp:RegularExpressionValidator ID="revEmail" runat="server" ErrorMessage="Your email should like this: abc123@example.com" ForeColor="Red" ControlToValidate="tboxEmail" ValidationExpression="^[a-zA-Z0-9._%+-]+@example\.com$" Display="Dynamic" TextMode="Email"></asp:RegularExpressionValidator>
 
             <asp:TextBox ID="tboxPassword" runat="server" placeholder="Password" TextMode="Password" CssClass="form-control"></asp:TextBox>
+            <asp:RequiredFieldValidator ID="rfvPassword" runat="server" ErrorMessage="Password required" ForeColor="Red" ControlToValidate="tboxPassword" Display="Dynamic"></asp:RequiredFieldValidator>
+            <asp:RegularExpressionValidator 
+                ID="revPassword" 
+                runat="server" 
+                ErrorMessage="Your password should like this: <br/> * Should contain lower case letters <br/> * Should contain upper case letters <br/> * Should contain digits <br/> * Should contain at least one of these @, #, $ <br/> * Should be at least 8 characters" 
+                ForeColor="Red" 
+                ControlToValidate="tboxPassword" 
+                Display="Dynamic" 
+                ValidationExpression="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$]).{8,}$">
+            </asp:RegularExpressionValidator>
 
             <asp:Button ID="btnSubmit" runat="server" Text="Submit" CssClass="btn-subtle theme-primary" OnClick="btnSubmit_Click"/>
 
