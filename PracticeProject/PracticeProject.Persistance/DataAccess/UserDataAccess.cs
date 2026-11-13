@@ -29,7 +29,11 @@ namespace PracticeProject.Persistence.DataAccess
             .Include(u => u.Person)
             .FirstOrDefault(u => u.Email == email && u.Password == includedPassword);
 
-        public void Update(User user) => _context.Update<User>(user);
+        public void Update(User user)
+        {
+            _context.Update<User>(user);
+            _context.Update<Person>(user.Person);
+        }
 
         public bool ExistsByEmail(string email) => _context.Query<User>().Any(u => u.Email == email);
 
