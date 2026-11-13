@@ -3,3 +3,14 @@
     margin: 2rem auto;
     font-size: 5rem;
 }
+
+#adminForm {
+    width: 25%;
+    margin: 10rem auto;
+    justify-items:center;
+}
+
+#gvUsers {
+    margin: 2rem auto;
+    text-align:center;
+}

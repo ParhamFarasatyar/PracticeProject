@@ -15,11 +15,13 @@
     </header>
     <form id="adminForm" runat="server">
         <div>
-            <asp:TextBox ID="tboxSearch" runat="server"></asp:TextBox>
+            <div id="searchBox" class="d-flex flex-row mb-3">
+                <asp:TextBox ID="tboxSearch" runat="server" CssClass="form-control"></asp:TextBox>
 
-            <asp:Button ID="btnSearch" runat="server" Text="Search" OnClick="btnSearch_Click" />
+                <asp:Button ID="btnSearch" runat="server" Text="Search" OnClick="btnSearch_Click" CssClass="btn-subtle theme-primary" />
+            </div>
 
-            <asp:GridView ID="gvUsers" runat="server" AutoGenerateColumns="false" EmptyDataText="No users found">
+            <asp:GridView OnRowCommand="gvUsers_RowCommand" CssClass="table table-striped" ID="gvUsers" runat="server" AutoGenerateColumns="false" EmptyDataText="No users found">
                 <Columns>
                     <asp:BoundField DataField="Id" HeaderText="ID" />
 
@@ -50,6 +52,33 @@
                     <asp:BoundField DataField="Email" HeaderText="Email" />
 
                     <asp:BoundField DataField="Role" HeaderText="Role" />
+
+                    <asp:TemplateField HeaderText="Edit">
+                        <ItemTemplate>
+                            <asp:LinkButton
+                                ID="btnEdit"
+                                runat="server"
+                                Text="Edit"
+                                CommandName="EditUser"
+                                CommandArgument='<%# Eval("Id") %>'
+                                CssClass="btn-outline theme-info">
+                            </asp:LinkButton>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+
+                    <asp:TemplateField HeaderText="Delete">
+                        <ItemTemplate>
+                            <asp:LinkButton
+                                ID="btnDelete"
+                                runat="server"
+                                Text="Delete"
+                                CommandName="DeleteUser"
+                                CommandArgument='<%# Eval("Id") %>'
+                                CssClass="btn-outline theme-danger"
+                                OnClientClick="return confirm('Are you sure you want to delete this user?');">
+                            </asp:LinkButton>
+                        </ItemTemplate>
+                    </asp:TemplateField>
                 </Columns>
             </asp:GridView>
 
