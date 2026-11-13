@@ -105,6 +105,7 @@
     <Content Include="Administrator.aspx" />
     <Content Include="Assets\Styles\AdministratorStyle.css" />
     <Content Include="Assets\Styles\LoginStyle.css" />
+    <Content Include="EditUser.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Users.aspx" />
     <Content Include="Assets\Styles\UsersStyle.css" />
@@ -120,6 +121,13 @@
     </Compile>
     <Compile Include="Administrator.aspx.designer.cs">
       <DependentUpon>Administrator.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EditUser.aspx.cs">
+      <DependentUpon>EditUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EditUser.aspx.designer.cs">
+      <DependentUpon>EditUser.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
