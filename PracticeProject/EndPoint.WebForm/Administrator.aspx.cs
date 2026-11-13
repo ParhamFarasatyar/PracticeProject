@@ -71,5 +71,10 @@ namespace EndPoint.WebForm
                     break;
             }
         }
+
+        protected void btnAddUser_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("./AddUser.aspx");
+        }
     }
 }

@@ -20,7 +20,7 @@
 
                 <asp:Button ID="btnSearch" runat="server" Text="Search" OnClick="btnSearch_Click" CssClass="btn-subtle theme-primary" />
 
-                <asp:Button ID="btnAddUser" runat="server" Text="Add New" CssClass="btn-outline theme-inverse" />
+                <asp:Button ID="btnAddUser" runat="server" Text="Add New User" CssClass="btn-outline theme-inverse" OnClick="btnAddUser_Click" />
             </div>
 
             <asp:GridView OnRowCommand="gvUsers_RowCommand" CssClass="table table-striped" ID="gvUsers" runat="server" AutoGenerateColumns="false" EmptyDataText="No users found">
