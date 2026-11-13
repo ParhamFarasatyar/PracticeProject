@@ -6,6 +6,7 @@ using PracticeProject.Application.BaseInfo;
 using PracticeProject.Application.BaseInfo.UserManagement.CreateUser;
 using PracticeProject.Application.BaseInfo.UserManagement.LoginUser;
 using PracticeProject.Application.BaseInfo.UserManagement.SearchUsers;
+using PracticeProject.Application.BaseInfo.UserManagement.DeleteUser;
 
 namespace EndPoint.WebForm.App_Start
 {
@@ -24,6 +25,8 @@ namespace EndPoint.WebForm.App_Start
             builder.RegisterType<LoginUser>().As<ILoginUser>().InstancePerRequest();
 
             builder.RegisterType<SearchUsers>().As<ISearchUsers>().InstancePerRequest();
+
+            builder.RegisterType<DeleteUser>().As<IDeleteUser>().InstancePerRequest();
 
             return builder.Build();
         }
