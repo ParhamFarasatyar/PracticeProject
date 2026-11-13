@@ -23,7 +23,7 @@ namespace PracticeProject.Persistence.DataAccess
 
         public List<User> GetAll() => _context.Query<User>().Include(u => u.Person).ToList();
 
-        public User GetById(int id) => _context.Query<User>().FirstOrDefault(u => u.Id == id);
+        public User GetById(int id) => _context.Query<User>().Include(u => u.Person).FirstOrDefault(u => u.Id == id);
 
         public User GetByEmail(string email, string includedPassword) => _context.Query<User>()
             .Include(u => u.Person)
