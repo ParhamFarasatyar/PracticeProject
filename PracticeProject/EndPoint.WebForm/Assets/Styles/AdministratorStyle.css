@@ -1,12 +1,12 @@
 ﻿h1 {
     width: fit-content;
-    margin: 2rem auto;
+    margin: 8rem auto;
     font-size: 5rem;
 }
 
 #adminForm {
     width: 25%;
-    margin: 10rem auto;
+    margin: 1rem auto;
     justify-items:center;
 }
 
