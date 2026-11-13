@@ -18,7 +18,25 @@
             <div id="searchBox" class="d-flex flex-row mb-3">
                 <asp:TextBox ID="tboxSearch" runat="server" CssClass="form-control"></asp:TextBox>
 
-                <asp:Button ID="btnSearch" runat="server" Text="Search" OnClick="btnSearch_Click" CssClass="btn-subtle theme-primary" />
+                <asp:LinkButton
+                    ID="btnSearch"
+                    runat="server"
+                    OnClick="btnSearch_Click"
+                    CssClass="search-button"
+                    ToolTip="Search">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                         width="21"
+                         height="21"
+                         viewBox="0 0 24 24"
+                         fill="none"
+                         stroke="currentColor"
+                         stroke-width="2"
+                         stroke-linecap="round"
+                         stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                </asp:LinkButton>
 
                 <asp:Button ID="btnAddUser" runat="server" Text="Add New User" CssClass="btn-outline theme-inverse" OnClick="btnAddUser_Click" />
             </div>
@@ -60,10 +78,22 @@
                             <asp:LinkButton
                                 ID="btnEdit"
                                 runat="server"
-                                Text="Edit"
                                 CommandName="EditUser"
                                 CommandArgument='<%# Eval("Id") %>'
-                                CssClass="btn-outline theme-info">
+                                CssClass="action-button edit-button"
+                                ToolTip="Edit User">
+
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                     width="18" height="18"
+                                     viewBox="0 0 24 24"
+                                     fill="none" stroke="currentColor"
+                                     stroke-width="2"
+                                     stroke-linecap="round"
+                                     stroke-linejoin="round">
+                                    <path d="M12 20h9"/>
+                                    <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L8 18l-4 1 1-4Z"/>
+                                </svg>
+
                             </asp:LinkButton>
                         </ItemTemplate>
                     </asp:TemplateField>
@@ -73,18 +103,33 @@
                             <asp:LinkButton
                                 ID="btnDelete"
                                 runat="server"
-                                Text="Delete"
                                 CommandName="DeleteUser"
                                 CommandArgument='<%# Eval("Id") %>'
-                                CssClass="btn-outline theme-danger"
+                                CssClass="action-button delete-button"
+                                ToolTip="Delete User"
                                 OnClientClick="return confirm('Are you sure you want to delete this user?');">
+
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                     width="18" height="18"
+                                     viewBox="0 0 24 24"
+                                     fill="none" stroke="currentColor"
+                                     stroke-width="2"
+                                     stroke-linecap="round"
+                                     stroke-linejoin="round">
+                                    <polyline points="3 6 5 6 21 6"/>
+                                    <path d="M19 6l-1 14H6L5 6"/>
+                                    <path d="M10 11v6"/>
+                                    <path d="M14 11v6"/>
+                                    <path d="M9 6V4h6v2"/>
+                                </svg>
+
                             </asp:LinkButton>
                         </ItemTemplate>
                     </asp:TemplateField>
                 </Columns>
             </asp:GridView>
 
-            <asp:Label ID="lblMessage" runat="server"></asp:Label>
+            <asp:Label ID="lblMessage" runat="server" CssClass="message-label"></asp:Label>
         </div>
     </form>
 </body>

@@ -1,20 +1,97 @@
 ﻿h1 {
     width: fit-content;
-    margin: 8rem auto;
+    margin: 5rem auto 4rem;
     font-size: 5rem;
 }
 
 #adminForm {
-    width: 25%;
-    margin: 1rem auto;
-    justify-items:center;
+    width: min(90%, 900px);
+    margin: 0 auto;
+}
+
+#searchBox {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+#searchBox input[type="text"] {
+    flex: 1;
+    min-width: 0;
 }
 
 #gvUsers {
+    width: 100%;
     margin: 2rem auto;
-    text-align:center;
+    text-align: center;
 }
 
 #adminForm span {
     text-align: center;
+}
+
+.search-button {
+    width: 44px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    text-decoration: none;
+    flex-shrink: 0;
+}
+
+.search-button:hover {
+    background: #1d4ed8;
+    color: white;
+    transform: scale(1.05);
+}
+
+.search-button:active {
+    transform: scale(0.95);
+}
+
+.action-button {
+    width: 36px;
+    height: 34px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 7px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.edit-button {
+    color: #3b82f6;
+    border: 1px solid #3b82f6;
+}
+
+    .edit-button:hover {
+        color: white;
+        background: #3b82f6;
+    }
+
+.delete-button {
+    color: #ef4444;
+    border: 1px solid #ef4444;
+}
+
+.delete-button:hover {
+    color: white;
+    background: #ef4444;
+}
+
+.message-label {
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin: 15px auto;
 }
