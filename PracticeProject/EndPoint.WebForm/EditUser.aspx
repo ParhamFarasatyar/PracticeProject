@@ -15,7 +15,16 @@
             Edit User
         </h1>
     </header>
-    <a href="./Administrator.aspx" class="theme-primary underline-offset-2 underline-20 hover:underline-100"><< Back</a>
+    <div class="back-container">
+        <asp:HyperLink
+            ID="hlBack"
+            runat="server"
+            NavigateUrl="~/Administrator.aspx"
+            CssClass="back-button">
+            <span class="back-icon">&#8592;</span>
+            Back to Admin
+        </asp:HyperLink>
+    </div>
     <form id="editForm" runat="server">
         <div class="d-flex flex-column mb-3 row-gap-5">
             <asp:TextBox ID="tboxFirstName" runat="server" placeholder="FirstName" CssClass="form-control"></asp:TextBox>

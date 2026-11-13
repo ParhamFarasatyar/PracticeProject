@@ -16,3 +16,31 @@
 a{
     text-decoration:none;
 }
+
+#btnBack {
+    position: relative;
+}
+
+.back-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
+    color: #fff;
+    background: #495057;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.25s ease;
+}
+
+.back-button:hover {
+    background: #343a40;
+    color: #fff;
+    transform: translateX(-4px);
+}
+
+.back-icon {
+    font-size: 20px;
+    line-height: 1;
+}
