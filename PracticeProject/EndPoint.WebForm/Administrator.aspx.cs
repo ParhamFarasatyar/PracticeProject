@@ -49,6 +49,7 @@ namespace EndPoint.WebForm
             switch (e.CommandName)
             {
                 case "EditUser":
+                    Response.Redirect($"./EditUser.aspx?id={userId}");
                     break;
 
                 case "DeleteUser":
