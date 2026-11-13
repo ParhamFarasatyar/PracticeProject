@@ -16,6 +16,7 @@
     <form id="loginForm" runat="server">
         <div class="d-flex flex-column mb-3 row-gap-8">
             <asp:TextBox ID="tboxEmail" runat="server" placeholder="Email" TextMode="Email" CssClass="form-control"></asp:TextBox>
+
             <asp:TextBox ID="tboxPassword" runat="server" placeholder="Password" TextMode="Password" CssClass="form-control"></asp:TextBox>
 
             <asp:Button ID="btnSubmit" runat="server" Text="Submit" CssClass="btn-subtle theme-primary" OnClick="btnSubmit_Click"/>
