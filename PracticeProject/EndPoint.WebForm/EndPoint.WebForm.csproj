@@ -104,6 +104,7 @@
   <ItemGroup>
     <Content Include="Administrator.aspx" />
     <Content Include="Assets\Styles\AdministratorStyle.css" />
+    <Content Include="Assets\Styles\EditUserStyle.css" />
     <Content Include="Assets\Styles\LoginStyle.css" />
     <Content Include="EditUser.aspx" />
     <Content Include="Login.aspx" />
