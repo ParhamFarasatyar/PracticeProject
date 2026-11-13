@@ -1,0 +1,42 @@
+﻿#addForm {
+    width: 25%;
+    margin: 2rem auto;
+}
+
+h1 {
+    width: fit-content;
+    margin: 5rem auto;
+    font-size: 100px;
+}
+
+#addForm span {
+    text-align: center;
+}
+
+#btnBack{
+    position:relative;
+}
+
+.back-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
+    color: #fff;
+    background: #495057;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.25s ease;
+}
+
+.back-button:hover {
+    background: #343a40;
+    color: #fff;
+    transform: translateX(-4px);
+}
+
+.back-icon {
+    font-size: 20px;
+    line-height: 1;
+}
