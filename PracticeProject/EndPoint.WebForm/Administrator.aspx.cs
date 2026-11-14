@@ -20,9 +20,9 @@ namespace EndPoint.WebForm
             
         }
 
-        private void BindUsers(string searchString)
+        private void BindUsers(string keyword)
         {
-            var response = SearchUsers.Execute(new ISearchUsers.Request { SearchString = searchString });
+            var response = SearchUsers.Execute(new ISearchUsers.Request { KeyWord = keyword });
 
             if (response is null)
             {

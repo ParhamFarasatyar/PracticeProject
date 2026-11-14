@@ -10,7 +10,7 @@ namespace PracticeProject.Application.BaseInfo.UserManagement.SearchUsers
 
         public class Request
         {
-            public string SearchString { get; set; }
+            public string KeyWord { get; set; }
         }
     }
 }
