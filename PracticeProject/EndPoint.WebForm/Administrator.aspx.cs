@@ -22,18 +22,16 @@ namespace EndPoint.WebForm
 
         private void BindUsers(string searchString)
         {
-            ISearchUsers.SearchUsersResponse response = SearchUsers.Execute(new ISearchUsers.SearchUsersRequest { SearchString = searchString });
+            var response = SearchUsers.Execute(new ISearchUsers.SearchUsersRequest { SearchString = searchString });
 
-            if (!response.IsSuccess)
+            if (response is null)
             {
                 lblMessage.ForeColor = System.Drawing.Color.Red;
-                lblMessage.Text = response.Message;
+                lblMessage.Text = "Request failed.";
                 return;
             }
 
-            var firstUser = response.SearchResult.FirstOrDefault();
-
-            gvUsers.DataSource = response.SearchResult;
+            gvUsers.DataSource = response.ToList();
             gvUsers.DataBind();
         }
 
