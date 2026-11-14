@@ -13,42 +13,15 @@ namespace PracticeProject.Application.BaseInfo.UserManagement.SearchUsers
             _userDataAccess = userDataAccess;
         }
 
-        public ISearchUsers.SearchUsersResponse Execute(ISearchUsers.SearchUsersRequest request)
+        public IQueryable<User> Execute(ISearchUsers.SearchUsersRequest request)
         {
             if (request is null)
-                return CreateFailureResponse("Request cannot be null.");
-
-            List<User> users = new List<User>();
+                return null; 
 
             if (string.IsNullOrWhiteSpace(request.SearchString))
-                users = _userDataAccess.GetAll();
+                return _userDataAccess.GetAll();
             else 
-                users = _userDataAccess.SearchUsers(request.SearchString);
-
-            if (!users.Any())
-                return new ISearchUsers.SearchUsersResponse
-                {
-                    IsSuccess = true,
-                    Message = "No users found.",
-                    SearchResult = new List<User>()
-                };
-
-            return new ISearchUsers.SearchUsersResponse
-            {
-                IsSuccess = true,
-                Message = "Users found.",
-                SearchResult = users
-            };
-        }
-
-        private ISearchUsers.SearchUsersResponse CreateFailureResponse(string message)
-        {
-            return new ISearchUsers.SearchUsersResponse
-            {
-                IsSuccess = false,
-                Message = message,
-                SearchResult = null
-            };
+                return _userDataAccess.SearchUsers(request.SearchString);
         }
     }
 }
