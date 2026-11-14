@@ -22,7 +22,7 @@ namespace EndPoint.WebForm
             if (!Page.IsValid)
                 return;
 
-            ICreateUser.CreateUserRequest request = new ICreateUser.CreateUserRequest
+            ICreateUser.Request request = new ICreateUser.Request
             {
                 FirstName = tboxFirstName.Text.Trim(),
                 LastName = tboxLastName.Text.Trim(),
@@ -32,7 +32,7 @@ namespace EndPoint.WebForm
                 Password = tboxPassword.Text.Trim()
             };
 
-            ICreateUser.CreateUserResponse response = CreateUser.Execute(request);
+            ICreateUser.Response response = CreateUser.Execute(request);
 
             if (response.IsSuccess)
             {

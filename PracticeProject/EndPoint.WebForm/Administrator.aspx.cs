@@ -22,7 +22,7 @@ namespace EndPoint.WebForm
 
         private void BindUsers(string searchString)
         {
-            var response = SearchUsers.Execute(new ISearchUsers.SearchUsersRequest { SearchString = searchString });
+            var response = SearchUsers.Execute(new ISearchUsers.Request { SearchString = searchString });
 
             if (response is null)
             {
@@ -51,8 +51,8 @@ namespace EndPoint.WebForm
                     break;
 
                 case "DeleteUser":
-                    IDeleteUser.DeleteUserResponse response = 
-                        DeleteUser.Execute(new IDeleteUser.DeleteUserRequest { Id = userId });
+                    IDeleteUser.Response response = 
+                        DeleteUser.Execute(new IDeleteUser.Request { Id = userId });
 
                     if (response.IsSuccess)
                     {

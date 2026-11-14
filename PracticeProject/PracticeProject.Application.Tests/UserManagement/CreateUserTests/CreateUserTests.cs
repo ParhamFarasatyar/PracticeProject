@@ -27,7 +27,7 @@ namespace PracticeProject.Application.Tests.UserManagement.CreateUserTests
         public void Create_ValidRequest_ReturnsSuccess()
         {
             // Arrange
-            ICreateUser.CreateUserRequest request = new ICreateUser.CreateUserRequest
+            ICreateUser.Request request = new ICreateUser.Request
             {
                 FirstName = "Parham",
                 LastName = "CreateTest",
@@ -42,7 +42,7 @@ namespace PracticeProject.Application.Tests.UserManagement.CreateUserTests
             _userDataAccessMock.Setup(u => u.Create(It.IsAny<User>())).Callback<User>(user => user.Id = 123);
 
             // Act
-            ICreateUser.CreateUserResponse response = _useCase.Execute(request);
+            ICreateUser.Response response = _useCase.Execute(request);
 
             // Assert
             Assert.IsTrue(response.IsSuccess);
@@ -54,7 +54,7 @@ namespace PracticeProject.Application.Tests.UserManagement.CreateUserTests
         public void Create_DuplicateEmail_ReturnsFailure()
         {
             // Arrange
-            ICreateUser.CreateUserRequest request = new ICreateUser.CreateUserRequest()
+            ICreateUser.Request request = new ICreateUser.Request()
             {
                 FirstName = "Parham",
                 LastName = "CreateDuplicateEmailTest",
@@ -67,7 +67,7 @@ namespace PracticeProject.Application.Tests.UserManagement.CreateUserTests
             _userDataAccessMock.Setup(u => u.ExistsByEmail(It.IsAny<string>())).Returns(true);
 
             // Act
-            ICreateUser.CreateUserResponse response = _useCase.Execute(request);
+            ICreateUser.Response response = _useCase.Execute(request);
 
             // Assert
             Assert.IsFalse(response.IsSuccess);
@@ -79,10 +79,10 @@ namespace PracticeProject.Application.Tests.UserManagement.CreateUserTests
         public void Create_NullRequest_ReturensFailure()
         {
             // Arrange
-            ICreateUser.CreateUserRequest request = null;
+            ICreateUser.Request request = null;
 
             // Act
-            ICreateUser.CreateUserResponse response = _useCase.Execute(request);
+            ICreateUser.Response response = _useCase.Execute(request);
 
             // Assert
             Assert.IsFalse(response.IsSuccess);
@@ -99,7 +99,7 @@ namespace PracticeProject.Application.Tests.UserManagement.CreateUserTests
         public void Create_InvalidFirstName_ReturnsFailure(string firstname)
         {
             // Arrange
-            ICreateUser.CreateUserRequest request = new ICreateUser.CreateUserRequest
+            ICreateUser.Request request = new ICreateUser.Request
             {
                 FirstName = firstname,
                 LastName = "CreateEmptyFirstNameTest",
@@ -110,7 +110,7 @@ namespace PracticeProject.Application.Tests.UserManagement.CreateUserTests
             };
 
             // Act
-            ICreateUser.CreateUserResponse response = _useCase.Execute(request);
+            ICreateUser.Response response = _useCase.Execute(request);
 
             // Assert
             Assert.IsFalse(response.IsSuccess);
@@ -126,7 +126,7 @@ namespace PracticeProject.Application.Tests.UserManagement.CreateUserTests
         public void Create_InvalidEmail_ReturnsFailure(string email)
         {
             // Arrange
-            ICreateUser.CreateUserRequest request = new ICreateUser.CreateUserRequest
+            ICreateUser.Request request = new ICreateUser.Request
             {
                 FirstName = "Parham",
                 LastName = "CreateInvalidEmailTest",
@@ -137,7 +137,7 @@ namespace PracticeProject.Application.Tests.UserManagement.CreateUserTests
             };
 
             // Act
-            ICreateUser.CreateUserResponse response = _useCase.Execute(request);
+            ICreateUser.Response response = _useCase.Execute(request);
 
             // Assert
             Assert.IsFalse(response.IsSuccess);
@@ -153,7 +153,7 @@ namespace PracticeProject.Application.Tests.UserManagement.CreateUserTests
         public void Create_InvalidPassword_ReturnsFailure(string password)
         {
             // Arrange
-            ICreateUser.CreateUserRequest request = new ICreateUser.CreateUserRequest
+            ICreateUser.Request request = new ICreateUser.Request
             {
                 FirstName = "Parham",
                 LastName = "CreateInvalidPasswordTest",
@@ -164,7 +164,7 @@ namespace PracticeProject.Application.Tests.UserManagement.CreateUserTests
             };
 
             // Act
-            ICreateUser.CreateUserResponse response = _useCase.Execute(request);
+            ICreateUser.Response response = _useCase.Execute(request);
 
             // Assert
             Assert.IsFalse(response.IsSuccess);
@@ -183,7 +183,7 @@ namespace PracticeProject.Application.Tests.UserManagement.CreateUserTests
             // Arrange
             string longText = new string('A', 300);
 
-            ICreateUser.CreateUserRequest request = new ICreateUser.CreateUserRequest
+            ICreateUser.Request request = new ICreateUser.Request
             {
                 FirstName = "Parham",
                 LastName = "CreateMaximumLengthTest",
@@ -213,7 +213,7 @@ namespace PracticeProject.Application.Tests.UserManagement.CreateUserTests
             }
 
             // Act
-            ICreateUser.CreateUserResponse response = _useCase.Execute(request);
+            ICreateUser.Response response = _useCase.Execute(request);
 
             // Assert
             Assert.IsFalse(response.IsSuccess);

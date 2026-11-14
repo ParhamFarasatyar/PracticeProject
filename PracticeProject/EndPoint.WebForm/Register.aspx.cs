@@ -25,7 +25,7 @@ namespace EndPoint.WebForm
             if (!Page.IsValid)
                 return;
 
-            var request = new ICreateUser.CreateUserRequest
+            var request = new ICreateUser.Request
             {
                 FirstName = tboxFirstName.Text.Trim(),
                 LastName = tboxLastName.Text.Trim(),

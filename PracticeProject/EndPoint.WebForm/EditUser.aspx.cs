@@ -51,7 +51,7 @@ namespace EndPoint.WebForm
                 return;
             }
 
-            IUpdateUser.UpdateUserRequest request = new IUpdateUser.UpdateUserRequest
+            IUpdateUser.Request request = new IUpdateUser.Request
             {
                 Id = userId,
                 FirstName = tboxFirstName.Text.Trim(),
@@ -63,7 +63,7 @@ namespace EndPoint.WebForm
                 Password = tboxPassword.Text.Trim()
             };
 
-            IUpdateUser.UpdateUserResponse response = UpdateUser.Execute(request);
+            IUpdateUser.Response response = UpdateUser.Execute(request);
 
             if (response.IsSuccess)
             {
