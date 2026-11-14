@@ -183,10 +183,10 @@ namespace PracticeProject.Persistence.Tests
             _context.Database.ExecuteSqlCommand("DELETE Users");
 
             // Act
-            var result = _userDataAccess.GetAll();
+            IQueryable<User> result = _userDataAccess.GetAll();
 
             // Assert
-            Assert.AreEqual(0, result.Count);
+            Assert.AreEqual(0, result.Count());
         }
 
         [TestMethod]
