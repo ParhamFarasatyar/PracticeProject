@@ -21,7 +21,7 @@ namespace PracticeProject.Persistence.DataAccess
 
         public void Delete(int id) => _context.DeleteById<User>(id);
 
-        public List<User> GetAll() => _context.Query<User>().Include(u => u.Person).ToList();
+        public IQueryable<User> GetAll() => _context.Query<User>().Include(u => u.Person);
 
         public User GetById(int id) => _context.Query<User>().Include(u => u.Person).FirstOrDefault(u => u.Id == id);
 
@@ -40,7 +40,7 @@ namespace PracticeProject.Persistence.DataAccess
         public bool ExistsByEmail(string email, int excludedUserId) => _context.Query<User>()
             .Any(u => u.Email == email && u.Id != excludedUserId);
 
-        public List<User> SearchUsers(string searchString)
+        public IQueryable<User> SearchUsers(string searchString)
         {
             searchString = searchString.Replace(" ", "");
 
@@ -49,7 +49,7 @@ namespace PracticeProject.Persistence.DataAccess
                 .Where(u =>
                 u.Person.FirstName.Replace(" ", "").Contains(searchString) ||
                 u.Person.LastName.Replace(" ", "").Contains(searchString) ||
-                u.Email.Replace(" ", "").Contains(searchString)).ToList();
+                u.Email.Replace(" ", "").Contains(searchString));
         }
     }
 }

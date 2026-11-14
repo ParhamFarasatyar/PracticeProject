@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using PracticeProject.Domain.BaseInfo.Users;
 
 namespace PracticeProject.Application.BaseInfo
@@ -7,13 +8,13 @@ namespace PracticeProject.Application.BaseInfo
     {
         void Create(User user);
 
-        List<User> SearchUsers(string searchString);
+        IQueryable<User> SearchUsers(string searchString);
 
         User GetById(int id);
 
         User GetByEmail(string email, string includedPassword);
 
-        List<User> GetAll();
+        IQueryable<User> GetAll();
 
         void Update(User user);
 
