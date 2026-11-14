@@ -16,7 +16,7 @@
     <form id="adminForm" runat="server">
         <div>
             <div id="searchBox" class="d-flex flex-row mb-3">
-                <asp:TextBox ID="tboxSearch" runat="server" CssClass="form-control"></asp:TextBox>
+                <asp:TextBox ID="tboxSearch" runat="server" CssClass="form-control" placeholder="Search for user"></asp:TextBox>
 
                 <asp:LinkButton
                     ID="btnSearch"
