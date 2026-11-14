@@ -17,7 +17,7 @@ namespace PracticeProject.Application.BaseInfo.UserManagement.GetAllUsers
         {
             IGetAllUsers.GetAllUsersResponse response = new IGetAllUsers.GetAllUsersResponse();
 
-            List<User> users = _userDataAccess.GetAll();
+            IQueryable<User> users = _userDataAccess.GetAll();
 
             if (!users.Any())
             {
