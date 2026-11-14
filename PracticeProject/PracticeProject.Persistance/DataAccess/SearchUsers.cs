@@ -1,8 +1,10 @@
 ﻿using PracticeProject.Domain.BaseInfo.Users;
 using System.Collections.Generic;
 using System.Linq;
+using PracticeProject.Application.BaseInfo;
+using PracticeProject.Application.BaseInfo.UserManagement.SearchUsers;
 
-namespace PracticeProject.Application.BaseInfo.UserManagement.SearchUsers
+namespace PracticeProject.Persistence.DataAccess
 {
     public class SearchUsers : ISearchUsers
     {

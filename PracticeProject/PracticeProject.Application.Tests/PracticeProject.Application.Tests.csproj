@@ -66,9 +66,6 @@
     <Compile Include="UserManagement\CreateUserTests\CreateUserTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\PracticeProject.Application\PracticeProject.Application.csproj">
       <Project>{757a67b0-3b99-462d-a5f5-301647d1bf75}</Project>
       <Name>PracticeProject.Application</Name>
@@ -77,6 +74,9 @@
       <Project>{da845681-5e67-4349-9879-6bd6bcbbd6b8}</Project>
       <Name>PracticeProject.Domain</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
