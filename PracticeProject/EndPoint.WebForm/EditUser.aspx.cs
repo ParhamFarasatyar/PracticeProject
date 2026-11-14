@@ -70,9 +70,11 @@ namespace EndPoint.WebForm
                 lblMessage.ForeColor = System.Drawing.Color.Green;
                 lblMessage.Text = response.Message;
             }
-
-            lblMessage.ForeColor = System.Drawing.Color.Red;
-            lblMessage.Text = response.Message;
+            else
+            {
+                lblMessage.ForeColor = System.Drawing.Color.Red;
+                lblMessage.Text = response.Message;
+            }
         }
     }
 }
