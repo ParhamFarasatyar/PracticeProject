@@ -1,5 +1,6 @@
 ﻿using PracticeProject.Domain.BaseInfo.Users;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace PracticeProject.Application.BaseInfo.UserManagement.GetAllUsers
 {
@@ -11,7 +12,7 @@ namespace PracticeProject.Application.BaseInfo.UserManagement.GetAllUsers
         {
             public bool IsSuccess { get; set; }
             public string Message { get; set; }
-            public List<User> Users { get; set; } = new List<User>();
+            public IQueryable<User> Users { get; set; }
         }
     }
 }
