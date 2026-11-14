@@ -12,9 +12,9 @@ namespace PracticeProject.Application.BaseInfo.UserManagement.GetUserById
             _userDataAccess = userDataAccess ?? throw new ArgumentNullException(nameof(userDataAccess));
         }
 
-        public IGetUserById.GetUserByIdResponse Execute(IGetUserById.GetUserByIdRequest request)
+        public IGetUserById.Response Execute(IGetUserById.Request request)
         {
-            IGetUserById.GetUserByIdResponse response = new IGetUserById.GetUserByIdResponse();
+            IGetUserById.Response response = new IGetUserById.Response();
 
             if (request is null)
                 return CreateFailureResponse("Request cannot be null.");
@@ -33,9 +33,9 @@ namespace PracticeProject.Application.BaseInfo.UserManagement.GetUserById
             return response;
         }
 
-        private IGetUserById.GetUserByIdResponse CreateFailureResponse(string message)
+        private IGetUserById.Response CreateFailureResponse(string message)
         {
-            IGetUserById.GetUserByIdResponse response = new IGetUserById.GetUserByIdResponse
+            IGetUserById.Response response = new IGetUserById.Response
             {
                 IsSuccess = false,
                 Message = message,

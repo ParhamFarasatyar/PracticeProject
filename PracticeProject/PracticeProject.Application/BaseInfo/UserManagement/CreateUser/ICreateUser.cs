@@ -5,9 +5,9 @@ namespace PracticeProject.Application.BaseInfo.UserManagement.CreateUser
 {
     public interface ICreateUser
     {
-        CreateUserResponse Execute(CreateUserRequest request);
+        Response Execute(Request request);
 
-        class CreateUserRequest
+        class Request
         {
             public string FirstName { get; set; }
             public string LastName { get; set; }
@@ -17,7 +17,7 @@ namespace PracticeProject.Application.BaseInfo.UserManagement.CreateUser
             public string Password { get; set; }
         }
 
-        class CreateUserResponse
+        class Response
         {
             public bool IsSuccess { get; set; }
             public string Message { get; set; }

@@ -5,9 +5,9 @@ namespace PracticeProject.Application.BaseInfo.UserManagement.UpdateUser
 {
     public interface IUpdateUser
     {
-        UpdateUserResponse Execute(UpdateUserRequest request);
+        Response Execute(Request request);
 
-        public class UpdateUserRequest
+        public class Request
         {
             public int Id { get; set; }
             public string FirstName { get; set; }
@@ -19,7 +19,7 @@ namespace PracticeProject.Application.BaseInfo.UserManagement.UpdateUser
             public string Password { get; set; }
         }
 
-        public class UpdateUserResponse
+        public class Response
         {
             public bool IsSuccess { get; set; }
             public string Message { get; set; }

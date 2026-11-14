@@ -11,13 +11,13 @@ namespace PracticeProject.Application.BaseInfo.UserManagement.LoginUser
             _userDataAccess = userDataAccess;
         }
 
-        public ILoginUser.LoginUserResponse Execute(ILoginUser.LoginUserRequest request)
+        public ILoginUser.Response Execute(ILoginUser.LoginUserRequest request)
         {
             bool isRequestValid = IsRequestValid(request, out User user, out string errorMessage);
             if (!isRequestValid)
                 return CreateFailureResponse(errorMessage);
 
-            return new ILoginUser.LoginUserResponse
+            return new ILoginUser.Response
             {
                 IsSuccess = true,
                 Message = "User logged in successfully.",
@@ -52,9 +52,9 @@ namespace PracticeProject.Application.BaseInfo.UserManagement.LoginUser
             return true;
         }
 
-        private ILoginUser.LoginUserResponse CreateFailureResponse(string message)
+        private ILoginUser.Response CreateFailureResponse(string message)
         {
-            return new ILoginUser.LoginUserResponse
+            return new ILoginUser.Response
             {
                 IsSuccess = false,
                 Message = message,

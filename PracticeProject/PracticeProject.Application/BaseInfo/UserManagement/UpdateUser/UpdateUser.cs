@@ -18,7 +18,7 @@ namespace PracticeProject.Application.BaseInfo.UserManagement.UpdateUser
             _db = db ?? throw new ArgumentNullException(nameof(db));
         }
 
-        public IUpdateUser.UpdateUserResponse Execute(IUpdateUser.UpdateUserRequest request)
+        public IUpdateUser.Response Execute(IUpdateUser.Request request)
         {
             bool isRequestValid = IsRequestValid(request, out User user, out string errorMessage);
 
@@ -36,7 +36,7 @@ namespace PracticeProject.Application.BaseInfo.UserManagement.UpdateUser
             _userDataAccess.Update(user);
             _db.SaveChanges();
 
-            return new IUpdateUser.UpdateUserResponse
+            return new IUpdateUser.Response
             {
                 IsSuccess = true,
                 Message = "User modified successfully",
@@ -44,9 +44,9 @@ namespace PracticeProject.Application.BaseInfo.UserManagement.UpdateUser
             };
         }
 
-        private IUpdateUser.UpdateUserResponse CreateFailureResponse(string message)
+        private IUpdateUser.Response CreateFailureResponse(string message)
         {
-            return new IUpdateUser.UpdateUserResponse
+            return new IUpdateUser.Response
             {
                 IsSuccess = false,
                 Message = message,
@@ -54,7 +54,7 @@ namespace PracticeProject.Application.BaseInfo.UserManagement.UpdateUser
             };
         }
 
-        private bool IsRequestValid(IUpdateUser.UpdateUserRequest request, out User user, out string errorMessage)
+        private bool IsRequestValid(IUpdateUser.Request request, out User user, out string errorMessage)
         {
             if (request is null)
             {

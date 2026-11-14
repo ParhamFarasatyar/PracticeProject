@@ -2,13 +2,13 @@
 {
     public interface IDeleteUser
     {
-        DeleteUserResponse Execute(DeleteUserRequest request);
+        Response Execute(Request request);
 
-        public class DeleteUserRequest
+        public class Request
         {
             public int Id { get; set; }
         }
-        public class DeleteUserResponse
+        public class Response
         {
             public bool IsSuccess { get; set; }
             public string Message { get; set; }

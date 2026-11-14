@@ -6,9 +6,9 @@ namespace PracticeProject.Application.BaseInfo.UserManagement.GetAllUsers
 {
     public interface IGetAllUsers
     {
-        GetAllUsersResponse Execute();
+        Response Execute();
 
-        public class GetAllUsersResponse
+        public class Response
         {
             public bool IsSuccess { get; set; }
             public string Message { get; set; }

@@ -4,7 +4,7 @@ namespace PracticeProject.Application.BaseInfo.UserManagement.LoginUser
 {
     public interface ILoginUser
     {
-        LoginUserResponse Execute(LoginUserRequest request);
+        Response Execute(LoginUserRequest request);
         
         class LoginUserRequest
         {
@@ -13,7 +13,7 @@ namespace PracticeProject.Application.BaseInfo.UserManagement.LoginUser
             public string Password { get; set; }
         }
 
-        class LoginUserResponse
+        class Response
         {
             public bool IsSuccess { get; set; }
             public string Message { get; set; }

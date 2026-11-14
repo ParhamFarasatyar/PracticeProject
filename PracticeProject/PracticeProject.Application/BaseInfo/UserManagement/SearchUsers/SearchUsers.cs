@@ -13,7 +13,7 @@ namespace PracticeProject.Application.BaseInfo.UserManagement.SearchUsers
             _userDataAccess = userDataAccess;
         }
 
-        public IQueryable<User> Execute(ISearchUsers.SearchUsersRequest request)
+        public IQueryable<User> Execute(ISearchUsers.Request request)
         {
             if (request is null)
                 return null; 

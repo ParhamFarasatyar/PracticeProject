@@ -4,14 +4,14 @@ namespace PracticeProject.Application.BaseInfo.UserManagement.GetUserById
 {
     public interface IGetUserById
     {
-        GetUserByIdResponse Execute(GetUserByIdRequest request);
+        Response Execute(Request request);
 
-        public class GetUserByIdRequest
+        public class Request
         {
             public int Id { get; set; }
         }
 
-        public class GetUserByIdResponse
+        public class Response
         {
             public bool IsSuccess { get; set; }
             public string Message { get; set; }

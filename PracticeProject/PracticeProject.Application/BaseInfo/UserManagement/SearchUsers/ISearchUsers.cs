@@ -6,9 +6,9 @@ namespace PracticeProject.Application.BaseInfo.UserManagement.SearchUsers
 {
     public interface ISearchUsers
     {
-        IQueryable<User> Execute(SearchUsersRequest request);
+        IQueryable<User> Execute(Request request);
 
-        public class SearchUsersRequest
+        public class Request
         {
             public string SearchString { get; set; }
         }

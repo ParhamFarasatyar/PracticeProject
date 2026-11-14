@@ -16,7 +16,7 @@ namespace PracticeProject.Application.BaseInfo.UserManagement.CreateUser
             _db = db ?? throw new ArgumentNullException(nameof(db));
         }
 
-        public ICreateUser.CreateUserResponse Execute(ICreateUser.CreateUserRequest request)
+        public ICreateUser.Response Execute(ICreateUser.Request request)
         {
             bool isRequestValid = IsRequestValid(request, out string errorMessage, out User user);
 
@@ -26,7 +26,7 @@ namespace PracticeProject.Application.BaseInfo.UserManagement.CreateUser
             _userDataAccess.Create(user);
             _db.SaveChanges();
 
-            ICreateUser.CreateUserResponse response = new ICreateUser.CreateUserResponse
+            ICreateUser.Response response = new ICreateUser.Response
             {
                 IsSuccess = true,
                 Message = "User created successfully.",
@@ -35,9 +35,9 @@ namespace PracticeProject.Application.BaseInfo.UserManagement.CreateUser
             return response;
         }
 
-        private ICreateUser.CreateUserResponse CreateFailureResponse(string message)
+        private ICreateUser.Response CreateFailureResponse(string message)
         {
-            ICreateUser.CreateUserResponse response = new ICreateUser.CreateUserResponse
+            ICreateUser.Response response = new ICreateUser.Response
             {
                 IsSuccess = false,
                 Message = message,
@@ -46,7 +46,7 @@ namespace PracticeProject.Application.BaseInfo.UserManagement.CreateUser
             return response;
         }
 
-        private bool IsRequestValid(ICreateUser.CreateUserRequest request, out string errorMessage, out User user)
+        private bool IsRequestValid(ICreateUser.Request request, out string errorMessage, out User user)
         {
             if (request == null)
             {
