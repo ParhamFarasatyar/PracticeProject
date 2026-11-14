@@ -36,8 +36,7 @@ namespace EndPoint.WebForm
 
             if (response.IsSuccess)
             {
-                lblMessage.ForeColor = System.Drawing.Color.Green;
-                lblMessage.Text = response.Message;
+                Response.Redirect("./Administrator.aspx");
             }
             else
             {
