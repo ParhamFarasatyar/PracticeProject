@@ -46,7 +46,7 @@ namespace PracticeProject.Application.Tests.UserManagement.CreateUserTests
 
             // Assert
             Assert.IsTrue(response.IsSuccess);
-            Assert.AreEqual(123, response.UserId);
+            Assert.AreEqual(123, response.User.Id);
             _userDataAccessMock.Verify(u => u.Create(It.IsAny<User>()), Times.Once);
         }
 
@@ -71,7 +71,7 @@ namespace PracticeProject.Application.Tests.UserManagement.CreateUserTests
 
             // Assert
             Assert.IsFalse(response.IsSuccess);
-            Assert.IsNull(response.UserId);
+            Assert.IsNull(response.User.Id);
             _userDataAccessMock.Verify(u => u.Create(It.IsAny<User>()), Times.Never);
         }
 
@@ -86,7 +86,7 @@ namespace PracticeProject.Application.Tests.UserManagement.CreateUserTests
 
             // Assert
             Assert.IsFalse(response.IsSuccess);
-            Assert.IsNull(response.UserId);
+            Assert.IsNull(response.User.Id);
             _userDataAccessMock.Verify(u => u.Create(It.IsAny<User>()), Times.Never);
             _userDataAccessMock.Verify(u => u.ExistsByEmail(It.IsAny<string>()), Times.Never);
         }
@@ -114,7 +114,7 @@ namespace PracticeProject.Application.Tests.UserManagement.CreateUserTests
 
             // Assert
             Assert.IsFalse(response.IsSuccess);
-            Assert.IsNull(response.UserId);
+            Assert.IsNull(response.User.Id);
             _userDataAccessMock.Verify(u => u.Create(It.IsAny<User>()), Times.Never);
             _userDataAccessMock.Verify(u => u.ExistsByEmail(It.IsAny<string>()), Times.Never);
         }
@@ -141,7 +141,7 @@ namespace PracticeProject.Application.Tests.UserManagement.CreateUserTests
 
             // Assert
             Assert.IsFalse(response.IsSuccess);
-            Assert.IsNull(response.UserId);
+            Assert.IsNull(response.User.Id);
             _userDataAccessMock.Verify(u => u.Create(It.IsAny<User>()), Times.Never);
             _userDataAccessMock.Verify(u => u.ExistsByEmail(It.IsAny<string>()), Times.Never);
         }
@@ -168,7 +168,7 @@ namespace PracticeProject.Application.Tests.UserManagement.CreateUserTests
 
             // Assert
             Assert.IsFalse(response.IsSuccess);
-            Assert.IsNull(response.UserId);
+            Assert.IsNull(response.User.Id);
             _userDataAccessMock.Verify(u => u.Create(It.IsAny<User>()), Times.Never);
             _userDataAccessMock.Verify(u => u.ExistsByEmail(It.IsAny<string>()), Times.Never);
         }
@@ -217,7 +217,7 @@ namespace PracticeProject.Application.Tests.UserManagement.CreateUserTests
 
             // Assert
             Assert.IsFalse(response.IsSuccess);
-            Assert.IsNull(response.UserId);
+            Assert.IsNull(response.User.Id);
             _userDataAccessMock.Verify(u => u.ExistsByEmail(It.IsAny<string>()), Times.Never);
             _userDataAccessMock.Verify(u => u.Create(It.IsAny<User>()), Times.Never);
         }
