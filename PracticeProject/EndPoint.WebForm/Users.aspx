@@ -15,7 +15,9 @@
     </header>
     <form id="form1" runat="server">
         <div>
-            <h1><asp:Label ID="lblHeader" runat="server"></asp:Label></h1>
+            <video class="welcome-video" autoplay loop playsinline>
+                <source src="./Assets/Videos/usersPageVideo.mp4" type="video/mp4" />
+            </video>
         </div>
     </form>
 </body>

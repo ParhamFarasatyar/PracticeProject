@@ -108,6 +108,7 @@
     <Content Include="Assets\Styles\AdministratorStyle.css" />
     <Content Include="Assets\Styles\EditUserStyle.css" />
     <Content Include="Assets\Styles\LoginStyle.css" />
+    <Content Include="Assets\Videos\usersPageVideo.mp4" />
     <Content Include="EditUser.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Users.aspx" />
