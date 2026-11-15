@@ -1,14 +1,17 @@
-﻿using PracticeProject.Domain.BaseInfo.Users;
+﻿using PracticeProject.Application.BaseInfo.Security;
+using PracticeProject.Domain.BaseInfo.Users;
 
 namespace PracticeProject.Application.BaseInfo.UserManagement.LoginUser
 {
     public class LoginUser : ILoginUser
     {
         private readonly IUserDataAccess _userDataAccess;
+        private readonly IPasswordHasher _passwordHasher;
 
-        public LoginUser(IUserDataAccess userDataAccess)
+        public LoginUser(IUserDataAccess userDataAccess, IPasswordHasher passwordHasher)
         {
             _userDataAccess = userDataAccess;
+            _passwordHasher = passwordHasher;
         }
 
         public ILoginUser.Response Execute(ILoginUser.LoginUserRequest request)
@@ -41,8 +44,9 @@ namespace PracticeProject.Application.BaseInfo.UserManagement.LoginUser
                 return false;
             }
 
-            user = _userDataAccess.GetByEmail(request.Email, request.Password);
-            if (user is null)
+
+            user = _userDataAccess.GetByEmail(request.Email);
+            if (user is null || !_passwordHasher.Verify(request.Password, user.Password))
             {
                 errorMessage = "Incorrect email or password.";
                 return false;
