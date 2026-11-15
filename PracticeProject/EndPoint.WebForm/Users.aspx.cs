@@ -13,5 +13,14 @@ namespace EndPoint.WebForm
         {
             
         }
+
+        protected void btnLogout_Click(object sender, EventArgs e)
+        {
+            Session["UserId"] = null;
+            Session["UserRole"] = null;
+            Session["IsAuthenticated"] = false;
+
+            Response.Redirect("./Login.aspx");
+        }
     }
 }
