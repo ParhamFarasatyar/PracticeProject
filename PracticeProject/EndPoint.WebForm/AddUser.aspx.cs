@@ -9,7 +9,7 @@ using System.Web.UI.WebControls;
 
 namespace EndPoint.WebForm
 {
-    public partial class AddUser : System.Web.UI.Page
+    public partial class AddUser : AdminBasePage
     {
         public ICreateUser CreateUser { get; set; }
         protected void Page_Load(object sender, EventArgs e)

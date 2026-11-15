@@ -11,7 +11,7 @@ using System.Web.UI.WebControls;
 
 namespace EndPoint.WebForm
 {
-    public partial class EditUser : System.Web.UI.Page
+    public partial class EditUser : AdminBasePage
     {
         public IUserDataAccess UserDataAccess { get; set; }
         public IUpdateUser UpdateUser { get; set; }

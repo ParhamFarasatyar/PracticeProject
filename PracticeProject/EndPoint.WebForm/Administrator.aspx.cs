@@ -10,7 +10,7 @@ using System.Web.UI.WebControls;
 
 namespace EndPoint.WebForm
 {
-    public partial class Administrator : System.Web.UI.Page
+    public partial class Administrator : AdminBasePage
     {
         public IDeleteUser DeleteUser { get; set; }
         public ISearchUsers SearchUsers { get; set; }
