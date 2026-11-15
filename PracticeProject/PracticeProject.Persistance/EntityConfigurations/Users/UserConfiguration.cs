@@ -11,7 +11,7 @@ namespace PracticeProject.Persistance.EntityConfigurations.Users
         {
             HasKey(u => u.Id);
 
-            HasRequired(u => u.Person).WithMany().HasForeignKey(u => u.PersonId);
+            HasRequired(u => u.Person).WithMany().HasForeignKey(u => u.PersonId).WillCascadeOnDelete(true);
 
             Property(u => u.PersonId).HasColumnAnnotation(
                 IndexAnnotation.AnnotationName,

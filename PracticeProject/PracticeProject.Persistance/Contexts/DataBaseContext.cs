@@ -25,7 +25,11 @@ namespace PracticeProject.Persistence.Contexts
 
         TEntity IDb.Add<TEntity>(TEntity entity) => base.Set<TEntity>().Add(entity);
 
-        void IDb.Remove<TEntity>(TEntity entity) => base.Set<TEntity>().Remove(entity);
+        void IDb.Remove<TEntity>(TEntity entity)
+        {
+            base.Set<TEntity>().Attach(entity);
+            base.Set<TEntity>().Remove(entity);
+        }
 
         void IDb.DeleteById<TEntity>(int id)
         {

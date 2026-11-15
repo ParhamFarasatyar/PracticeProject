@@ -19,7 +19,15 @@ namespace PracticeProject.Persistence.DataAccess
 
         public void Create(User user) => _context.Add<User>(user);
 
-        public void Delete(int id) => _context.DeleteById<User>(id);
+        public void Delete(int id)
+        {
+            var user = SearchUsers("").FirstOrDefault(u => u.Id == id);
+            if (user is null)
+                return;
+
+            _context.Remove<Person>(user.Person);
+            _context.Remove<User>(user);
+        }
 
         public IQueryable<User> GetAll() => SearchUsers("");
 
