@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using PracticeProject.Application.BaseInfo;
+using PracticeProject.Application.BaseInfo.Security;
 using PracticeProject.Application.BaseInfo.UserManagement.CreateUser;
 using PracticeProject.Domain.BaseInfo.Users;
 using System;
@@ -12,6 +13,7 @@ namespace PracticeProject.Application.Tests.UserManagement.CreateUserTests
     {
         private Mock<IUserDataAccess> _userDataAccessMock;
         private Mock<IDb> _dbMock;
+        private IPasswordHasher _passwordHasher;
         private CreateUser _useCase;
 
         [TestInitialize]
@@ -20,7 +22,7 @@ namespace PracticeProject.Application.Tests.UserManagement.CreateUserTests
             _userDataAccessMock = new Mock<IUserDataAccess>();
             _dbMock = new Mock<IDb>();
 
-            _useCase = new CreateUser(_userDataAccessMock.Object, _dbMock.Object);
+            //_useCase = new CreateUser(_userDataAccessMock.Object, _dbMock.Object);
         }
 
         [TestMethod]
