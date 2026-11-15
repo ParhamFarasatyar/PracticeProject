@@ -189,6 +189,7 @@
                 Display="Dynamic" 
                 ForeColor="Red">
             </asp:CompareValidator>
+            <asp:RequiredFieldValidator ID="rfvConfirmPassword" runat="server" ErrorMessage="Confirm Password required" ForeColor="Red" ControlToValidate="tboxConfirmPassword" Display="Dynamic"></asp:RequiredFieldValidator>
 
             <asp:Button 
                 ID="btnSubmit" 
