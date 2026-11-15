@@ -8,12 +8,15 @@ using System.Web.UI.WebControls;
 using PracticeProject.Domain.BaseInfo.People;
 using PracticeProject.Domain.BaseInfo.Users;
 using System.Threading;
+using PracticeProject.Application.BaseInfo.Security;
 
 namespace EndPoint.WebForm
 {
     public partial class Register : System.Web.UI.Page
     {
         public ICreateUser CreateUserUseCase { get; set; }
+
+        public IPasswordHasher PasswordHasher { get; set; }
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -32,7 +35,7 @@ namespace EndPoint.WebForm
                 Age = Convert.ToInt32(tboxAge.Text.Trim()),
                 Gender = (Gender)Convert.ToInt32(ddlGender.SelectedValue),
                 Email = tboxEmail.Text.Trim().ToLower(),
-                Password = tboxPassword.Text.Trim()
+                Password = PasswordHasher.Hash(tboxPassword.Text.Trim())
             };
 
             var response = CreateUserUseCase.Execute(request);
