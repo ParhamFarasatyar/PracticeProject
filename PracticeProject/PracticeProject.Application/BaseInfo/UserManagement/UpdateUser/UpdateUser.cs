@@ -1,4 +1,5 @@
-﻿using PracticeProject.Application.BaseInfo.UserManagement.CreateUser;
+﻿using PracticeProject.Application.BaseInfo.Security;
+using PracticeProject.Application.BaseInfo.UserManagement.CreateUser;
 using PracticeProject.Domain.BaseInfo.People;
 using PracticeProject.Domain.BaseInfo.Users;
 using System;
@@ -12,10 +13,13 @@ namespace PracticeProject.Application.BaseInfo.UserManagement.UpdateUser
 
         private readonly IDb _db;
 
-        public UpdateUser(IUserDataAccess userDataAccess, IDb db)
+        private readonly IPasswordHasher _passwordHasher;
+
+        public UpdateUser(IUserDataAccess userDataAccess, IDb db, IPasswordHasher passwordHasher)
         {
             _userDataAccess = userDataAccess ?? throw new ArgumentNullException(nameof(userDataAccess));
             _db = db ?? throw new ArgumentNullException(nameof(db));
+            _passwordHasher = passwordHasher ?? throw new ArgumentNullException(nameof(passwordHasher));
         }
 
         public IUpdateUser.Response Execute(IUpdateUser.Request request)
@@ -25,13 +29,19 @@ namespace PracticeProject.Application.BaseInfo.UserManagement.UpdateUser
             if (!isRequestValid)
                 return CreateFailureResponse(errorMessage);
 
+            string validPassword;
+            if (_passwordHasher.Verify(request.Password, user.Password))
+                validPassword = user.Password;
+            else
+                validPassword = _passwordHasher.Hash(request.Password);
+
             user.Person.FirstName = request.FirstName;
             user.Person.LastName = request.LastName;
             user.Person.Age = request.Age;
             user.Person.Gender = request.Gender;
             user.Role = request.Role;
             user.Email = request.Email;
-            user.Password = request.Password;
+            user.Password = validPassword;
 
             _userDataAccess.Update(user);
             _db.SaveChanges();
