@@ -25,8 +25,8 @@ namespace PracticeProject.Persistence.DataAccess
 
         public User GetById(int id) => SearchUsers("").FirstOrDefault(u => u.Id == id);
 
-        public User GetByEmail(string email, string includedPassword) => SearchUsers("")
-            .FirstOrDefault(u => u.Email == email && u.Password == includedPassword);
+        public User GetByEmail(string email) => SearchUsers("")
+            .FirstOrDefault(u => u.Email == email);
 
         public void Update(User user)
         {

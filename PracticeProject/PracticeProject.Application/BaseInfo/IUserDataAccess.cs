@@ -12,7 +12,7 @@ namespace PracticeProject.Application.BaseInfo
 
         User GetById(int id);
 
-        User GetByEmail(string email, string includedPassword);
+        User GetByEmail(string email);
 
         IQueryable<User> GetAll();
 
