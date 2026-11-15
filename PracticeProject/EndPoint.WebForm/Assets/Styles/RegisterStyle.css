@@ -1,14 +1,100 @@
-﻿#registerForm {
-    width: 25%;
-    margin: 2rem auto;
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
+
+body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    min-height: 100vh;
+    background: radial-gradient(circle at 20% 20%, #1e293b 0%, transparent 40%), radial-gradient(circle at 80% 80%, #31202b 0%, transparent 40%), #0b1120;
+    color: #f8fafc;
+}
+
+.register-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+.register-card {
+    width: 100%;
+    max-width: 520px;
+    padding: 45px;
+    background: rgba(30, 41, 59, 0.65);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    animation: fadeIn 0.6s ease;
+}
+
+.register-header {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.register-label {
+    display: inline-block;
+    margin-bottom: 12px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+}
+
 #headerText {
-    width: fit-content;
-    margin: 5rem auto;
-    font-size: 100px;
+    font-size: 36px;
+    font-weight: 750;
+    color: #f8fafc;
+    margin-bottom: 12px;
 }
-#registerForm span{
-    text-align:center;
+
+.register-description {
+    color: #94a3b8;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+#registerForm {
+    width: 100%;
+}
+
+.register-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.register-fields .form-control {
+    width: 100%;
+    min-height: 46px;
+    padding: 11px 14px;
+    color: #f8fafc;
+    background: rgba(11, 17, 32, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 10px;
+    font-size: 14px;
+    transition: all 0.25s ease;
+}
+
+.register-fields .form-control::placeholder {
+    color: #64748b;
+}
+
+.register-fields .form-control:focus {
+    color: #f8fafc;
+    background: rgba(11, 17, 32, 0.75);
+    border-color: #60a5fa;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.12);
+    outline: none;
+}
+
+.register-fields select option {
+    color: #f8fafc;
+    background: #1e293b;
 }
 
 .password-field {
@@ -17,7 +103,7 @@
 }
 
 .password-field input {
-    padding-right: 48px;
+    padding-right: 48px !important;
 }
 
 .password-toggle {
@@ -32,14 +118,14 @@
     justify-content: center;
     background: transparent;
     border: none;
-    color: #8b949e;
+    color: #94a3b8;
     cursor: pointer;
     padding: 4px;
     transition: color 0.2s ease;
 }
 
 .password-toggle:hover {
-    color: #3b82f6;
+    color: #60a5fa;
 }
 
 .password-toggle svg {
@@ -72,4 +158,93 @@
 .password-toggle.show-password .eye-off-icon {
     opacity: 1;
     transform: scale(1) rotate(0deg);
+}
+
+.register-fields span[style*="color:Red"],
+.register-fields span[style*="color: red"] {
+    color: #f87171 !important;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.register-submit {
+    width: 100%;
+    min-height: 48px;
+    padding: 13px 20px;
+    margin-top: 8px;
+    background: #2563eb;
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 650;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.register-submit:hover {
+    background: #1d4ed8;
+    box-shadow: 0 10px 25px rgba(37, 99, 235, 0.25);
+    transform: translateY(-3px);
+}
+
+.register-submit:active {
+    transform: scale(0.98);
+}
+
+#linkToLogin {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    margin-top: 8px;
+    font-size: 13px;
+    color: #94a3b8;
+}
+
+#linkToLogin a {
+    color: #60a5fa;
+    font-weight: 650;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+#linkToLogin a:hover {
+    color: #93c5fd;
+    text-decoration: underline;
+}
+
+#lblMessage {
+    text-align: center;
+    font-size: 13px;
+}
+
+.footer-text {
+    margin-top: 30px;
+    margin-bottom: 0;
+    text-align: center;
+    color: #475569;
+    font-size: 12px;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
     }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 576px) {
+    .register-card {
+        padding: 35px 24px;
+    }
+
+    #headerText {
+        font-size: 30px;
+    }
+}
