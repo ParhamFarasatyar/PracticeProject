@@ -21,7 +21,7 @@ namespace PracticeProject.Persistence.DataAccess
 
         public void Delete(int id)
         {
-            var user = SearchUsers("").FirstOrDefault(u => u.Id == id);
+            var user = SearchUsers().Include(u => u.Person).FirstOrDefault(u => u.Id == id);
             if (user is null)
                 return;
 
@@ -29,11 +29,12 @@ namespace PracticeProject.Persistence.DataAccess
             _context.Remove<User>(user);
         }
 
-        public IQueryable<User> GetAll() => SearchUsers("");
+        public IQueryable<User> GetAll() => SearchUsers();
 
-        public User GetById(int id) => SearchUsers("").FirstOrDefault(u => u.Id == id);
+        public User GetById(int id) => SearchUsers().Include(u => u.Person).FirstOrDefault(u => u.Id == id);
 
-        public User GetByEmail(string email) => SearchUsers("")
+        public User GetByEmail(string email) => SearchUsers()
+            .Include(u => u.Person)
             .FirstOrDefault(u => u.Email == email);
 
         public void Update(User user)
@@ -42,17 +43,16 @@ namespace PracticeProject.Persistence.DataAccess
             _context.Update<Person>(user.Person);
         }
 
-        public bool ExistsByEmail(string email) => SearchUsers("").Any(u => u.Email == email);
+        public bool ExistsByEmail(string email) => SearchUsers().Any(u => u.Email == email);
 
-        public bool ExistsByEmail(string email, int excludedUserId) => SearchUsers("")
+        public bool ExistsByEmail(string email, int excludedUserId) => SearchUsers()
             .Any(u => u.Email == email && u.Id != excludedUserId);
 
-        public IQueryable<User> SearchUsers(string keyword)
+        public IQueryable<User> SearchUsers(string keyword = "")
         {
             keyword = keyword.Replace(" ", "");
 
             return _context.Query<User>()
-                .Include(u => u.Person)
                 .Where(u =>
                 u.Person.FirstName.Replace(" ", "").Contains(keyword) ||
                 u.Person.LastName.Replace(" ", "").Contains(keyword) ||

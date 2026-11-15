@@ -8,7 +8,7 @@ namespace PracticeProject.Application.BaseInfo
     {
         void Create(User user);
 
-        IQueryable<User> SearchUsers(string searchString);
+        IQueryable<User> SearchUsers(string searchString = "");
 
         User GetById(int id);
 
