@@ -40,6 +40,10 @@ namespace EndPoint.WebForm
 
             if (response.IsSuccess)
             {
+                Session["UserId"] = response.User.Id;
+                Session["UserRole"] = response.User.Role;
+                Session["IsAuthenticated"] = true;
+
                 if (response.User.Role == Role.User)
                     Response.Redirect("./Users.aspx");
                 else
