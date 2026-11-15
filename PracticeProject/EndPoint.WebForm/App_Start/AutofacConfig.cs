@@ -10,6 +10,7 @@ using PracticeProject.Application.BaseInfo.UserManagement.DeleteUser;
 using PracticeProject.Application.BaseInfo.UserManagement.UpdateUser;
 using PracticeProject.Persistance.DataAccess;
 using PracticeProject.Application.BaseInfo.Security;
+using PracticeProject.Application.BaseInfo.UserManagement.GetUserById;
 
 namespace EndPoint.WebForm.App_Start
 {
@@ -34,6 +35,8 @@ namespace EndPoint.WebForm.App_Start
             builder.RegisterType<UpdateUser>().As<IUpdateUser>().InstancePerRequest();
 
             builder.RegisterType<Pbkdf2PasswordHasher>().As<IPasswordHasher>().InstancePerRequest();
+
+            builder.RegisterType<GetUserById>().As<IGetUserById>().InstancePerRequest();
 
             return builder.Build();
         }
