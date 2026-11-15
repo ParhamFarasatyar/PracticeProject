@@ -25,8 +25,10 @@ namespace PracticeProject.Persistence.DataAccess
             if (user is null)
                 return;
 
-            _context.Remove<Person>(user.Person);
+            var person = user.Person;
+
             _context.Remove<User>(user);
+            _context.Remove<Person>(person);
         }
 
         public IQueryable<User> GetAll() => SearchUsers();
