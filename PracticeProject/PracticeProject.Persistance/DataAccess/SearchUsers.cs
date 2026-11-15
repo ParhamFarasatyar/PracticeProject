@@ -26,7 +26,7 @@ namespace PracticeProject.Persistence.DataAccess
                 return searchResult;
 
             if (!string.IsNullOrWhiteSpace(request.KeyWord))
-                searchResult = _userDataAccess.SearchUsers(request.KeyWord);
+                searchResult = _userDataAccess.SearchUsers(request.KeyWord).Include(u => u.Person);
 
             return searchResult;
         }
