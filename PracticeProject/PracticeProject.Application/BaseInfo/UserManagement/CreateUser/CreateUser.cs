@@ -1,4 +1,5 @@
-﻿using PracticeProject.Domain.BaseInfo.People;
+﻿using PracticeProject.Application.BaseInfo.Security;
+using PracticeProject.Domain.BaseInfo.People;
 using PracticeProject.Domain.BaseInfo.Users;
 using System;
 
@@ -10,10 +11,13 @@ namespace PracticeProject.Application.BaseInfo.UserManagement.CreateUser
 
         private readonly IDb _db;
 
-        public CreateUser(IUserDataAccess userDataAccess, IDb db)
+        private readonly IPasswordHasher _passwordHasher;
+
+        public CreateUser(IUserDataAccess userDataAccess, IDb db, IPasswordHasher passwordHasher)
         {
             _userDataAccess = userDataAccess ?? throw new ArgumentNullException(nameof(userDataAccess));
             _db = db ?? throw new ArgumentNullException(nameof(db));
+            _passwordHasher = passwordHasher ?? throw new ArgumentNullException(nameof(passwordHasher));
         }
 
         public ICreateUser.Response Execute(ICreateUser.Request request)
@@ -97,10 +101,12 @@ namespace PracticeProject.Application.BaseInfo.UserManagement.CreateUser
             if (string.Equals(request.FirstName, "Parham", StringComparison.OrdinalIgnoreCase))
                 role = Role.Admin;
 
+            string hashedPassword = _passwordHasher.Hash(request.Password);
+
             user = new User(
                 role,
                 request.Email,
-                request.Password,
+                hashedPassword,
                 person
                 );
 

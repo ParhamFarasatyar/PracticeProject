@@ -16,8 +16,6 @@ namespace EndPoint.WebForm
     {
         public ICreateUser CreateUserUseCase { get; set; }
 
-        public IPasswordHasher PasswordHasher { get; set; }
-
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -35,7 +33,7 @@ namespace EndPoint.WebForm
                 Age = Convert.ToInt32(tboxAge.Text.Trim()),
                 Gender = (Gender)Convert.ToInt32(ddlGender.SelectedValue),
                 Email = tboxEmail.Text.Trim().ToLower(),
-                Password = PasswordHasher.Hash(tboxPassword.Text.Trim())
+                Password = tboxPassword.Text.Trim()
             };
 
             var response = CreateUserUseCase.Execute(request);
