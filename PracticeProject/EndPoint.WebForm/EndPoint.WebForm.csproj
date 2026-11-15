@@ -103,6 +103,7 @@
     <Content Include="AccessDenied.aspx" />
     <Content Include="AddUser.aspx" />
     <Content Include="Administrator.aspx" />
+    <Content Include="Assets\Styles\AccessDeniedStyle.css" />
     <Content Include="Assets\Styles\AddUserStyle.css" />
     <Content Include="Assets\Styles\AdministratorStyle.css" />
     <Content Include="Assets\Styles\EditUserStyle.css" />
