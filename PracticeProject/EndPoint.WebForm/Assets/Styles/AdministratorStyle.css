@@ -1,20 +1,45 @@
-﻿h1 {
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    min-height: 100vh;
+    background: radial-gradient(circle at 20% 20%, #1e293b 0%, transparent 40%), radial-gradient(circle at 80% 80%, #31202b 0%, transparent 40%), #0b1120;
+    color: #f8fafc;
+}
+
+h1 {
     width: fit-content;
-    margin: 5rem auto 4rem;
-    font-size: 5rem;
+    margin: 4rem auto 3rem;
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 750;
+    color: #f8fafc;
+    letter-spacing: -1px;
+    animation: fadeIn 0.6s ease;
 }
 
 #adminForm {
-    width: min(90%, 900px);
-    margin: 0 auto;
+    width: min(94%, 1100px);
+    margin: 0 auto 4rem;
+    padding: 35px;
+    background: rgba(30, 41, 59, 0.65);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    animation: fadeIn 0.6s ease;
 }
 
 #searchBox {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
     width: 100%;
-    margin-bottom: 2rem;
+    margin-bottom: 30px !important;
 }
 
 #searchBox input[type="text"] {
@@ -22,109 +47,237 @@
     min-width: 0;
 }
 
-#gvUsers {
-    width: 100%;
-    margin: 2rem auto;
-    text-align: center;
-}
-
-#adminForm span {
-    text-align: center;
-}
-
-.search-button {
-    width: 44px;
-    height: 40px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background: #2563eb;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
+.form-control {
+    min-height: 44px;
+    padding: 10px 14px;
+    color: #f8fafc;
+    background: rgba(11, 17, 32, 0.65);
+    border: 1px solid rgba(148, 163, 184, 0.3);
+    border-radius: 9px;
     transition: all 0.25s ease;
-    text-decoration: none;
-    flex-shrink: 0;
 }
 
-.search-button:hover {
-    background: #1d4ed8;
-    color: white;
-    transform: scale(1.05);
+.form-control::placeholder {
+    color: #64748b;
 }
 
-.search-button:active {
-    transform: scale(0.95);
+.form-control:focus {
+    color: #f8fafc;
+    background: rgba(11, 17, 32, 0.85);
+    border-color: #60a5fa;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
 }
 
-.action-button {
-    width: 36px;
-    height: 34px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 7px;
-    text-decoration: none;
-    transition: all 0.2s ease;
-}
-
-.edit-button {
-    color: #3b82f6;
-    border: 1px solid #3b82f6;
-}
-
-.edit-button:hover {
-    color: white;
-    background: #3b82f6;
-}
-
-.delete-button {
-    color: #ef4444;
-    border: 1px solid #ef4444;
-}
-
-.delete-button:hover {
-    color: white;
-    background: #ef4444;
-}
-
-.message-label {
-    display: block;
-    width: 100%;
-    text-align: center;
-    margin: 15px auto;
-}
-
+.search-button,
+.add-user-button,
 .logout-button {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
-    padding: 8px 16px;
-    min-height: 40px;
-    color: #ef4444;
-    background: transparent;
-    border: 1px solid #ef4444;
-    border-radius: 8px;
+    min-height: 44px;
+    padding: 9px 16px;
+    border-radius: 9px;
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 650;
     text-decoration: none;
     white-space: nowrap;
     cursor: pointer;
     transition: all 0.25s ease;
+    flex-shrink: 0;
 }
 
-.logout-button:hover {
+.search-button {
+    width: 46px;
+    padding: 0;
+    color: #60a5fa;
+    background: rgba(59, 130, 246, 0.1);
+    border: 1px solid rgba(59, 130, 246, 0.45);
+}
+
+.search-button:hover {
     color: white;
-    background: #ef4444;
-    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);
+    background: #2563eb;
+    border-color: #2563eb;
+    box-shadow: 0 5px 18px rgba(37, 99, 235, 0.2);
+    transform: translateY(-2px);
 }
 
+.search-button:active,
+.add-user-button:active,
 .logout-button:active {
     transform: scale(0.96);
 }
 
+.add-user-button {
+    color: #4ade80;
+    background: rgba(34, 197, 94, 0.1);
+    border: 1px solid rgba(34, 197, 94, 0.45);
+}
+
+.add-user-button:hover {
+    color: white;
+    background: #16a34a;
+    border-color: #16a34a;
+    box-shadow: 0 5px 18px rgba(22, 163, 74, 0.2);
+    transform: translateY(-2px);
+}
+
+.logout-button {
+    color: #f87171;
+    background: rgba(239, 68, 68, 0.08);
+    border: 1px solid rgba(239, 68, 68, 0.4);
+}
+
+.logout-button:hover {
+    color: white;
+    background: #dc2626;
+    border-color: #dc2626;
+    box-shadow: 0 5px 18px rgba(220, 38, 38, 0.2);
+    transform: translateY(-2px);
+}
+
 .logout-button svg {
     flex-shrink: 0;
+}
+
+#gvUsers {
+    width: 100%;
+    margin: 0 auto 20px;
+    color: #e2e8f0;
+    text-align: center;
+    vertical-align: middle;
+    border-collapse: separate;
+    border-spacing: 0;
+    overflow: hidden;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+#gvUsers th {
+    padding: 16px 12px;
+    color: #cbd5e1;
+    background: rgba(15, 23, 42, 0.9);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#gvUsers td {
+    padding: 14px 12px;
+    color: #cbd5e1;
+    background: rgba(30, 41, 59, 0.45);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+#gvUsers tr:last-child td {
+    border-bottom: none;
+}
+
+#gvUsers tr:hover td {
+    background: rgba(51, 65, 85, 0.55);
+}
+
+#gvUsers.table {
+    --bs-table-bg: transparent;
+    --bs-table-color: #e2e8f0;
+    --bs-table-striped-bg: transparent;
+    --bs-table-striped-color: #e2e8f0;
+    --bs-table-hover-bg: transparent;
+    --bs-table-hover-color: #e2e8f0;
+    margin-bottom: 20px;
+}
+
+.action-button {
+    width: 36px;
+    height: 36px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.edit-button {
+    color: #60a5fa;
+    background: rgba(59, 130, 246, 0.08);
+    border: 1px solid rgba(59, 130, 246, 0.4);
+}
+
+.edit-button:hover {
+    color: white;
+    background: #2563eb;
+    border-color: #2563eb;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+}
+
+.delete-button {
+    color: #f87171;
+    background: rgba(239, 68, 68, 0.08);
+    border: 1px solid rgba(239, 68, 68, 0.4);
+}
+
+.delete-button:hover {
+    color: white;
+    background: #dc2626;
+    border-color: #dc2626;
+    box-shadow: 0 4px 12px rgba(220, 38, 38, 0.2);
+}
+
+.message-label {
+    display: block;
+    width: 100%;
+    margin: 18px auto 0;
+    color: #94a3b8;
+    text-align: center;
+    font-size: 14px;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    h1 {
+        margin: 3rem auto 2rem;
+    }
+
+    #adminForm {
+        width: 96%;
+        padding: 18px;
+    }
+
+    #searchBox {
+        flex-wrap: wrap;
+    }
+
+        #searchBox input[type="text"] {
+            flex-basis: 100%;
+        }
+
+    #gvUsers {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+}
+
+@media (max-width: 480px) {
+    .search-button,
+    .add-user-button,
+    .logout-button {
+        min-height: 40px;
+        padding: 8px 11px;
+        font-size: 12px;
+    }
 }

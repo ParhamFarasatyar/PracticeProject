@@ -5,9 +5,6 @@
 <head runat="server">
     <title>PracticeProject - Login</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/css/bootstrap.min.css"
-        rel="stylesheet" />
-
     <link href="./Assets/Styles/LoginStyle.css" rel="stylesheet" />
 </head>
 
