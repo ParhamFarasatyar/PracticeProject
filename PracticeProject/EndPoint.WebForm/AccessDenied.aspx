@@ -36,8 +36,8 @@
                     ERROR CODE: <strong>403 FORBIDDEN</strong>
                 </p>
 
-                <a href="Login.aspx" class="home-button">
-                    <span>Return to Login</span>
+                <a onclick="history.back(); return false;" href="#" class="home-button">
+                    <span>Return</span>
                     <span class="arrow">→</span>
                 </a>
 
