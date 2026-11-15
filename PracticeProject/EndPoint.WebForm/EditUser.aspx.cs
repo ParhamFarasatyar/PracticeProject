@@ -70,6 +70,7 @@ namespace EndPoint.WebForm
             {
                 lblMessage.ForeColor = System.Drawing.Color.Green;
                 lblMessage.Text = response.Message;
+                Response.Redirect("./Administrator.aspx");
             }
             else
             {
