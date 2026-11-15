@@ -17,10 +17,10 @@ namespace EndPoint.WebForm
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            BindUsers();
         }
 
-        private void BindUsers(string keyword)
+        private void BindUsers(string keyword = "")
         {
             var response = SearchUsers.Execute(new ISearchUsers.Request { KeyWord = keyword });
 
