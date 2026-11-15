@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseInfo\Security\IPasswordHasher.cs" />
     <Compile Include="BaseInfo\UserManagement\CreateUser\ICreateUser.cs" />
     <Compile Include="BaseInfo\UserManagement\DeleteUser\DeleteUser.cs" />
     <Compile Include="BaseInfo\UserManagement\DeleteUser\IDeleteUser.cs" />
