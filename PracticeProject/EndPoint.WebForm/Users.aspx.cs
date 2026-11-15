@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace EndPoint.WebForm
 {
-    public partial class Admin : System.Web.UI.Page
+    public partial class Users : UserBasePage
     {
         protected void Page_Load(object sender, EventArgs e)
         {

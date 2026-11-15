@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Users.aspx.cs" Inherits="EndPoint.WebForm.Admin" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Users.aspx.cs" Inherits="EndPoint.WebForm.Users" %>
 
 <!DOCTYPE html>
 
