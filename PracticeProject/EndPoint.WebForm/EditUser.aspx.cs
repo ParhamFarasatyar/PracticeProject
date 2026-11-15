@@ -1,4 +1,5 @@
 ﻿using PracticeProject.Application.BaseInfo;
+using PracticeProject.Application.BaseInfo.UserManagement.GetUserById;
 using PracticeProject.Application.BaseInfo.UserManagement.UpdateUser;
 using PracticeProject.Domain.BaseInfo.People;
 using PracticeProject.Domain.BaseInfo.Users;
@@ -13,7 +14,7 @@ namespace EndPoint.WebForm
 {
     public partial class EditUser : AdminBasePage
     {
-        public IUserDataAccess UserDataAccess { get; set; }
+        public IGetUserById GetUserById { get; set; }
         public IUpdateUser UpdateUser { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -25,18 +26,18 @@ namespace EndPoint.WebForm
                     return;
                 }
 
-                var user = UserDataAccess.GetById(userId);
-                if (user is null)
+                var response = GetUserById.Execute(new IGetUserById.Request { Id = userId });
+                if (!response.IsSuccess)
                 {
                     Response.Redirect("./Administrator.aspx");
                     return;
                 }
 
-                tboxFirstName.Text = user.Person.FirstName;
-                tboxLastName.Text = user.Person.LastName;
-                tboxAge.Text = user.Person.Age.ToString();
-                tboxEmail.Text = user.Email;
-                tboxPassword.Text = user.Password;
+                tboxFirstName.Text = response.User.Person.FirstName;
+                tboxLastName.Text = response.User.Person.LastName;
+                tboxAge.Text = response.User.Person.Age.ToString();
+                tboxEmail.Text = response.User.Email;
+                tboxPassword.Text = response.User.Password;
             }
         }
 
