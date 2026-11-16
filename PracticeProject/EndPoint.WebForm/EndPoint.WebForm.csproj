@@ -108,9 +108,11 @@
     <Content Include="Assets\Styles\AddUserStyle.css" />
     <Content Include="Assets\Styles\AdministratorStyle.css" />
     <Content Include="Assets\Styles\EditUserStyle.css" />
+    <Content Include="Assets\Styles\HomePageStyle.css" />
     <Content Include="Assets\Styles\LoginStyle.css" />
     <Content Include="Assets\Videos\usersPageVideo.mp4" />
     <Content Include="EditUser.aspx" />
+    <Content Include="HomePage.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Users.aspx" />
     <Content Include="Assets\Styles\UsersStyle.css" />
@@ -150,6 +152,13 @@
     </Compile>
     <Compile Include="EditUser.aspx.designer.cs">
       <DependentUpon>EditUser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HomePage.aspx.cs">
+      <DependentUpon>HomePage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HomePage.aspx.designer.cs">
+      <DependentUpon>HomePage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
