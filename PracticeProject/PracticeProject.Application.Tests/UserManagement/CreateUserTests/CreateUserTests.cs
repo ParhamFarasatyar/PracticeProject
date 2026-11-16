@@ -4,6 +4,7 @@ using PracticeProject.Application.BaseInfo;
 using PracticeProject.Application.BaseInfo.Security;
 using PracticeProject.Application.BaseInfo.UserManagement.CreateUser;
 using PracticeProject.Domain.BaseInfo.Users;
+using PracticeProject.Persistance.DataAccess;
 using System;
 
 namespace PracticeProject.Application.Tests.UserManagement.CreateUserTests
@@ -21,8 +22,9 @@ namespace PracticeProject.Application.Tests.UserManagement.CreateUserTests
         {
             _userDataAccessMock = new Mock<IUserDataAccess>();
             _dbMock = new Mock<IDb>();
+            _passwordHasher = new Pbkdf2PasswordHasher();
 
-            //_useCase = new CreateUser(_userDataAccessMock.Object, _dbMock.Object);
+            _useCase = new CreateUser(_userDataAccessMock.Object, _dbMock.Object, _passwordHasher);
         }
 
         [TestMethod]

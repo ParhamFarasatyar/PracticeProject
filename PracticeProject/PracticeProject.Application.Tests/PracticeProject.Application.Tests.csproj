@@ -74,6 +74,10 @@
       <Project>{da845681-5e67-4349-9879-6bd6bcbbd6b8}</Project>
       <Name>PracticeProject.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\PracticeProject.Persistance\PracticeProject.Persistence.csproj">
+      <Project>{ef77e83f-5e61-4f59-9ff8-244b4e15774e}</Project>
+      <Name>PracticeProject.Persistence</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
