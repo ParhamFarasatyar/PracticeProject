@@ -41,7 +41,8 @@
                             runat="server"
                             placeholder="Email"
                             TextMode="Email"
-                            CssClass="form-control">
+                            CssClass="form-control"
+                            MaxLength="250">
                         </asp:TextBox>
 
                         <asp:RequiredFieldValidator
@@ -73,7 +74,8 @@
                                 runat="server"
                                 placeholder="Password"
                                 CssClass="form-control"
-                                TextMode="Password">
+                                TextMode="Password"
+                                MaxLength="150">
                             </asp:TextBox>
 
                             <button type="button"

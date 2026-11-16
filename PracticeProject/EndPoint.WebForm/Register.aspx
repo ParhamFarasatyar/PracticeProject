@@ -26,7 +26,8 @@
                         ID="tboxFirstName"
                         runat="server"
                         placeholder="First Name"
-                        CssClass="form-control">
+                        CssClass="form-control"
+                        MaxLength="100" >
                     </asp:TextBox>
                     <asp:RequiredFieldValidator
                         ID="rfvFirstName"
@@ -41,7 +42,8 @@
                         ID="tboxLastName"
                         runat="server"
                         placeholder="Last Name"
-                        CssClass="form-control">
+                        CssClass="form-control"
+                        MaxLength="100">
                     </asp:TextBox>
 
                     <asp:TextBox
@@ -49,7 +51,9 @@
                         TextMode="Number"
                         runat="server"
                         placeholder="Age"
-                        CssClass="form-control">
+                        CssClass="form-control"
+                        min="18"
+                        max="80">
                     </asp:TextBox>
                     <asp:RequiredFieldValidator
                         ID="rfvAge"
@@ -93,7 +97,8 @@
                         ID="tboxEmail"
                         runat="server"
                         placeholder="Email"
-                        CssClass="form-control">
+                        CssClass="form-control"
+                        MaxLength="250">
                     </asp:TextBox>
                     <asp:RequiredFieldValidator
                         ID="rfvEmail"
@@ -119,7 +124,8 @@
                             runat="server"
                             placeholder="Password"
                             CssClass="form-control"
-                            TextMode="Password">
+                            TextMode="Password"
+                            MaxLength="150">
                         </asp:TextBox>
 
                         <button
@@ -163,7 +169,8 @@
                             runat="server"
                             placeholder="Confirm Password"
                             CssClass="form-control"
-                            TextMode="Password">
+                            TextMode="Password"
+                            MaxLength="150">
                         </asp:TextBox>
 
                         <button

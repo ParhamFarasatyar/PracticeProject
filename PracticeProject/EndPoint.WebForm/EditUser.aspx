@@ -51,20 +51,20 @@
                         <div class="form-group">
                             <label for="<%= tboxFirstName.ClientID %>">First Name</label>
                             <asp:TextBox ID="tboxFirstName" runat="server"
-                                placeholder="Enter first name" CssClass="form-control" />
+                                placeholder="Enter first name" CssClass="form-control" MaxLength="100"/>
                         </div>
 
                         <div class="form-group">
                             <label for="<%= tboxLastName.ClientID %>">Last Name</label>
                             <asp:TextBox ID="tboxLastName" runat="server"
-                                placeholder="Enter last name" CssClass="form-control" />
+                                placeholder="Enter last name" CssClass="form-control" MaxLength="100"/>
                         </div>
 
                         <div class="form-group">
                             <label for="<%= tboxAge.ClientID %>">Age</label>
                             <asp:TextBox ID="tboxAge" runat="server"
                                 TextMode="Number" placeholder="Enter age"
-                                CssClass="form-control" />
+                                CssClass="form-control" min="18" max="80"/>
                             <asp:RangeValidator
                                 ID="rvAge" runat="server"
                                 ErrorMessage="Age should be between 18 to 80"
@@ -108,7 +108,7 @@
                             <label for="<%= tboxEmail.ClientID %>">Email Address</label>
                             <asp:TextBox ID="tboxEmail" runat="server"
                                 TextMode="Email" placeholder="name@example.com"
-                                CssClass="form-control" />
+                                CssClass="form-control" MaxLength="250"/>
                             <asp:RegularExpressionValidator
                                 ID="revEmail" runat="server"
                                 ErrorMessage="Your email should look like this: abc123@example.com"
@@ -125,7 +125,7 @@
                                 <asp:TextBox ID="tboxPassword" runat="server"
                                     placeholder="Enter new password"
                                     CssClass="form-control"
-                                    TextMode="Password" />
+                                    TextMode="Password" MaxLength="150"/>
                                 <button type="button" class="password-toggle"
                                     onclick="togglePassword(this)"
                                     aria-label="Show password">
@@ -157,7 +157,7 @@
                                 <asp:TextBox ID="tboxConfirmPassword" runat="server"
                                     placeholder="Confirm new password"
                                     CssClass="form-control"
-                                    TextMode="Password" />
+                                    TextMode="Password" MaxLength="150"/>
                                 <button type="button" class="password-toggle"
                                     onclick="togglePassword(this)"
                                     aria-label="Show password">
