@@ -55,14 +55,29 @@ namespace EndPoint.WebForm
             IUpdateUser.Request request = new IUpdateUser.Request
             {
                 Id = userId,
-                FirstName = tboxFirstName.Text.Trim(),
-                LastName = tboxLastName.Text.Trim(),
-                Age = Convert.ToInt32(tboxAge.Text),
-                Gender = (Gender)Convert.ToInt32(ddlGender.SelectedValue),
-                Role = (Role)Convert.ToInt32(ddlRole.SelectedValue),
-                Email = tboxEmail.Text.Trim().ToLower(),
-                Password = tboxPassword.Text.Trim()
+                FirstName = string.IsNullOrWhiteSpace(tboxFirstName.Text) ? null : tboxFirstName.Text.Trim(),
+                LastName = string.IsNullOrWhiteSpace(tboxLastName.Text) ? null : tboxLastName.Text.Trim(),
+                Age = string.IsNullOrWhiteSpace(tboxAge.Text) ? null : Convert.ToInt32(tboxAge.Text),
+                Gender = ddlGender.SelectedValue == "" ? null : (Gender)Convert.ToInt32(ddlGender.SelectedValue),
+                Role = ddlRole.SelectedValue == "" ? null : (Role)Convert.ToInt32(ddlRole.SelectedValue),
+                Email = string.IsNullOrWhiteSpace(tboxEmail.Text) ? null : tboxEmail.Text.Trim().ToLower(),
+                Password = string.IsNullOrWhiteSpace(tboxPassword.Text) ? null : tboxPassword.Text.Trim()
             };
+
+            if (request is
+                {
+                    FirstName: null,
+                    LastName: null,
+                    Age: null,
+                    Gender: null,
+                    Role: null,
+                    Email: null,
+                    Password: null
+                })
+            {
+                Response.Redirect("./Administrator.aspx");
+                return;
+            }
 
             IUpdateUser.Response response = UpdateUser.Execute(request);
 
