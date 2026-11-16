@@ -52,13 +52,6 @@
                             <label for="<%= tboxFirstName.ClientID %>">First Name</label>
                             <asp:TextBox ID="tboxFirstName" runat="server"
                                 placeholder="Enter first name" CssClass="form-control" />
-                            <asp:RequiredFieldValidator
-                                ID="rfvFirstName" runat="server"
-                                ErrorMessage="First name required"
-                                ForeColor="Red"
-                                ControlToValidate="tboxFirstName"
-                                Display="Dynamic"
-                                CssClass="validation-message" />
                         </div>
 
                         <div class="form-group">
@@ -72,13 +65,6 @@
                             <asp:TextBox ID="tboxAge" runat="server"
                                 TextMode="Number" placeholder="Enter age"
                                 CssClass="form-control" />
-                            <asp:RequiredFieldValidator
-                                ID="rfvAge" runat="server"
-                                ErrorMessage="Age required"
-                                ForeColor="Red"
-                                ControlToValidate="tboxAge"
-                                Display="Dynamic"
-                                CssClass="validation-message" />
                             <asp:RangeValidator
                                 ID="rvAge" runat="server"
                                 ErrorMessage="Age should be between 18 to 80"
@@ -98,14 +84,6 @@
                                 <asp:ListItem Text="Male" Value="0" />
                                 <asp:ListItem Text="Female" Value="1" />
                             </asp:DropDownList>
-                            <asp:RequiredFieldValidator
-                                ID="rfvGender" runat="server"
-                                ControlToValidate="ddlGender"
-                                InitialValue=""
-                                ErrorMessage="Please select a gender"
-                                ForeColor="Red"
-                                Display="Dynamic"
-                                CssClass="validation-message" />
                         </div>
 
                     </div>
@@ -124,14 +102,6 @@
                                 <asp:ListItem Text="Admin" Value="0" />
                                 <asp:ListItem Text="User" Value="1" />
                             </asp:DropDownList>
-                            <asp:RequiredFieldValidator
-                                ID="rfvRole" runat="server"
-                                ControlToValidate="ddlRole"
-                                InitialValue=""
-                                ErrorMessage="Please select a role"
-                                ForeColor="Red"
-                                Display="Dynamic"
-                                CssClass="validation-message" />
                         </div>
 
                         <div class="form-group">
@@ -139,13 +109,6 @@
                             <asp:TextBox ID="tboxEmail" runat="server"
                                 TextMode="Email" placeholder="name@example.com"
                                 CssClass="form-control" />
-                            <asp:RequiredFieldValidator
-                                ID="rfvEmail" runat="server"
-                                ErrorMessage="Email required"
-                                ForeColor="Red"
-                                ControlToValidate="tboxEmail"
-                                Display="Dynamic"
-                                CssClass="validation-message" />
                             <asp:RegularExpressionValidator
                                 ID="revEmail" runat="server"
                                 ErrorMessage="Your email should look like this: abc123@example.com"
@@ -178,13 +141,6 @@
                                     </svg>
                                 </button>
                             </div>
-                            <asp:RequiredFieldValidator
-                                ID="rfvPassword" runat="server"
-                                ErrorMessage="Password required"
-                                ForeColor="Red"
-                                ControlToValidate="tboxPassword"
-                                Display="Dynamic"
-                                CssClass="validation-message" />
                             <asp:RegularExpressionValidator
                                 ID="revPassword" runat="server"
                                 ErrorMessage="Password must contain lowercase, uppercase, a digit, one of @ # $, and at least 8 characters."
@@ -224,13 +180,6 @@
                                 ControlToValidate="tboxConfirmPassword"
                                 Display="Dynamic"
                                 ForeColor="Red"
-                                CssClass="validation-message" />
-                            <asp:RequiredFieldValidator
-                                ID="rfvConfirmPassword" runat="server"
-                                ErrorMessage="Confirm Password required"
-                                ForeColor="Red"
-                                ControlToValidate="tboxConfirmPassword"
-                                Display="Dynamic"
                                 CssClass="validation-message" />
                         </div>
                     </div>
