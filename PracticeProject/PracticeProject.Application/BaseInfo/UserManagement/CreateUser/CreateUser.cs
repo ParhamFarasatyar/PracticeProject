@@ -70,6 +70,13 @@ namespace PracticeProject.Application.BaseInfo.UserManagement.CreateUser
                 return false;
             }
 
+            if (request.Age < 18 || request.Age > 80)
+            {
+                errorMessage = "Age value should between 18 and 80.";
+                user = null;
+                return false;
+            }
+
             if (
                 request.FirstName.Length > 100 ||
                 (request.LastName != null && request.LastName.Length > 100) ||
@@ -97,14 +104,10 @@ namespace PracticeProject.Application.BaseInfo.UserManagement.CreateUser
                 Gender = request.Gender
             };
 
-            Role role = Role.User;
-            if (string.Equals(request.FirstName, "Parham", StringComparison.OrdinalIgnoreCase))
-                role = Role.Admin;
-
             string hashedPassword = _passwordHasher.Hash(request.Password);
 
             user = new User(
-                role,
+                request.Role,
                 request.Email,
                 hashedPassword,
                 person
