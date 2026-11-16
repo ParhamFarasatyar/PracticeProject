@@ -30,17 +30,22 @@ namespace PracticeProject.Application.BaseInfo.UserManagement.UpdateUser
                 return CreateFailureResponse(errorMessage);
 
             string validPassword;
-            if (_passwordHasher.Verify(request.Password, user.Password))
-                validPassword = user.Password;
+            if (!string.IsNullOrWhiteSpace(request.Password))
+            {
+                if (_passwordHasher.Verify(request.Password, user.Password))
+                    validPassword = user.Password;
+                else
+                    validPassword = _passwordHasher.Hash(request.Password);
+            }
             else
-                validPassword = _passwordHasher.Hash(request.Password);
+                validPassword = user.Password;
 
-            user.Person.FirstName = request.FirstName;
-            user.Person.LastName = request.LastName;
-            user.Person.Age = request.Age;
-            user.Person.Gender = request.Gender;
-            user.Role = request.Role;
-            user.Email = request.Email;
+            user.Person.FirstName = request.FirstName ?? user.Person.FirstName;
+            user.Person.LastName = request.LastName ?? user.Person.LastName;
+            user.Person.Age = request.Age ?? user.Person.Age;
+            user.Person.Gender = request.Gender ?? user.Person.Gender;
+            user.Role = request.Role ?? user.Role;
+            user.Email = request.Email ?? user.Email;
             user.Password = validPassword;
 
             _userDataAccess.Update(user);
@@ -73,22 +78,14 @@ namespace PracticeProject.Application.BaseInfo.UserManagement.UpdateUser
                 return false;
             }
 
-            if (
-                string.IsNullOrWhiteSpace(request.Email) || 
-                string.IsNullOrWhiteSpace(request.Password) ||
-                string.IsNullOrWhiteSpace(request.FirstName)
-                )
+            if (request.Age != null)
             {
-                user = null;
-                errorMessage = "Email and password cannot be null.";
-                return false;
-            }
-
-            if (request.Age < 18 ||  request.Age > 80)
-            {
-                user = null;
-                errorMessage = "Age must be higher than 18 and lower than 80.";
-                return false;
+                if (request.Age < 18 || request.Age > 80)
+                {
+                    user = null;
+                    errorMessage = "Age must be higher than 18 and lower than 80.";
+                    return false;
+                }
             }
 
             if (request.Id <= 0)
@@ -98,18 +95,24 @@ namespace PracticeProject.Application.BaseInfo.UserManagement.UpdateUser
                 return false;
             }
 
-            if (!Enum.IsDefined(typeof(Role), request.Role))
+            if (request.Role != null)
             {
-                user = null;
-                errorMessage = "Invalid user role.";
-                return false;
+                if (!Enum.IsDefined(typeof(Role), request.Role))
+                {
+                    user = null;
+                    errorMessage = "Invalid user role.";
+                    return false;
+                }
             }
 
-            if (!Enum.IsDefined(typeof(Gender), request.Gender))
+            if (request.Gender != null)
             {
-                user = null;
-                errorMessage = "Invalid user gender.";
-                return false;
+                if (!Enum.IsDefined(typeof(Gender), request.Gender))
+                {
+                    user = null;
+                    errorMessage = "Invalid user gender.";
+                    return false;
+                }
             }
 
             user = _userDataAccess.GetById(request.Id);
