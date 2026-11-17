@@ -1,5 +1,6 @@
-﻿using PracticeProject.Application.BaseInfo.UserManagement.CreateUser;
-using PracticeProject.Domain.BaseInfo.People;
+﻿using PracticeProject.Application.BaseInfos.UserManagement.CreateUser;
+using PracticeProject.Domain.BaseInfos.People;
+using PracticeProject.Domain.BaseInfos.Users;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,6 +29,7 @@ namespace EndPoint.WebForm
                 LastName = tboxLastName.Text.Trim(),
                 Age = Convert.ToInt32(tboxAge.Text),
                 Gender = (Gender)Convert.ToInt32(ddlGender.SelectedValue),
+                Role = Role.User,
                 Email = tboxEmail.Text.Trim().ToLower(),
                 Password = tboxPassword.Text.Trim()
             };
