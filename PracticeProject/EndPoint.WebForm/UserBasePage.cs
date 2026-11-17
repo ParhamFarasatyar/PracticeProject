@@ -1,4 +1,4 @@
-﻿using PracticeProject.Domain.BaseInfo.Users;
+﻿using PracticeProject.Domain.BaseInfos.Users;
 using System;
 using System.Web.UI;
 

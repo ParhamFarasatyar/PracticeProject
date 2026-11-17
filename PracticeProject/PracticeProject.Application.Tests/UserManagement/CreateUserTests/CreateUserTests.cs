@@ -1,9 +1,9 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using PracticeProject.Application.BaseInfo;
-using PracticeProject.Application.BaseInfo.Security;
-using PracticeProject.Application.BaseInfo.UserManagement.CreateUser;
-using PracticeProject.Domain.BaseInfo.Users;
+using PracticeProject.Application.BaseInfos;
+using PracticeProject.Application.BaseInfos.Security;
+using PracticeProject.Application.BaseInfos.UserManagement.CreateUser;
+using PracticeProject.Domain.BaseInfos.Users;
 using PracticeProject.Persistance.DataAccess;
 using System;
 

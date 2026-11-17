@@ -1,5 +1,5 @@
-﻿using PracticeProject.Application.BaseInfo.UserManagement.LoginUser;
-using PracticeProject.Domain.BaseInfo.Users;
+﻿using PracticeProject.Application.BaseInfos.UserManagement.LoginUser;
+using PracticeProject.Domain.BaseInfos.Users;
 using System;
 using System.Collections.Generic;
 using System.Linq;
