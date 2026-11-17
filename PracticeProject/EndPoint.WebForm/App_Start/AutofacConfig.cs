@@ -2,15 +2,17 @@
 using PracticeProject.Persistence.Contexts;
 using PracticeProject.Application;
 using PracticeProject.Persistence.DataAccess;
-using PracticeProject.Application.BaseInfo;
-using PracticeProject.Application.BaseInfo.UserManagement.CreateUser;
-using PracticeProject.Application.BaseInfo.UserManagement.LoginUser;
-using PracticeProject.Application.BaseInfo.UserManagement.SearchUsers;
-using PracticeProject.Application.BaseInfo.UserManagement.DeleteUser;
-using PracticeProject.Application.BaseInfo.UserManagement.UpdateUser;
+using PracticeProject.Application.BaseInfos;
+using PracticeProject.Application.BaseInfos.UserManagement.CreateUser;
+using PracticeProject.Application.BaseInfos.UserManagement.LoginUser;
+using PracticeProject.Application.BaseInfos.UserManagement.SearchUsers;
+using PracticeProject.Application.BaseInfos.UserManagement.DeleteUser;
+using PracticeProject.Application.BaseInfos.UserManagement.UpdateUser;
 using PracticeProject.Persistance.DataAccess;
-using PracticeProject.Application.BaseInfo.Security;
-using PracticeProject.Application.BaseInfo.UserManagement.GetUserById;
+using PracticeProject.Application.BaseInfos.Security;
+using PracticeProject.Application.BaseInfos.UserManagement.GetUserById;
+using PracticeProject.Persistance.DataAccess.BaseInfos;
+using PracticeProject.Application.BaseInfos.PersonManagement;
 
 namespace EndPoint.WebForm.App_Start
 {
@@ -37,6 +39,8 @@ namespace EndPoint.WebForm.App_Start
             builder.RegisterType<Pbkdf2PasswordHasher>().As<IPasswordHasher>().InstancePerRequest();
 
             builder.RegisterType<GetUserById>().As<IGetUserById>().InstancePerRequest();
+
+            builder.RegisterType<SearchPersons>().As<ISearchPersons>().InstancePerRequest();
 
             return builder.Build();
         }
