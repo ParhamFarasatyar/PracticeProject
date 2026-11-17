@@ -11,6 +11,7 @@
     <RootNamespace>PracticeProject.Persistance</RootNamespace>
     <AssemblyName>PracticeProject.Persistance</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <LangVersion>12.0</LangVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
@@ -52,9 +53,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contexts\DataBaseContext.cs" />
+    <Compile Include="DataAccess\BaseInfos\SearchPersons.cs" />
     <Compile Include="DataAccess\Pbkdf2PasswordHasher.cs" />
-    <Compile Include="DataAccess\SearchUsers.cs" />
-    <Compile Include="DataAccess\UserDataAccess.cs" />
+    <Compile Include="DataAccess\BaseInfos\SearchUsers.cs" />
+    <Compile Include="DataAccess\BaseInfos\UserDataAccess.cs" />
     <Compile Include="EntityConfigurations\People\PersonConfiguration.cs" />
     <Compile Include="EntityConfigurations\Users\UserConfiguration.cs" />
     <Compile Include="Migrations\202610310659388_Init.cs" />

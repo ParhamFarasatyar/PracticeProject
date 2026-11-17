@@ -1,4 +1,4 @@
-﻿namespace PracticeProject.Application.BaseInfo.Security
+﻿namespace PracticeProject.Application.BaseInfos.Security
 {
     public interface IPasswordHasher
     {

@@ -1,4 +1,4 @@
-﻿namespace PracticeProject.Domain.BaseInfo.People
+﻿namespace PracticeProject.Domain.BaseInfos.People
 {
     public class Person : IEntity
     {

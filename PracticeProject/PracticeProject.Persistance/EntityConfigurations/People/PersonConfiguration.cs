@@ -1,4 +1,4 @@
-﻿using PracticeProject.Domain.BaseInfo.People;
+﻿using PracticeProject.Domain.BaseInfos.People;
 using System.Data.Entity.ModelConfiguration;
 
 namespace PracticeProject.Persistance.EntityConfigurations.People

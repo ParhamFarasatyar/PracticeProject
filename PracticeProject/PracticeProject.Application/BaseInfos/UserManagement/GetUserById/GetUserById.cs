@@ -1,7 +1,7 @@
-﻿using PracticeProject.Domain.BaseInfo.Users;
+﻿using PracticeProject.Domain.BaseInfos.Users;
 using System;
 
-namespace PracticeProject.Application.BaseInfo.UserManagement.GetUserById
+namespace PracticeProject.Application.BaseInfos.UserManagement.GetUserById
 {
     public class GetUserById : IGetUserById
     {

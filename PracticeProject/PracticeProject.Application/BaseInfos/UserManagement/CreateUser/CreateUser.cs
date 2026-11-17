@@ -1,9 +1,9 @@
-﻿using PracticeProject.Application.BaseInfo.Security;
-using PracticeProject.Domain.BaseInfo.People;
-using PracticeProject.Domain.BaseInfo.Users;
+﻿using PracticeProject.Application.BaseInfos.Security;
+using PracticeProject.Domain.BaseInfos.People;
+using PracticeProject.Domain.BaseInfos.Users;
 using System;
 
-namespace PracticeProject.Application.BaseInfo.UserManagement.CreateUser
+namespace PracticeProject.Application.BaseInfos.UserManagement.CreateUser
 {
     public class CreateUser : ICreateUser
     {

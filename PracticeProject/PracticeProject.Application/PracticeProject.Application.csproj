@@ -52,23 +52,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseInfo\Security\IPasswordHasher.cs" />
-    <Compile Include="BaseInfo\UserManagement\CreateUser\ICreateUser.cs" />
-    <Compile Include="BaseInfo\UserManagement\DeleteUser\DeleteUser.cs" />
-    <Compile Include="BaseInfo\UserManagement\DeleteUser\IDeleteUser.cs" />
-    <Compile Include="BaseInfo\UserManagement\GetUserById\GetUserById.cs" />
-    <Compile Include="BaseInfo\UserManagement\GetUserById\IGetUserById.cs" />
-    <Compile Include="BaseInfo\UserManagement\LoginUser\ILoginUser.cs" />
-    <Compile Include="BaseInfo\UserManagement\LoginUser\LoginUser.cs" />
-    <Compile Include="BaseInfo\UserManagement\SearchUsers\ISearchUsers.cs" />
-    <Compile Include="BaseInfo\UserManagement\UpdateUser\IUpdateUser.cs" />
-    <Compile Include="BaseInfo\UserManagement\UpdateUser\UpdateUser.cs" />
+    <Compile Include="BaseInfos\PersonManagement\ISearchPersons.cs" />
+    <Compile Include="BaseInfos\Security\IPasswordHasher.cs" />
+    <Compile Include="BaseInfos\UserManagement\CreateUser\ICreateUser.cs" />
+    <Compile Include="BaseInfos\UserManagement\DeleteUser\DeleteUser.cs" />
+    <Compile Include="BaseInfos\UserManagement\DeleteUser\IDeleteUser.cs" />
+    <Compile Include="BaseInfos\UserManagement\GetUserById\GetUserById.cs" />
+    <Compile Include="BaseInfos\UserManagement\GetUserById\IGetUserById.cs" />
+    <Compile Include="BaseInfos\UserManagement\LoginUser\ILoginUser.cs" />
+    <Compile Include="BaseInfos\UserManagement\LoginUser\LoginUser.cs" />
+    <Compile Include="BaseInfos\UserManagement\SearchUsers\ISearchUsers.cs" />
+    <Compile Include="BaseInfos\UserManagement\UpdateUser\IUpdateUser.cs" />
+    <Compile Include="BaseInfos\UserManagement\UpdateUser\UpdateUser.cs" />
     <Compile Include="IDb.cs" />
-    <Compile Include="BaseInfo\UserManagement\GetAllUsers\IGetAllUsers.cs" />
-    <Compile Include="BaseInfo\IUserDataAccess.cs" />
-    <Compile Include="BaseInfo\UserManagement\GetAllUsers\GetAllUsers.cs" />
+    <Compile Include="BaseInfos\UserManagement\GetAllUsers\IGetAllUsers.cs" />
+    <Compile Include="BaseInfos\IUserDataAccess.cs" />
+    <Compile Include="BaseInfos\UserManagement\GetAllUsers\GetAllUsers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="BaseInfo\UserManagement\CreateUser\CreateUser.cs" />
+    <Compile Include="BaseInfos\UserManagement\CreateUser\CreateUser.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PracticeProject.Domain\PracticeProject.Domain.csproj">

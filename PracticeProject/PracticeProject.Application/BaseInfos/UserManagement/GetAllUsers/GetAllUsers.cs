@@ -1,8 +1,8 @@
-﻿using PracticeProject.Domain.BaseInfo.Users;
+﻿using PracticeProject.Domain.BaseInfos.Users;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace PracticeProject.Application.BaseInfo.UserManagement.GetAllUsers
+namespace PracticeProject.Application.BaseInfos.UserManagement.GetAllUsers
 {
     public class GetAllUsers : IGetAllUsers
     {

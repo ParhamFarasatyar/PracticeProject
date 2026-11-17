@@ -1,7 +1,7 @@
-﻿using PracticeProject.Domain.BaseInfo.People;
-using PracticeProject.Domain.BaseInfo.Users;
+﻿using PracticeProject.Domain.BaseInfos.People;
+using PracticeProject.Domain.BaseInfos.Users;
 
-namespace PracticeProject.Application.BaseInfo.UserManagement.CreateUser
+namespace PracticeProject.Application.BaseInfos.UserManagement.CreateUser
 {
     public interface ICreateUser
     {

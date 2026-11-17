@@ -1,8 +1,8 @@
-﻿using PracticeProject.Domain.BaseInfo.People;
+﻿using PracticeProject.Domain.BaseInfos.People;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace PracticeProject.Domain.BaseInfo.Users
+namespace PracticeProject.Domain.BaseInfos.Users
 {
     public class User : IEntity
     {

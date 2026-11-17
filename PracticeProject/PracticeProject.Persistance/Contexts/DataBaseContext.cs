@@ -1,8 +1,8 @@
 ﻿using System.Data.Entity;
 using System.Linq;
 using PracticeProject.Application;
-using PracticeProject.Domain.BaseInfo.People;
-using PracticeProject.Domain.BaseInfo.Users;
+using PracticeProject.Domain.BaseInfos.People;
+using PracticeProject.Domain.BaseInfos.Users;
 using PracticeProject.Persistance.EntityConfigurations.People;
 using PracticeProject.Persistance.EntityConfigurations.Users;
 

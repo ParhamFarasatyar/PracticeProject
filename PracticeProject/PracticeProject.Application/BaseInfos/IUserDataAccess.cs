@@ -1,14 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using PracticeProject.Domain.BaseInfo.Users;
+using PracticeProject.Domain.BaseInfos.Users;
 
-namespace PracticeProject.Application.BaseInfo
+namespace PracticeProject.Application.BaseInfos
 {
     public interface IUserDataAccess
     {
         void Create(User user);
-
-        IQueryable<User> SearchUsers(string searchString = "");
 
         User GetById(int id);
 

@@ -1,6 +1,6 @@
-﻿using PracticeProject.Domain.BaseInfo.Users;
+﻿using PracticeProject.Domain.BaseInfos.Users;
 
-namespace PracticeProject.Application.BaseInfo.UserManagement.LoginUser
+namespace PracticeProject.Application.BaseInfos.UserManagement.LoginUser
 {
     public interface ILoginUser
     {

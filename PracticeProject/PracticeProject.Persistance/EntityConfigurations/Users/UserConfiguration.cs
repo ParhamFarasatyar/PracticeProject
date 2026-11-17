@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.Infrastructure.Annotations;
 using System.Data.Entity.ModelConfiguration;
-using PracticeProject.Domain.BaseInfo.Users;
+using PracticeProject.Domain.BaseInfos.Users;
 
 namespace PracticeProject.Persistance.EntityConfigurations.Users
 {

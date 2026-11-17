@@ -1,4 +1,4 @@
-﻿using PracticeProject.Application.BaseInfo.Security;
+﻿using PracticeProject.Application.BaseInfos.Security;
 using System;
 using System.Globalization;
 using System.Security.Cryptography;

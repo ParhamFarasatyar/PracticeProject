@@ -1,12 +1,12 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PracticeProject.Persistence.DataAccess;
 using PracticeProject.Persistence.Contexts;
-using PracticeProject.Domain.BaseInfo.Users;
+using PracticeProject.Domain.BaseInfos.Users;
 using System;
 using System.Linq;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
-using PracticeProject.Domain.BaseInfo.People;
+using PracticeProject.Domain.BaseInfos.People;
 using PracticeProject.Application;
 
 namespace PracticeProject.Persistence.Tests
@@ -25,7 +25,7 @@ namespace PracticeProject.Persistence.Tests
         {
             _context = new DataBaseContext();
             _db = _context;
-            _userDataAccess = new UserDataAccess(_context);
+            //_userDataAccess = new UserDataAccess(_context);
         }
 
         [TestCleanup]

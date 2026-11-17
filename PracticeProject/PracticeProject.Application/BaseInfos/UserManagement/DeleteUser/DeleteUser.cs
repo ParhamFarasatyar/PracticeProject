@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data.Entity.Infrastructure;
 
-namespace PracticeProject.Application.BaseInfo.UserManagement.DeleteUser
+namespace PracticeProject.Application.BaseInfos.UserManagement.DeleteUser
 {
     public class DeleteUser : IDeleteUser
     {

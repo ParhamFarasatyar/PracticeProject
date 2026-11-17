@@ -1,6 +1,8 @@
-﻿namespace PracticeProject.Application.BaseInfo.UserManagement.DeleteUser
+﻿using PracticeProject.Domain.BaseInfos.Users;
+
+namespace PracticeProject.Application.BaseInfos.UserManagement.GetUserById
 {
-    public interface IDeleteUser
+    public interface IGetUserById
     {
         Response Execute(Request request);
 
@@ -8,11 +10,12 @@
         {
             public int Id { get; set; }
         }
+
         public class Response
         {
             public bool IsSuccess { get; set; }
             public string Message { get; set; }
-            public int? UserId { get; set; }
+            public User User { get; set; }
         }
     }
 }

@@ -1,11 +1,13 @@
-﻿using PracticeProject.Application.BaseInfo.Security;
-using PracticeProject.Application.BaseInfo.UserManagement.CreateUser;
-using PracticeProject.Domain.BaseInfo.People;
-using PracticeProject.Domain.BaseInfo.Users;
+﻿using PracticeProject.Application.BaseInfos.PersonManagement;
+using PracticeProject.Application.BaseInfos.Security;
+using PracticeProject.Application.BaseInfos.UserManagement.CreateUser;
+using PracticeProject.Domain.BaseInfos.People;
+using PracticeProject.Domain.BaseInfos.Users;
 using System;
 using System.Data.Entity.Infrastructure;
+using System.Linq;
 
-namespace PracticeProject.Application.BaseInfo.UserManagement.UpdateUser
+namespace PracticeProject.Application.BaseInfos.UserManagement.UpdateUser
 {
     public class UpdateUser : IUpdateUser
     {
@@ -15,11 +17,14 @@ namespace PracticeProject.Application.BaseInfo.UserManagement.UpdateUser
 
         private readonly IPasswordHasher _passwordHasher;
 
-        public UpdateUser(IUserDataAccess userDataAccess, IDb db, IPasswordHasher passwordHasher)
+        private readonly ISearchPersons _searchPersons;
+
+        public UpdateUser(IUserDataAccess userDataAccess, IDb db, IPasswordHasher passwordHasher, ISearchPersons searchPersons)
         {
             _userDataAccess = userDataAccess ?? throw new ArgumentNullException(nameof(userDataAccess));
             _db = db ?? throw new ArgumentNullException(nameof(db));
             _passwordHasher = passwordHasher ?? throw new ArgumentNullException(nameof(passwordHasher));
+            _searchPersons = searchPersons ?? throw new ArgumentNullException(nameof(searchPersons));
         }
 
         public IUpdateUser.Response Execute(IUpdateUser.Request request)
@@ -128,6 +133,11 @@ namespace PracticeProject.Application.BaseInfo.UserManagement.UpdateUser
                 errorMessage = "Email already exists.";
                 return false;
             }
+
+            user.Person = _searchPersons.Execute(new ISearchPersons.Request
+            {
+                Id = user.PersonId
+            }).SingleOrDefault();
 
             errorMessage = null;
             return true;

@@ -1,7 +1,7 @@
-﻿using PracticeProject.Application.BaseInfo.Security;
-using PracticeProject.Domain.BaseInfo.Users;
+﻿using PracticeProject.Application.BaseInfos.Security;
+using PracticeProject.Domain.BaseInfos.Users;
 
-namespace PracticeProject.Application.BaseInfo.UserManagement.LoginUser
+namespace PracticeProject.Application.BaseInfos.UserManagement.LoginUser
 {
     public class LoginUser : ILoginUser
     {
