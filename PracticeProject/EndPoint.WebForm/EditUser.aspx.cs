@@ -1,8 +1,9 @@
-﻿using PracticeProject.Application.BaseInfo;
-using PracticeProject.Application.BaseInfo.UserManagement.GetUserById;
-using PracticeProject.Application.BaseInfo.UserManagement.UpdateUser;
-using PracticeProject.Domain.BaseInfo.People;
-using PracticeProject.Domain.BaseInfo.Users;
+﻿using PracticeProject.Application.BaseInfos;
+using PracticeProject.Application.BaseInfos.PersonManagement;
+using PracticeProject.Application.BaseInfos.UserManagement.GetUserById;
+using PracticeProject.Application.BaseInfos.UserManagement.UpdateUser;
+using PracticeProject.Domain.BaseInfos.People;
+using PracticeProject.Domain.BaseInfos.Users;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,7 @@ namespace EndPoint.WebForm
     {
         public IGetUserById GetUserById { get; set; }
         public IUpdateUser UpdateUser { get; set; }
+        public ISearchPersons SearchPersons { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -26,12 +28,17 @@ namespace EndPoint.WebForm
                     return;
                 }
 
-                var response = GetUserById.Execute(new IGetUserById.Request { Id = userId });
+                IGetUserById.Response response = GetUserById.Execute(new IGetUserById.Request { Id = userId });
                 if (!response.IsSuccess)
                 {
                     Response.Redirect("./Administrator.aspx");
                     return;
                 }
+
+                response.User.Person = SearchPersons.Execute(new ISearchPersons.Request 
+                { 
+                    Id = response.User.PersonId 
+                }).SingleOrDefault();
 
                 tboxFirstName.Text = response.User.Person.FirstName;
                 tboxLastName.Text = response.User.Person.LastName;

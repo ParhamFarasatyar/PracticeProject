@@ -1,6 +1,8 @@
-﻿using PracticeProject.Application.BaseInfo.UserManagement.DeleteUser;
-using PracticeProject.Application.BaseInfo.UserManagement.SearchUsers;
-using PracticeProject.Domain.BaseInfo.Users;
+﻿using PracticeProject.Application.BaseInfos.PersonManagement;
+using PracticeProject.Application.BaseInfos.UserManagement.DeleteUser;
+using PracticeProject.Application.BaseInfos.UserManagement.SearchUsers;
+using PracticeProject.Domain.BaseInfos.People;
+using PracticeProject.Domain.BaseInfos.Users;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +16,7 @@ namespace EndPoint.WebForm
     {
         public IDeleteUser DeleteUser { get; set; }
         public ISearchUsers SearchUsers { get; set; }
+        public ISearchPersons SearchPersons { get; set; }
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -22,7 +25,7 @@ namespace EndPoint.WebForm
 
         private void BindUsers(string keyword = "")
         {
-            var response = SearchUsers.Execute(new ISearchUsers.Request { KeyWord = keyword });
+            IQueryable<User> response = SearchUsers.Execute(new ISearchUsers.Request { KeyWord = keyword });
 
             if (response is null)
             {
@@ -31,7 +34,17 @@ namespace EndPoint.WebForm
                 return;
             }
 
-            gvUsers.DataSource = response.ToList();
+            List<User> users = response.ToList();
+
+            foreach (User user in users)
+            {
+                user.Person = SearchPersons.Execute(new ISearchPersons.Request
+                {
+                    Id = user.PersonId
+                }).SingleOrDefault();
+            }
+
+            gvUsers.DataSource = users;
             gvUsers.DataBind();
         }
 
