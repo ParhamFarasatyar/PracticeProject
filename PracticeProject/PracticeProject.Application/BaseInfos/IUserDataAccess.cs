@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using PracticeProject.Domain.BaseInfos.People;
 using PracticeProject.Domain.BaseInfos.Users;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace PracticeProject.Application.BaseInfos
 {
@@ -8,18 +9,24 @@ namespace PracticeProject.Application.BaseInfos
     {
         void Create(User user);
 
-        User GetById(int id);
+        SearchResult GetById(int id);
 
-        User GetByEmail(string email);
+        SearchResult GetByEmail(string email);
 
-        IQueryable<User> GetAll();
+        IQueryable<SearchResult> GetAll();
 
-        void Update(User user);
+        void Update(SearchResult user);
 
         void Delete(int id);
 
         bool ExistsByEmail(string email);
 
         bool ExistsByEmail(string email, int excludedUserId);
+
+        public class SearchResult
+        {
+            public User User { get; set; }
+            public Person Person { get; set; }
+        }
     }
 }
