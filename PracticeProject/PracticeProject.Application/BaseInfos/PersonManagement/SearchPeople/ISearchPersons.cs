@@ -6,7 +6,7 @@ using System.Net.Cache;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PracticeProject.Application.BaseInfos.PersonManagement
+namespace PracticeProject.Application.BaseInfos.PersonManagement.SearchPeople
 {
     public interface ISearchPersons
     {
