@@ -1,4 +1,5 @@
-﻿using PracticeProject.Application.BaseInfos.PersonManagement.SearchPeople;
+﻿using PracticeProject.Application.BaseInfos;
+using PracticeProject.Application.BaseInfos.PersonManagement.SearchPeople;
 using PracticeProject.Application.BaseInfos.UserManagement.DeleteUser;
 using PracticeProject.Application.BaseInfos.UserManagement.SearchUsers;
 using PracticeProject.Domain.BaseInfos.People;
@@ -25,26 +26,25 @@ namespace EndPoint.WebForm
 
         private void BindUsers(string keyword = "")
         {
-            IQueryable<User> response = SearchUsers.Execute(new ISearchUsers.Request { KeyWord = keyword });
+            IQueryable<IUserDataAccess.SearchResult> result = SearchUsers.Execute(new ISearchUsers.Request 
+            { 
+                KeyWord = keyword, 
+                PersonRequest = new ISearchPeople.Request
+                {
+                    Keyword = keyword
+                }
+            });
 
-            if (response is null)
+            if (result is null)
             {
                 lblMessage.ForeColor = System.Drawing.Color.Red;
                 lblMessage.Text = "Request failed.";
                 return;
             }
 
-            List<User> users = response.ToList();
+            var resultList = result.ToList();
 
-            foreach (User user in users)
-            {
-                user.Person = SearchPersons.Execute(new ISearchPeople.Request
-                {
-                    Id = user.PersonId
-                }).SingleOrDefault();
-            }
-
-            gvUsers.DataSource = users;
+            gvUsers.DataSource = resultList;
             gvUsers.DataBind();
         }
 
