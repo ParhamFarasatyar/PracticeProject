@@ -2,42 +2,56 @@
 using PracticeProject.Application.BaseInfos;
 using PracticeProject.Application.BaseInfos.PersonManagement.SearchPeople;
 using PracticeProject.Application.BaseInfos.UserManagement.SearchUsers;
+using PracticeProject.Domain.BaseInfos.People;
 using PracticeProject.Domain.BaseInfos.Users;
 using PracticeProject.Persistance.DataAccess.BaseInfos.Security.BaseInfos.PersonManagement;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using static PracticeProject.Application.BaseInfos.IUserDataAccess;
 
 namespace PracticeProject.Persistence.DataAccess.BaseInfos.UserManagement
 {
-    public class SearchUsers(IDb db, ISearchPeople searchPersons) : ISearchUsers
+    public class SearchUsers(IDb db, ISearchPeople searchPeople) : ISearchUsers
     {
-        public IQueryable<User> Execute(ISearchUsers.Request request = null)
+        public IQueryable<SearchResult> Execute(ISearchUsers.Request request = null)
         {
-            var items = db.Query<User>();
+            var items = db.Query<User>().Select(user =>
+                new SearchResult
+                {
+                    User = user,
+                    Person = null
+                });
             return ValidateRequest(request, ref items);
         }
-        
-        private IQueryable<User> ValidateRequest(ISearchUsers.Request request, ref IQueryable<User> items)
+
+        private IQueryable<SearchResult> ValidateRequest
+            (ISearchUsers.Request request, ref IQueryable<SearchResult> items)
         {
             if (request is null)
                 return items;
 
             if (request.Id.HasValue)
-                items = items.Where(i => i.Id == request.Id);
+                items = items.Where(r => r.User.Id == request.Id);
 
             if (!string.IsNullOrWhiteSpace(request.KeyWord))
-                items = items.Where(i => i.Email.Contains(request.KeyWord));
+                items = items.Where(i => i.User.Email.Contains(request.KeyWord));
 
-            if (request.Person is not null)
+            if (request.PersonRequest is not null)
             {
-                var personIds = searchPersons.Execute(new ISearchPeople.Request
-                {
-                    Id = request.Person.Id,
-                    Keyword = request.KeyWord
-                }).Select(p => p.Id);
+                IQueryable<Person> people = searchPeople.Execute(request.PersonRequest);
 
-                items = items.Where(u => personIds.Contains(u.PersonId));
+                items =
+                    from user in items
+                    join person in people
+                    on user.User.PersonId equals person.Id into personGroup
+                    from person in personGroup.DefaultIfEmpty()
+                    where person != null
+                    select new SearchResult
+                    {
+                        User = user.User,
+                        Person = person
+                    };
             }
 
             return items;
