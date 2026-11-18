@@ -1,7 +1,7 @@
 ﻿using Autofac;
 using PracticeProject.Persistence.Contexts;
 using PracticeProject.Application;
-using PracticeProject.Persistence.DataAccess;
+using PracticeProject.Persistence.DataAccess.BaseInfos.UserManagement;
 using PracticeProject.Application.BaseInfos;
 using PracticeProject.Application.BaseInfos.UserManagement.CreateUser;
 using PracticeProject.Application.BaseInfos.UserManagement.LoginUser;

@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 
-namespace PracticeProject.Persistence.DataAccess
+namespace PracticeProject.Persistence.DataAccess.BaseInfos.UserManagement
 {
     public class SearchUsers(IDb db, ISearchPeople searchPersons) : ISearchUsers
     {
