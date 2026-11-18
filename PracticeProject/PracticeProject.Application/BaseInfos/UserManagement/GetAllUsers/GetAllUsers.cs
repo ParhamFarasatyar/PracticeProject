@@ -1,6 +1,7 @@
 ﻿using PracticeProject.Domain.BaseInfos.Users;
 using System.Collections.Generic;
 using System.Linq;
+using static PracticeProject.Application.BaseInfos.IUserDataAccess;
 
 namespace PracticeProject.Application.BaseInfos.UserManagement.GetAllUsers
 {
@@ -17,9 +18,9 @@ namespace PracticeProject.Application.BaseInfos.UserManagement.GetAllUsers
         {
             IGetAllUsers.Response response = new IGetAllUsers.Response();
 
-            IQueryable<User> users = _userDataAccess.GetAll();
+            IQueryable<SearchResult> result = _userDataAccess.GetAll();
 
-            if (!users.Any())
+            if (!result.Any())
             {
                 response.IsSuccess = true;
                 response.Message = "No users found.";
@@ -27,7 +28,7 @@ namespace PracticeProject.Application.BaseInfos.UserManagement.GetAllUsers
             }
 
             response.IsSuccess = true;
-            response.Users = users;
+            response.Result = result;
             return response;
         }
     }

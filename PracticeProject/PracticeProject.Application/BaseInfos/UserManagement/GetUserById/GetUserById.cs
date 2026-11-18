@@ -22,14 +22,14 @@ namespace PracticeProject.Application.BaseInfos.UserManagement.GetUserById
             if (request.Id <= 0)
                 CreateFailureResponse("ID cannot be zero or negative.");
 
-            User user = _userDataAccess.GetById(request.Id);
+            IUserDataAccess.SearchResult result = _userDataAccess.GetById(request.Id);
 
-            if (user is null)
+            if (result is null)
                 return CreateFailureResponse($"No user found with ID {request.Id}");
 
             response.IsSuccess = true;
             response.Message = "User found successfully.";
-            response.User = user;
+            response.Result = result;
             return response;
         }
 
@@ -39,7 +39,7 @@ namespace PracticeProject.Application.BaseInfos.UserManagement.GetUserById
             {
                 IsSuccess = false,
                 Message = message,
-                User = null
+                Result = null
             };
             return response;
         }

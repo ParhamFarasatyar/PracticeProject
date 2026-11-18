@@ -15,7 +15,7 @@ namespace PracticeProject.Application.BaseInfos.UserManagement.GetUserById
         {
             public bool IsSuccess { get; set; }
             public string Message { get; set; }
-            public User User { get; set; }
+            public IUserDataAccess.SearchResult Result{ get; set; }
         }
     }
 }
