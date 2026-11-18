@@ -20,15 +20,20 @@ namespace PracticeProject.Persistance.DataAccess.BaseInfos.Security.BaseInfos.Pe
         {
             var items = _db.Query<Person>();
 
-            if (request == null)
+            return ValidateRequest(request, ref items);
+        }
+
+        private IQueryable<Person> ValidateRequest(ISearchPeople.Request request, ref IQueryable<Person> items)
+        {
+            if(request == null)
                 return items;
 
             if (request.Id.HasValue)
                 items = items.Where(i => i.Id == request.Id);
 
             if (!string.IsNullOrEmpty(request.Keyword))
-                items = items.Where(i => 
-                i.FirstName.Contains(request.Keyword) || 
+                items = items.Where(i =>
+                i.FirstName.Contains(request.Keyword) ||
                 i.LastName.Contains(request.Keyword));
 
             return items;
