@@ -34,7 +34,7 @@ namespace PracticeProject.Persistence.DataAccess.BaseInfos.UserManagement
                 PersonRequest = new ISearchPeople.Request()
             }).SingleOrDefault(r => r.User.Id == id);
 
-            if (result is null || result.User is null || result.Person is null)
+            if (result is null)
                 return;
 
             _db.Remove<User>(result.User);
