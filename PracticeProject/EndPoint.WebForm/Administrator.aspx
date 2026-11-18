@@ -70,7 +70,11 @@
 
             <asp:GridView OnRowCommand="gvUsers_RowCommand" CssClass="table table-striped" ID="gvUsers" runat="server" AutoGenerateColumns="false" EmptyDataText="No users found">
                 <Columns>
-                    <asp:BoundField DataField="Id" HeaderText="ID" />
+                    <asp:TemplateField HeaderText="ID">
+                        <ItemTemplate>
+                            <%# Eval("User.Id") %>
+                        </ItemTemplate>
+                    </asp:TemplateField>
 
                     <asp:TemplateField HeaderText="FirstName">
                         <ItemTemplate>
@@ -96,9 +100,17 @@
                         </ItemTemplate>
                     </asp:TemplateField>
 
-                    <asp:BoundField DataField="Email" HeaderText="Email" />
+                    <asp:TemplateField HeaderText="Email">
+                        <ItemTemplate>
+                            <%# Eval("User.Email") %>
+                        </ItemTemplate>
+                    </asp:TemplateField>
 
-                    <asp:BoundField DataField="Role" HeaderText="Role" />
+                    <asp:TemplateField HeaderText="Role">
+                        <ItemTemplate>
+                            <%# Eval("User.Role") %>
+                        </ItemTemplate>
+                    </asp:TemplateField>
 
                     <asp:TemplateField HeaderText="Edit">
                         <ItemTemplate>
@@ -106,7 +118,7 @@
                                 ID="btnEdit"
                                 runat="server"
                                 CommandName="EditUser"
-                                CommandArgument='<%# Eval("Id") %>'
+                                CommandArgument='<%# Eval("User.Id") %>'
                                 CssClass="action-button edit-button"
                                 ToolTip="Edit User">
 
@@ -131,7 +143,7 @@
                                 ID="btnDelete"
                                 runat="server"
                                 CommandName="DeleteUser"
-                                CommandArgument='<%# Eval("Id") %>'
+                                CommandArgument='<%# Eval("User.Id") %>'
                                 CssClass="action-button delete-button"
                                 ToolTip="Delete User"
                                 OnClientClick="return confirm('Are you sure you want to delete this user?');">
