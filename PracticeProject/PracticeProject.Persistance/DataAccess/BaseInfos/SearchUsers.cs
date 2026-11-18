@@ -3,7 +3,7 @@ using PracticeProject.Application.BaseInfos;
 using PracticeProject.Application.BaseInfos.PersonManagement.SearchPeople;
 using PracticeProject.Application.BaseInfos.UserManagement.SearchUsers;
 using PracticeProject.Domain.BaseInfos.Users;
-using PracticeProject.Persistance.DataAccess.BaseInfos;
+using PracticeProject.Persistance.DataAccess.BaseInfos.PersonManagement;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
