@@ -21,7 +21,10 @@ namespace EndPoint.WebForm
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            BindUsers();
+            if (!IsPostBack)
+            {
+                BindUsers();
+            }
         }
 
         private void BindUsers(string keyword = "")
