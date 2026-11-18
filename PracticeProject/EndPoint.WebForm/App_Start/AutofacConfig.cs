@@ -40,7 +40,7 @@ namespace EndPoint.WebForm.App_Start
 
             builder.RegisterType<GetUserById>().As<IGetUserById>().InstancePerRequest();
 
-            builder.RegisterType<SearchPersons>().As<ISearchPeople>().InstancePerRequest();
+            builder.RegisterType<SearchPeople>().As<ISearchPeople>().InstancePerRequest();
 
             return builder.Build();
         }

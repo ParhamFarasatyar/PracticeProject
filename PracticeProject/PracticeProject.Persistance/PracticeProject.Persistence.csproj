@@ -53,7 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contexts\DataBaseContext.cs" />
-    <Compile Include="DataAccess\BaseInfos\SearchPersons.cs" />
+    <Compile Include="DataAccess\BaseInfos\SearchPeople.cs" />
     <Compile Include="DataAccess\Pbkdf2PasswordHasher.cs" />
     <Compile Include="DataAccess\BaseInfos\SearchUsers.cs" />
     <Compile Include="DataAccess\BaseInfos\UserDataAccess.cs" />

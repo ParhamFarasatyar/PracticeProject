@@ -8,11 +8,11 @@ using System.Text;
 
 namespace PracticeProject.Persistance.DataAccess.BaseInfos
 {
-    public class SearchPersons : ISearchPeople
+    public class SearchPeople : ISearchPeople
     {
         private readonly IDb _db;
 
-        public SearchPersons(IDb db)
+        public SearchPeople(IDb db)
         {
             _db = db;
         }
