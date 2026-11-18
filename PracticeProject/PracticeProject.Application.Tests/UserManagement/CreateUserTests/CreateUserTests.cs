@@ -4,7 +4,7 @@ using PracticeProject.Application.BaseInfos;
 using PracticeProject.Application.BaseInfos.Security;
 using PracticeProject.Application.BaseInfos.UserManagement.CreateUser;
 using PracticeProject.Domain.BaseInfos.Users;
-using PracticeProject.Persistance.DataAccess;
+using PracticeProject.Persistance.DataAccess.BaseInfos.Security;
 using System;
 
 namespace PracticeProject.Application.Tests.UserManagement.CreateUserTests

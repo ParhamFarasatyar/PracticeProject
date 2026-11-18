@@ -3,7 +3,7 @@ using System;
 using System.Globalization;
 using System.Security.Cryptography;
 
-namespace PracticeProject.Persistance.DataAccess
+namespace PracticeProject.Persistance.DataAccess.BaseInfos.Security
 {
     public class Pbkdf2PasswordHasher : IPasswordHasher
     {

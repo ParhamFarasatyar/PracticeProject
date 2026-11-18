@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace PracticeProject.Persistance.DataAccess.BaseInfos.PersonManagement
+namespace PracticeProject.Persistance.DataAccess.BaseInfos.Security.BaseInfos.PersonManagement
 {
     public class SearchPeople : ISearchPeople
     {

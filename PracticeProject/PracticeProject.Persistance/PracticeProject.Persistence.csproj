@@ -54,7 +54,7 @@
   <ItemGroup>
     <Compile Include="Contexts\DataBaseContext.cs" />
     <Compile Include="DataAccess\BaseInfos\PersonManagement\SearchPeople.cs" />
-    <Compile Include="DataAccess\Pbkdf2PasswordHasher.cs" />
+    <Compile Include="DataAccess\BaseInfos\Security\Pbkdf2PasswordHasher.cs" />
     <Compile Include="DataAccess\BaseInfos\UserManagement\SearchUsers.cs" />
     <Compile Include="DataAccess\BaseInfos\UserManagement\UserDataAccess.cs" />
     <Compile Include="EntityConfigurations\People\PersonConfiguration.cs" />

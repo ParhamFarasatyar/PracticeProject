@@ -4,7 +4,7 @@ using PracticeProject.Application.BaseInfos.PersonManagement.SearchPeople;
 using PracticeProject.Application.BaseInfos.UserManagement.SearchUsers;
 using PracticeProject.Domain.BaseInfos.People;
 using PracticeProject.Domain.BaseInfos.Users;
-using PracticeProject.Persistance.DataAccess.BaseInfos.PersonManagement;
+using PracticeProject.Persistance.DataAccess.BaseInfos.Security.BaseInfos.PersonManagement;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
