@@ -16,12 +16,20 @@ namespace PracticeProject.Persistence.DataAccess.BaseInfos.UserManagement
     {
         public IQueryable<SearchResult> Execute(ISearchUsers.Request request = null)
         {
-            var items = db.Query<User>().Select(user =>
-                new SearchResult
+            var users = db.Query<User>();
+
+            var people = searchPeople.Execute();
+
+            var items =
+                from user in users
+                join person in people
+                    on user.PersonId equals person.Id
+                select new SearchResult
                 {
                     User = user,
-                    Person = null
-                });
+                    Person = person
+                };
+
             return ValidateRequest(request, ref items);
         }
 
@@ -35,23 +43,11 @@ namespace PracticeProject.Persistence.DataAccess.BaseInfos.UserManagement
                 items = items.Where(r => r.User.Id == request.Id);
 
             if (!string.IsNullOrWhiteSpace(request.KeyWord))
-                items = items.Where(i => i.User.Email.Contains(request.KeyWord));
-
-            if (request.PersonRequest is not null)
             {
-                IQueryable<Person> people = searchPeople.Execute(request.PersonRequest);
-
-                items =
-                    from user in items
-                    join person in people
-                    on user.User.PersonId equals person.Id into personGroup
-                    from person in personGroup.DefaultIfEmpty()
-                    where person != null
-                    select new SearchResult
-                    {
-                        User = user.User,
-                        Person = person
-                    };
+                items = items.Where(r =>
+                    r.User.Email.Contains(request.KeyWord) ||
+                    r.Person.FirstName.Contains(request.KeyWord) ||
+                    r.Person.LastName.Contains(request.KeyWord));
             }
 
             return items;
