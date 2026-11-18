@@ -1,5 +1,5 @@
 ﻿using PracticeProject.Application;
-using PracticeProject.Application.BaseInfos.PersonManagement;
+using PracticeProject.Application.BaseInfos.PersonManagement.SearchPeople;
 using PracticeProject.Domain.BaseInfos.People;
 using System;
 using System.Collections.Generic;

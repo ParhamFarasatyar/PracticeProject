@@ -1,4 +1,4 @@
-﻿using PracticeProject.Application.BaseInfos.PersonManagement;
+﻿using PracticeProject.Application.BaseInfos.PersonManagement.SearchPeople;
 using PracticeProject.Application.BaseInfos.Security;
 using PracticeProject.Application.BaseInfos.UserManagement.CreateUser;
 using PracticeProject.Domain.BaseInfos.People;

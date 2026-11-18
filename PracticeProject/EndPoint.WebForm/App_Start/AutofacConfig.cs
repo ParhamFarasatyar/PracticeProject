@@ -12,7 +12,7 @@ using PracticeProject.Persistance.DataAccess;
 using PracticeProject.Application.BaseInfos.Security;
 using PracticeProject.Application.BaseInfos.UserManagement.GetUserById;
 using PracticeProject.Persistance.DataAccess.BaseInfos;
-using PracticeProject.Application.BaseInfos.PersonManagement;
+using PracticeProject.Application.BaseInfos.PersonManagement.SearchPeople;
 
 namespace EndPoint.WebForm.App_Start
 {

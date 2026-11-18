@@ -1,4 +1,4 @@
-﻿using PracticeProject.Application.BaseInfos.PersonManagement;
+﻿using PracticeProject.Application.BaseInfos.PersonManagement.SearchPeople;
 using PracticeProject.Domain.BaseInfos.People;
 using PracticeProject.Domain.BaseInfos.Users;
 using System.Collections.Generic;

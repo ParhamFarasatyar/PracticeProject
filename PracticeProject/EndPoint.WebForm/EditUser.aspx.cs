@@ -1,5 +1,5 @@
 ﻿using PracticeProject.Application.BaseInfos;
-using PracticeProject.Application.BaseInfos.PersonManagement;
+using PracticeProject.Application.BaseInfos.PersonManagement.SearchPeople;
 using PracticeProject.Application.BaseInfos.UserManagement.GetUserById;
 using PracticeProject.Application.BaseInfos.UserManagement.UpdateUser;
 using PracticeProject.Domain.BaseInfos.People;
