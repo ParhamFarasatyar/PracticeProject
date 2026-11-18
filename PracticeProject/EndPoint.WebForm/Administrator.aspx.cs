@@ -69,6 +69,15 @@ namespace EndPoint.WebForm
 
                     if (response.IsSuccess)
                     {
+                        if (Convert.ToInt32(Session["UserId"]) == userId)
+                        {
+                            Session["UserId"] = null;
+                            Session["UserRole"] = null;
+                            Session["IsAuthenticated"] = false;
+                            Response.Redirect($"./Login.aspx");
+                            return;
+                        }
+
                         BindUsers(tboxSearch.Text.Trim());
                         lblMessage.Text = "User deleted successfully.";
                         lblMessage.ForeColor = System.Drawing.Color.Green;
