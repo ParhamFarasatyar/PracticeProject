@@ -45,7 +45,7 @@ namespace PracticeProject.Application.BaseInfos.UserManagement.LoginUser
             }
 
 
-            user = _userDataAccess.GetByEmail(request.Email);
+            user = _userDataAccess.GetByEmail(request.Email).User;
             if (user is null || !_passwordHasher.Verify(request.Password, user.Password))
             {
                 errorMessage = "Incorrect email or password.";
