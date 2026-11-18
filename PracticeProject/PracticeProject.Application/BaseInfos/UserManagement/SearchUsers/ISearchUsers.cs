@@ -8,13 +8,13 @@ namespace PracticeProject.Application.BaseInfos.UserManagement.SearchUsers
 {
     public interface ISearchUsers
     {
-        IQueryable<User> Execute(Request request = null);
+        IQueryable<IUserDataAccess.SearchResult> Execute(Request request = null);
 
         public class Request
         {
             public int? Id { get; set; }
             public string KeyWord { get; set; }
-            public ISearchPeople.Request Person { get; set; }
+            public ISearchPeople.Request PersonRequest { get; set; }
         }
     }
 }

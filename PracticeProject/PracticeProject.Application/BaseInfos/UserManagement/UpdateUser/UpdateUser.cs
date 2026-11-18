@@ -29,7 +29,7 @@ namespace PracticeProject.Application.BaseInfos.UserManagement.UpdateUser
 
         public IUpdateUser.Response Execute(IUpdateUser.Request request)
         {
-            bool isRequestValid = IsRequestValid(request, out User user, out string errorMessage);
+            bool isRequestValid = IsRequestValid(request, out IUserDataAccess.SearchResult result, out string errorMessage);
 
             if (!isRequestValid)
                 return CreateFailureResponse(errorMessage);
@@ -37,30 +37,30 @@ namespace PracticeProject.Application.BaseInfos.UserManagement.UpdateUser
             string validPassword;
             if (!string.IsNullOrWhiteSpace(request.Password))
             {
-                if (_passwordHasher.Verify(request.Password, user.Password))
-                    validPassword = user.Password;
+                if (_passwordHasher.Verify(request.Password, result.User.Password))
+                    validPassword = result.User.Password;
                 else
                     validPassword = _passwordHasher.Hash(request.Password);
             }
             else
-                validPassword = user.Password;
+                validPassword = result.User.Password;
 
-            user.Person.FirstName = request.FirstName ?? user.Person.FirstName;
-            user.Person.LastName = request.LastName ?? user.Person.LastName;
-            user.Person.Age = request.Age ?? user.Person.Age;
-            user.Person.Gender = request.Gender ?? user.Person.Gender;
-            user.Role = request.Role ?? user.Role;
-            user.Email = request.Email ?? user.Email;
-            user.Password = validPassword;
+            result.Person.FirstName = request.FirstName ?? result.Person.FirstName;
+            result.Person.LastName = request.LastName ?? result.Person.LastName;
+            result.Person.Age = request.Age ?? result.Person.Age;
+            result.Person.Gender = request.Gender ?? result.Person.Gender;
+            result.User.Role = request.Role ?? result.User.Role;
+            result.User.Email = request.Email ?? result.User.Email;
+            result.User.Password = validPassword;
 
-            _userDataAccess.Update(user);
+            _userDataAccess.Update(result);
             _db.SaveChanges();
 
             return new IUpdateUser.Response
             {
                 IsSuccess = true,
                 Message = "User modified successfully",
-                ModifiedUser = user
+                ModifyResult = result
             };
         }
 
@@ -70,15 +70,15 @@ namespace PracticeProject.Application.BaseInfos.UserManagement.UpdateUser
             {
                 IsSuccess = false,
                 Message = message,
-                ModifiedUser = null
+                ModifyResult = null
             };
         }
 
-        private bool IsRequestValid(IUpdateUser.Request request, out User user, out string errorMessage)
+        private bool IsRequestValid(IUpdateUser.Request request, out IUserDataAccess.SearchResult result, out string errorMessage)
         {
             if (request is null)
             {
-                user = null;
+                result = null;
                 errorMessage = "Request cannot be null.";
                 return false;
             }
@@ -87,7 +87,7 @@ namespace PracticeProject.Application.BaseInfos.UserManagement.UpdateUser
             {
                 if (request.Age < 18 || request.Age > 80)
                 {
-                    user = null;
+                    result = null;
                     errorMessage = "Age must be higher than 18 and lower than 80.";
                     return false;
                 }
@@ -95,7 +95,7 @@ namespace PracticeProject.Application.BaseInfos.UserManagement.UpdateUser
 
             if (request.Id <= 0)
             {
-                user = null;
+                result = null;
                 errorMessage = "ID cannot be zero or negative.";
                 return false;
             }
@@ -104,7 +104,7 @@ namespace PracticeProject.Application.BaseInfos.UserManagement.UpdateUser
             {
                 if (!Enum.IsDefined(typeof(Role), request.Role))
                 {
-                    user = null;
+                    result = null;
                     errorMessage = "Invalid user role.";
                     return false;
                 }
@@ -114,15 +114,15 @@ namespace PracticeProject.Application.BaseInfos.UserManagement.UpdateUser
             {
                 if (!Enum.IsDefined(typeof(Gender), request.Gender))
                 {
-                    user = null;
+                    result = null;
                     errorMessage = "Invalid user gender.";
                     return false;
                 }
             }
 
-            user = _userDataAccess.GetById(request.Id);
+            result = _userDataAccess.GetById(request.Id);
 
-            if (user is null)
+            if (result is null || result.User is null || result.Person is null)
             {
                 errorMessage = $"No user found with ID {request.Id}";
                 return false;
@@ -133,11 +133,6 @@ namespace PracticeProject.Application.BaseInfos.UserManagement.UpdateUser
                 errorMessage = "Email already exists.";
                 return false;
             }
-
-            user.Person = _searchPersons.Execute(new ISearchPeople.Request
-            {
-                Id = user.PersonId
-            }).SingleOrDefault();
 
             errorMessage = null;
             return true;

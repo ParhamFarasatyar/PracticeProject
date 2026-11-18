@@ -28,40 +28,40 @@ namespace PracticeProject.Persistence.DataAccess.BaseInfos.UserManagement
 
         public void Delete(int id)
         {
-            User user = _searchUsers.Execute(new ISearchUsers.Request
+            IUserDataAccess.SearchResult result = _searchUsers.Execute(new ISearchUsers.Request
             {
-                Id = id
-            }).SingleOrDefault();
+                Id = id,
+                PersonRequest = new ISearchPeople.Request()
+            }).SingleOrDefault(r => r.User.Id == id);
 
-            if (user is null)
+            if (result is null || result.User is null || result.Person is null)
                 return;
 
-            Person person = _searchPersons.Execute(new ISearchPeople.Request
-            {
-                Id = user.PersonId
-            }).SingleOrDefault();
-
-            if (person is null)
-                return;
-
-            _db.Remove<User>(user);
-            _db.Remove<Person>(person);
+            _db.Remove<User>(result.User);
+            _db.Remove<Person>(result.Person);
         }
 
-        public IQueryable<User> GetAll() => _searchUsers.Execute();
+        public IQueryable<IUserDataAccess.SearchResult> GetAll() => _searchUsers.Execute(new ISearchUsers.Request 
+        { 
+            PersonRequest = new ISearchPeople.Request()
+        });
 
-        public User GetById(int id) => _searchUsers.Execute(new ISearchUsers.Request { Id = id })
-            .SingleOrDefault();
+        public IUserDataAccess.SearchResult GetById(int id) => _searchUsers.Execute(new ISearchUsers.Request 
+        { 
+            Id = id,
+            PersonRequest = new ISearchPeople.Request()
+        }).SingleOrDefault(r => r.User.Id == id);
 
-        public User GetByEmail(string email) => _searchUsers.Execute(new ISearchUsers.Request
+        public IUserDataAccess.SearchResult GetByEmail(string email) => _searchUsers.Execute(new ISearchUsers.Request
         {
-            KeyWord = email
-        }).SingleOrDefault();
+            KeyWord = email,
+            PersonRequest = new ISearchPeople.Request()
+        }).SingleOrDefault(r => r.User.Email == email);
 
-        public void Update(User user)
+        public void Update(IUserDataAccess.SearchResult result)
         {
-            _db.Update<User>(user);
-            _db.Update<Person>(user.Person);
+            _db.Update<User>(result.User);
+            _db.Update<Person>(result.Person);
         }
 
         public bool ExistsByEmail(string email) => _searchUsers.Execute(new ISearchUsers.Request 
@@ -73,6 +73,6 @@ namespace PracticeProject.Persistence.DataAccess.BaseInfos.UserManagement
         {
             Id = excludedUserId,
             KeyWord = email
-        }).Any(u => u.Id != excludedUserId);
+        }).Any(u => u.User.Id != excludedUserId);
     }
 }

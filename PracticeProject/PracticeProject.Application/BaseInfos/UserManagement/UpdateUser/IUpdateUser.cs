@@ -23,7 +23,7 @@ namespace PracticeProject.Application.BaseInfos.UserManagement.UpdateUser
         {
             public bool IsSuccess { get; set; }
             public string Message { get; set; }
-            public User ModifiedUser { get; set; }
+            public IUserDataAccess.SearchResult ModifyResult { get; set; }
         }
     }
 }
