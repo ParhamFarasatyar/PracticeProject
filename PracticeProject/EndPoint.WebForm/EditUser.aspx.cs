@@ -17,7 +17,7 @@ namespace EndPoint.WebForm
     {
         public IGetUserById GetUserById { get; set; }
         public IUpdateUser UpdateUser { get; set; }
-        public ISearchPersons SearchPersons { get; set; }
+        public ISearchPeople SearchPersons { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -35,7 +35,7 @@ namespace EndPoint.WebForm
                     return;
                 }
 
-                response.User.Person = SearchPersons.Execute(new ISearchPersons.Request 
+                response.User.Person = SearchPersons.Execute(new ISearchPeople.Request 
                 { 
                     Id = response.User.PersonId 
                 }).SingleOrDefault();

@@ -8,7 +8,7 @@ using System.Text;
 
 namespace PracticeProject.Persistance.DataAccess.BaseInfos
 {
-    public class SearchPersons : ISearchPersons
+    public class SearchPersons : ISearchPeople
     {
         private readonly IDb _db;
 
@@ -16,7 +16,7 @@ namespace PracticeProject.Persistance.DataAccess.BaseInfos
         {
             _db = db;
         }
-        public IQueryable<Person> Execute(ISearchPersons.Request request = null)
+        public IQueryable<Person> Execute(ISearchPeople.Request request = null)
         {
             var items = _db.Query<Person>();
 

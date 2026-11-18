@@ -10,7 +10,7 @@ using System.Linq;
 
 namespace PracticeProject.Persistence.DataAccess
 {
-    public class SearchUsers(IDb db, ISearchPersons searchPersons) : ISearchUsers
+    public class SearchUsers(IDb db, ISearchPeople searchPersons) : ISearchUsers
     {
         public IQueryable<User> Execute(ISearchUsers.Request request = null)
         {
@@ -31,7 +31,7 @@ namespace PracticeProject.Persistence.DataAccess
 
             if (request.Person is not null)
             {
-                var personIds = searchPersons.Execute(new ISearchPersons.Request
+                var personIds = searchPersons.Execute(new ISearchPeople.Request
                 {
                     Id = request.Person.Id,
                     Keyword = request.KeyWord

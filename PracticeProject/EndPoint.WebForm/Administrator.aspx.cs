@@ -16,7 +16,7 @@ namespace EndPoint.WebForm
     {
         public IDeleteUser DeleteUser { get; set; }
         public ISearchUsers SearchUsers { get; set; }
-        public ISearchPersons SearchPersons { get; set; }
+        public ISearchPeople SearchPersons { get; set; }
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -38,7 +38,7 @@ namespace EndPoint.WebForm
 
             foreach (User user in users)
             {
-                user.Person = SearchPersons.Execute(new ISearchPersons.Request
+                user.Person = SearchPersons.Execute(new ISearchPeople.Request
                 {
                     Id = user.PersonId
                 }).SingleOrDefault();

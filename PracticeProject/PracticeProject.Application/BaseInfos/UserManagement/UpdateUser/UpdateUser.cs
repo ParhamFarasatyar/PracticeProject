@@ -17,9 +17,9 @@ namespace PracticeProject.Application.BaseInfos.UserManagement.UpdateUser
 
         private readonly IPasswordHasher _passwordHasher;
 
-        private readonly ISearchPersons _searchPersons;
+        private readonly ISearchPeople _searchPersons;
 
-        public UpdateUser(IUserDataAccess userDataAccess, IDb db, IPasswordHasher passwordHasher, ISearchPersons searchPersons)
+        public UpdateUser(IUserDataAccess userDataAccess, IDb db, IPasswordHasher passwordHasher, ISearchPeople searchPersons)
         {
             _userDataAccess = userDataAccess ?? throw new ArgumentNullException(nameof(userDataAccess));
             _db = db ?? throw new ArgumentNullException(nameof(db));
@@ -134,7 +134,7 @@ namespace PracticeProject.Application.BaseInfos.UserManagement.UpdateUser
                 return false;
             }
 
-            user.Person = _searchPersons.Execute(new ISearchPersons.Request
+            user.Person = _searchPersons.Execute(new ISearchPeople.Request
             {
                 Id = user.PersonId
             }).SingleOrDefault();

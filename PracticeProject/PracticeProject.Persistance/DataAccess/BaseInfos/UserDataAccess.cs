@@ -15,9 +15,9 @@ namespace PracticeProject.Persistence.DataAccess
     {
         private readonly IDb _db;
         private readonly ISearchUsers _searchUsers;
-        private readonly ISearchPersons _searchPersons;
+        private readonly ISearchPeople _searchPersons;
 
-        public UserDataAccess(IDb db, ISearchUsers searchUsers, ISearchPersons searchPersons)
+        public UserDataAccess(IDb db, ISearchUsers searchUsers, ISearchPeople searchPersons)
         {
             _db = db;
             _searchUsers = searchUsers;
@@ -36,7 +36,7 @@ namespace PracticeProject.Persistence.DataAccess
             if (user is null)
                 return;
 
-            Person person = _searchPersons.Execute(new ISearchPersons.Request
+            Person person = _searchPersons.Execute(new ISearchPeople.Request
             {
                 Id = user.PersonId
             }).SingleOrDefault();

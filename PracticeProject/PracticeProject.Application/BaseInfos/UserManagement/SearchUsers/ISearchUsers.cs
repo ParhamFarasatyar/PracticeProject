@@ -14,7 +14,7 @@ namespace PracticeProject.Application.BaseInfos.UserManagement.SearchUsers
         {
             public int? Id { get; set; }
             public string KeyWord { get; set; }
-            public ISearchPersons.Request Person { get; set; }
+            public ISearchPeople.Request Person { get; set; }
         }
     }
 }

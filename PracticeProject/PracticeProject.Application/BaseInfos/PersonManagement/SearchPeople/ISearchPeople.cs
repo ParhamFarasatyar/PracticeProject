@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PracticeProject.Application.BaseInfos.PersonManagement.SearchPeople
 {
-    public interface ISearchPersons
+    public interface ISearchPeople
     {
        IQueryable<Person> Execute(Request requset = null);
 
