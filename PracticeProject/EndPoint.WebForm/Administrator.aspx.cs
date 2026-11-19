@@ -1,5 +1,5 @@
 ﻿using PracticeProject.Application.BaseInfos;
-using PracticeProject.Application.BaseInfos.PersonManagement.SearchPeople;
+using PracticeProject.Application.BaseInfos.PersonManagement.SearchPersons;
 using PracticeProject.Application.BaseInfos.UserManagement.DeleteUser;
 using PracticeProject.Application.BaseInfos.UserManagement.SearchUsers;
 using PracticeProject.Domain.BaseInfos.People;
@@ -17,7 +17,7 @@ namespace EndPoint.WebForm
     {
         public IDeleteUser DeleteUser { get; set; }
         public ISearchUsers SearchUsers { get; set; }
-        public ISearchPeople SearchPersons { get; set; }
+        public ISearchPersons SearchPersons { get; set; }
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -32,7 +32,7 @@ namespace EndPoint.WebForm
             IQueryable<IUserDataAccess.SearchResult> result = SearchUsers.Execute(new ISearchUsers.Request 
             { 
                 KeyWord = keyword, 
-                PersonRequest = new ISearchPeople.Request
+                PersonRequest = new ISearchPersons.Request
                 {
                     Keyword = keyword
                 }

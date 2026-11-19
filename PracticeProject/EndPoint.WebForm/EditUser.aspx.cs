@@ -1,5 +1,5 @@
 ﻿using PracticeProject.Application.BaseInfos;
-using PracticeProject.Application.BaseInfos.PersonManagement.SearchPeople;
+using PracticeProject.Application.BaseInfos.PersonManagement.SearchPersons;
 using PracticeProject.Application.BaseInfos.UserManagement.GetUserById;
 using PracticeProject.Application.BaseInfos.UserManagement.UpdateUser;
 using PracticeProject.Domain.BaseInfos.People;
@@ -17,7 +17,7 @@ namespace EndPoint.WebForm
     {
         public IGetUserById GetUserById { get; set; }
         public IUpdateUser UpdateUser { get; set; }
-        public ISearchPeople SearchPersons { get; set; }
+        public ISearchPersons SearchPersons { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)

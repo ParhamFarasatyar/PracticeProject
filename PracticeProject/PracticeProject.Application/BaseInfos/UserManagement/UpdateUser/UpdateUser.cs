@@ -1,4 +1,4 @@
-﻿using PracticeProject.Application.BaseInfos.PersonManagement.SearchPeople;
+﻿using PracticeProject.Application.BaseInfos.PersonManagement.SearchPersons;
 using PracticeProject.Application.BaseInfos.Security;
 using PracticeProject.Application.BaseInfos.UserManagement.CreateUser;
 using PracticeProject.Domain.BaseInfos.People;
@@ -17,9 +17,9 @@ namespace PracticeProject.Application.BaseInfos.UserManagement.UpdateUser
 
         private readonly IPasswordHasher _passwordHasher;
 
-        private readonly ISearchPeople _searchPersons;
+        private readonly ISearchPersons _searchPersons;
 
-        public UpdateUser(IUserDataAccess userDataAccess, IDb db, IPasswordHasher passwordHasher, ISearchPeople searchPersons)
+        public UpdateUser(IUserDataAccess userDataAccess, IDb db, IPasswordHasher passwordHasher, ISearchPersons searchPersons)
         {
             _userDataAccess = userDataAccess ?? throw new ArgumentNullException(nameof(userDataAccess));
             _db = db ?? throw new ArgumentNullException(nameof(db));

@@ -1,4 +1,4 @@
-﻿using PracticeProject.Application.BaseInfos.PersonManagement.SearchPeople;
+﻿using PracticeProject.Application.BaseInfos.PersonManagement.SearchPersons;
 using PracticeProject.Domain.BaseInfos.People;
 using PracticeProject.Domain.BaseInfos.Users;
 using System.Collections.Generic;
@@ -14,7 +14,7 @@ namespace PracticeProject.Application.BaseInfos.UserManagement.SearchUsers
         {
             public int? Id { get; set; }
             public string KeyWord { get; set; }
-            public ISearchPeople.Request PersonRequest { get; set; }
+            public ISearchPersons.Request PersonRequest { get; set; }
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using PracticeProject.Application;
 using PracticeProject.Application.BaseInfos;
-using PracticeProject.Application.BaseInfos.PersonManagement.SearchPeople;
+using PracticeProject.Application.BaseInfos.PersonManagement.SearchPersons;
 using PracticeProject.Application.BaseInfos.UserManagement.SearchUsers;
 using PracticeProject.Domain.BaseInfos.People;
 using PracticeProject.Domain.BaseInfos.Users;
@@ -12,13 +12,13 @@ using static PracticeProject.Application.BaseInfos.IUserDataAccess;
 
 namespace PracticeProject.Persistence.DataAccess.BaseInfos.UserManagement
 {
-    public class SearchUsers(IDb db, ISearchPeople searchPeople) : ISearchUsers
+    public class SearchUsers(IDb db, ISearchPersons searchPersons) : ISearchUsers
     {
         public IQueryable<SearchResult> Execute(ISearchUsers.Request request = null)
         {
             var users = db.Query<User>();
 
-            var people = searchPeople.Execute();
+            var people = searchPersons.Execute();
 
             var items =
                 from user in users

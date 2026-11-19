@@ -1,5 +1,5 @@
 ﻿using PracticeProject.Application;
-using PracticeProject.Application.BaseInfos.PersonManagement.SearchPeople;
+using PracticeProject.Application.BaseInfos.PersonManagement.SearchPersons;
 using PracticeProject.Domain.BaseInfos.People;
 using System;
 using System.Collections.Generic;
@@ -8,22 +8,22 @@ using System.Text;
 
 namespace PracticeProject.Persistance.DataAccess.BaseInfos.Security.BaseInfos.PersonManagement
 {
-    public class SearchPeople : ISearchPeople
+    public class SearchPersons : ISearchPersons
     {
         private readonly IDb _db;
 
-        public SearchPeople(IDb db)
+        public SearchPersons(IDb db)
         {
             _db = db;
         }
-        public IQueryable<Person> Execute(ISearchPeople.Request request = null)
+        public IQueryable<Person> Execute(ISearchPersons.Request request = null)
         {
             var items = _db.Query<Person>();
 
             return ValidateRequest(request, ref items);
         }
 
-        private IQueryable<Person> ValidateRequest(ISearchPeople.Request request, ref IQueryable<Person> items)
+        private IQueryable<Person> ValidateRequest(ISearchPersons.Request request, ref IQueryable<Person> items)
         {
             if(request == null)
                 return items;

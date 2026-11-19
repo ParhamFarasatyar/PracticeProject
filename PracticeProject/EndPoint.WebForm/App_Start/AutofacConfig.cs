@@ -12,7 +12,7 @@ using PracticeProject.Persistance.DataAccess.BaseInfos.Security;
 using PracticeProject.Application.BaseInfos.Security;
 using PracticeProject.Application.BaseInfos.UserManagement.GetUserById;
 using PracticeProject.Persistance.DataAccess.BaseInfos.Security.BaseInfos.PersonManagement;
-using PracticeProject.Application.BaseInfos.PersonManagement.SearchPeople;
+using PracticeProject.Application.BaseInfos.PersonManagement.SearchPersons;
 
 namespace EndPoint.WebForm.App_Start
 {
@@ -40,7 +40,7 @@ namespace EndPoint.WebForm.App_Start
 
             builder.RegisterType<GetUserById>().As<IGetUserById>().InstancePerRequest();
 
-            builder.RegisterType<SearchPeople>().As<ISearchPeople>().InstancePerRequest();
+            builder.RegisterType<SearchPersons>().As<ISearchPersons>().InstancePerRequest();
 
             return builder.Build();
         }

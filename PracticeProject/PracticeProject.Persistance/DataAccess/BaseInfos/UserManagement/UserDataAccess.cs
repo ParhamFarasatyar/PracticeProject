@@ -1,6 +1,6 @@
 ﻿using PracticeProject.Application;
 using PracticeProject.Application.BaseInfos;
-using PracticeProject.Application.BaseInfos.PersonManagement.SearchPeople;
+using PracticeProject.Application.BaseInfos.PersonManagement.SearchPersons;
 using PracticeProject.Application.BaseInfos.UserManagement.SearchUsers;
 using PracticeProject.Domain.BaseInfos.People;
 using PracticeProject.Domain.BaseInfos.Users;
@@ -15,9 +15,9 @@ namespace PracticeProject.Persistence.DataAccess.BaseInfos.UserManagement
     {
         private readonly IDb _db;
         private readonly ISearchUsers _searchUsers;
-        private readonly ISearchPeople _searchPersons;
+        private readonly ISearchPersons _searchPersons;
 
-        public UserDataAccess(IDb db, ISearchUsers searchUsers, ISearchPeople searchPersons)
+        public UserDataAccess(IDb db, ISearchUsers searchUsers, ISearchPersons searchPersons)
         {
             _db = db;
             _searchUsers = searchUsers;
@@ -31,7 +31,7 @@ namespace PracticeProject.Persistence.DataAccess.BaseInfos.UserManagement
             IUserDataAccess.SearchResult result = _searchUsers.Execute(new ISearchUsers.Request
             {
                 Id = id,
-                PersonRequest = new ISearchPeople.Request()
+                PersonRequest = new ISearchPersons.Request()
             }).SingleOrDefault(r => r.User.Id == id);
 
             if (result is null)
@@ -43,19 +43,19 @@ namespace PracticeProject.Persistence.DataAccess.BaseInfos.UserManagement
 
         public IQueryable<IUserDataAccess.SearchResult> GetAll() => _searchUsers.Execute(new ISearchUsers.Request 
         { 
-            PersonRequest = new ISearchPeople.Request()
+            PersonRequest = new ISearchPersons.Request()
         });
 
         public IUserDataAccess.SearchResult GetById(int id) => _searchUsers.Execute(new ISearchUsers.Request 
         { 
             Id = id,
-            PersonRequest = new ISearchPeople.Request()
+            PersonRequest = new ISearchPersons.Request()
         }).SingleOrDefault(r => r.User.Id == id);
 
         public IUserDataAccess.SearchResult GetByEmail(string email) => _searchUsers.Execute(new ISearchUsers.Request
         {
             KeyWord = email,
-            PersonRequest = new ISearchPeople.Request()
+            PersonRequest = new ISearchPersons.Request()
         }).SingleOrDefault(r => r.User.Email == email);
 
         public void Update(IUserDataAccess.SearchResult result)
