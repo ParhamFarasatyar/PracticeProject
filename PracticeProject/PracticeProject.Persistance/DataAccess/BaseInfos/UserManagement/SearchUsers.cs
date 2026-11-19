@@ -30,10 +30,10 @@ namespace PracticeProject.Persistence.DataAccess.BaseInfos.UserManagement
                     Person = person
                 };
 
-            return ValidateRequest(request, ref items);
+            return ApplyFilter(request, ref items);
         }
 
-        private IQueryable<SearchResult> ValidateRequest
+        private IQueryable<SearchResult> ApplyFilter
             (ISearchUsers.Request request, ref IQueryable<SearchResult> items)
         {
             if (request is null)

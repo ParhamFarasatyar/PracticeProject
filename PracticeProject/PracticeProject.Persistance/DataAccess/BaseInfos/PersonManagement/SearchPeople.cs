@@ -20,10 +20,10 @@ namespace PracticeProject.Persistance.DataAccess.BaseInfos.Security.BaseInfos.Pe
         {
             var items = _db.Query<Person>();
 
-            return ValidateRequest(request, ref items);
+            return ApplyFilter(request, ref items);
         }
 
-        private IQueryable<Person> ValidateRequest(ISearchPersons.Request request, ref IQueryable<Person> items)
+        private IQueryable<Person> ApplyFilter(ISearchPersons.Request request, ref IQueryable<Person> items)
         {
             if(request == null)
                 return items;
