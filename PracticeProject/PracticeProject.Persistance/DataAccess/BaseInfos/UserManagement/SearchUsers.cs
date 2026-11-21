@@ -25,7 +25,7 @@ namespace PracticeProject.Persistence.DataAccess.BaseInfos.UserManagement
             {
                 items =
                     from user in items
-                    join person in searchPersons.Execute(request.PersonRequest)
+                    join person in searchPersons.Respond(request.PersonRequest)
                         on user.PersonId equals person.Id
                     select user;
             }

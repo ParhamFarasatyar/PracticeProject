@@ -5,7 +5,7 @@ namespace PracticeProject.Application.BaseInfos.PersonManagement.SearchPersons
 {
     public interface ISearchPersons
     {
-       IQueryable<Person> Execute(Request requset = null);
+       IQueryable<Person> Respond(Request requset = null);
 
         class Request
         {
