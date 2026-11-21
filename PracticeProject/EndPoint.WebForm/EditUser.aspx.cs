@@ -1,6 +1,7 @@
 ﻿using PracticeProject.Application.BaseInfos.PersonManagement.SearchPersons;
 using PracticeProject.Application.BaseInfos.UserManagement.GetUserById;
 using PracticeProject.Application.BaseInfos.UserManagement.UpdateUser;
+using PracticeProject.Domain.BaseInfo.Exceptions;
 using PracticeProject.Domain.BaseInfos.People;
 using PracticeProject.Domain.BaseInfos.Users;
 using System;
@@ -15,26 +16,34 @@ namespace EndPoint.WebForm
         public ISearchPersons SearchPersons { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            if (IsPostBack)
+                return;
+
+            if (!int.TryParse(Request.QueryString["id"], out int userId))
             {
-                if (!int.TryParse(Request.QueryString["id"], out int userId))
-                {
-                    Response.Redirect("./Administrator.aspx");
-                    return;
-                }
+                Response.Redirect("./Administrator.aspx");
+                return;
+            }
 
-                IGetUserById.Response response = GetUserById.Execute(new IGetUserById.Request { Id = userId });
-                if (!response.IsSuccess)
-                {
-                    Response.Redirect("./Administrator.aspx");
-                    return;
-                }
+            try
+            {
+                User user = GetUserById.Execute(new IGetUserById.Request { Id = userId });
 
-                tboxFirstName.Text = response.User.Person.FirstName;
-                tboxLastName.Text = response.User.Person.LastName;
-                tboxAge.Text = response.User.Person.Age.ToString();
-                tboxEmail.Text = response.User.Email;
-                tboxPassword.Text = response.User.Password;
+                tboxFirstName.Text = user.Person.FirstName;
+                tboxLastName.Text = user.Person.LastName;
+                tboxAge.Text = user.Person.Age.ToString();
+                tboxEmail.Text = user.Email;
+                tboxPassword.Text = user.Password;
+            }
+            catch (InvalidValueException ex)
+            {
+                lblMessage.ForeColor = System.Drawing.Color.Red;
+                lblMessage.Text = ex.Message;
+            }
+            catch (Exception)
+            {
+                Response.Redirect("./Administrator.aspx");
+                return;
             }
         }
 
