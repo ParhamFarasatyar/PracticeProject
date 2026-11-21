@@ -5,7 +5,7 @@ namespace PracticeProject.Application.BaseInfos.UserManagement.CreateUser
 {
     public interface ICreateUser
     {
-        Response Execute(Request request);
+        User Execute(Request request);
 
         class Request
         {
@@ -16,12 +16,6 @@ namespace PracticeProject.Application.BaseInfos.UserManagement.CreateUser
             public Role Role { get; set; }
             public string Email { get; set; }
             public string Password { get; set; }
-        }
-
-        class Response
-        {
-            public bool IsSuccess { get; set; }
-            public User User { get; set; }
         }
     }
 }

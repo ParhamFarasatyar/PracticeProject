@@ -7,18 +7,14 @@ namespace PracticeProject.Application.BaseInfos.UserManagement.CreateUser
 {
     public class CreateUser(IUserDataAccess userDataAccess, IDb db, IPasswordHasher passwordHasher) : ICreateUser
     {
-        public ICreateUser.Response Execute(ICreateUser.Request request)
+        public User Execute(ICreateUser.Request request)
         {
             User user = ValidateRequest(request);
 
             userDataAccess.Create(user);
             db.SaveChanges();
-            
-            return new ICreateUser.Response
-            {
-                IsSuccess = true,
-                User = user
-            };
+
+            return user;
         }
 
         private User ValidateRequest(ICreateUser.Request request)
