@@ -11,14 +11,9 @@ namespace PracticeProject.Persistance.DataAccess.BaseInfos.Security.BaseInfos.Pe
 
         public SearchPersons(IDb db) => _db = db;
 
-        public IQueryable<Person> Execute(ISearchPersons.Request request = null)
-        {
-            var items = _db.Query<Person>();
+        public IQueryable<Person> Respond(ISearchPersons.Request request = null) => Respond(request, _db.Query<Person>());
 
-            return ApplyFilter(request, ref items);
-        }
-
-        private IQueryable<Person> ApplyFilter(ISearchPersons.Request request, ref IQueryable<Person> items)
+        private IQueryable<Person> Respond(ISearchPersons.Request request, IQueryable<Person> items)
         {
             if (request == null)
                 return items;
@@ -27,9 +22,10 @@ namespace PracticeProject.Persistance.DataAccess.BaseInfos.Security.BaseInfos.Pe
                 items = items.Where(i => i.Id == request.Id);
 
             if (!string.IsNullOrEmpty(request.Keyword))
-                items = items.Where(i =>
-                i.FirstName.Contains(request.Keyword) ||
-                i.LastName.Contains(request.Keyword));
+                items = 
+                    items.Where(i => 
+                    i.FirstName.Contains(request.Keyword) ||
+                    i.LastName.Contains(request.Keyword));
 
             return items;
         }
