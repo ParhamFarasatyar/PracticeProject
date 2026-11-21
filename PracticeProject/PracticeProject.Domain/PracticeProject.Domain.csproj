@@ -55,6 +55,7 @@
     <Compile Include="BaseInfo\Exceptions\ExceedFieldLengthException.cs" />
     <Compile Include="BaseInfo\Exceptions\InvalidValueException.cs" />
     <Compile Include="BaseInfo\Exceptions\NoNullAllowedException.cs" />
+    <Compile Include="BaseInfo\Exceptions\UserNotFoundException.cs" />
     <Compile Include="BaseInfo\Exceptions\ValueOutOfRangeException.cs" />
     <Compile Include="BaseInfo\People\Gender.cs" />
     <Compile Include="IEntity.cs" />
