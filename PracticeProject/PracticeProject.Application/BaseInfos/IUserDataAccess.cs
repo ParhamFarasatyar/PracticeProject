@@ -11,8 +11,6 @@ namespace PracticeProject.Application.BaseInfos
 
         User GetByEmail(string email);
 
-        IQueryable<User> GetAll();
-
         void Update(User user);
 
         void Delete(int id);

@@ -66,9 +66,7 @@
     <Compile Include="BaseInfos\UserManagement\UpdateUser\IUpdateUser.cs" />
     <Compile Include="BaseInfos\UserManagement\UpdateUser\UpdateUser.cs" />
     <Compile Include="IDb.cs" />
-    <Compile Include="BaseInfos\UserManagement\GetAllUsers\IGetAllUsers.cs" />
     <Compile Include="BaseInfos\IUserDataAccess.cs" />
-    <Compile Include="BaseInfos\UserManagement\GetAllUsers\GetAllUsers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BaseInfos\UserManagement\CreateUser\CreateUser.cs" />
   </ItemGroup>
