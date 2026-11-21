@@ -3,15 +3,8 @@ using System;
 
 namespace PracticeProject.Application.BaseInfos.UserManagement.GetUserById
 {
-    public class GetUserById : IGetUserById
+    public class GetUserById(IUserDataAccess userDataAccess) : IGetUserById
     {
-        private readonly IUserDataAccess _userDataAccess;
-
-        public GetUserById(IUserDataAccess userDataAccess)
-        {
-            _userDataAccess = userDataAccess ?? throw new ArgumentNullException(nameof(userDataAccess));
-        }
-
         public IGetUserById.Response Execute(IGetUserById.Request request)
         {
             IGetUserById.Response response = new IGetUserById.Response();
@@ -22,7 +15,7 @@ namespace PracticeProject.Application.BaseInfos.UserManagement.GetUserById
             if (request.Id <= 0)
                 CreateFailureResponse("ID cannot be zero or negative.");
 
-            User result = _userDataAccess.GetById(request.Id);
+            User result = userDataAccess.GetById(request.Id);
 
             if (result is null)
                 return CreateFailureResponse($"No user found with ID {request.Id}");

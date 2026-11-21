@@ -1,6 +1,4 @@
-﻿using PracticeProject.Domain.BaseInfos.People;
-using PracticeProject.Domain.BaseInfos.Users;
-using System.Collections.Generic;
+﻿using PracticeProject.Domain.BaseInfos.Users;
 using System.Linq;
 
 namespace PracticeProject.Application.BaseInfos

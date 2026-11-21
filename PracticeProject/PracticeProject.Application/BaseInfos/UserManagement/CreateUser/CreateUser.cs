@@ -1,25 +1,11 @@
 ﻿using PracticeProject.Application.BaseInfos.Security;
 using PracticeProject.Domain.BaseInfos.People;
 using PracticeProject.Domain.BaseInfos.Users;
-using System;
 
 namespace PracticeProject.Application.BaseInfos.UserManagement.CreateUser
 {
-    public class CreateUser : ICreateUser
+    public class CreateUser(IUserDataAccess userDataAccess, IDb db, IPasswordHasher passwordHasher) : ICreateUser
     {
-        private readonly IUserDataAccess _userDataAccess;
-
-        private readonly IDb _db;
-
-        private readonly IPasswordHasher _passwordHasher;
-
-        public CreateUser(IUserDataAccess userDataAccess, IDb db, IPasswordHasher passwordHasher)
-        {
-            _userDataAccess = userDataAccess ?? throw new ArgumentNullException(nameof(userDataAccess));
-            _db = db ?? throw new ArgumentNullException(nameof(db));
-            _passwordHasher = passwordHasher ?? throw new ArgumentNullException(nameof(passwordHasher));
-        }
-
         public ICreateUser.Response Execute(ICreateUser.Request request)
         {
             bool isRequestValid = IsRequestValid(request, out string errorMessage, out User user);
@@ -27,8 +13,8 @@ namespace PracticeProject.Application.BaseInfos.UserManagement.CreateUser
             if (!isRequestValid)
                 return CreateFailureResponse(errorMessage);
 
-            _userDataAccess.Create(user);
-            _db.SaveChanges();
+            userDataAccess.Create(user);
+            db.SaveChanges();
 
             ICreateUser.Response response = new ICreateUser.Response
             {
@@ -89,7 +75,7 @@ namespace PracticeProject.Application.BaseInfos.UserManagement.CreateUser
                 return false;
             }
 
-            if (_userDataAccess.ExistsByEmail(request.Email))
+            if (userDataAccess.ExistsByEmail(request.Email))
             {
                 errorMessage = "This email address is already registered.";
                 user = null;
@@ -104,7 +90,7 @@ namespace PracticeProject.Application.BaseInfos.UserManagement.CreateUser
                 Gender = request.Gender
             };
 
-            string hashedPassword = _passwordHasher.Hash(request.Password);
+            string hashedPassword = passwordHasher.Hash(request.Password);
 
             user = new User(
                 request.Role,

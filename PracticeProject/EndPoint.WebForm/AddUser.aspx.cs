@@ -2,11 +2,7 @@
 using PracticeProject.Domain.BaseInfos.People;
 using PracticeProject.Domain.BaseInfos.Users;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace EndPoint.WebForm
 {
@@ -37,9 +33,8 @@ namespace EndPoint.WebForm
             ICreateUser.Response response = CreateUser.Execute(request);
 
             if (response.IsSuccess)
-            {
                 Response.Redirect("./Administrator.aspx");
-            }
+
             else
             {
                 lblMessage.ForeColor = System.Drawing.Color.Red;

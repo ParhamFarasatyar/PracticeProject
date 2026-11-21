@@ -1,14 +1,9 @@
-﻿using PracticeProject.Application.BaseInfos;
-using PracticeProject.Application.BaseInfos.PersonManagement.SearchPersons;
+﻿using PracticeProject.Application.BaseInfos.PersonManagement.SearchPersons;
 using PracticeProject.Application.BaseInfos.UserManagement.DeleteUser;
 using PracticeProject.Application.BaseInfos.UserManagement.SearchUsers;
-using PracticeProject.Domain.BaseInfos.People;
 using PracticeProject.Domain.BaseInfos.Users;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace EndPoint.WebForm
@@ -39,7 +34,7 @@ namespace EndPoint.WebForm
                 return;
             }
 
-            var resultList = result.Select(i => new 
+            var resultList = result.Select(i => new
             {
                 i.Id,
                 i.Email,
@@ -54,10 +49,7 @@ namespace EndPoint.WebForm
             gvUsers.DataBind();
         }
 
-        protected void btnSearch_Click(object sender, EventArgs e)
-        {
-            BindUsers(tboxSearch.Text.Trim());
-        }
+        protected void btnSearch_Click(object sender, EventArgs e) => BindUsers(tboxSearch.Text.Trim());
 
         protected void gvUsers_RowCommand(object sender, GridViewCommandEventArgs e)
         {
@@ -98,10 +90,7 @@ namespace EndPoint.WebForm
             }
         }
 
-        protected void btnAddUser_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("./AddUser.aspx");
-        }
+        protected void btnAddUser_Click(object sender, EventArgs e) => Response.Redirect("./AddUser.aspx");
 
         protected void btnLogout_Click(object sender, EventArgs e)
         {

@@ -1,6 +1,4 @@
 ﻿using PracticeProject.Domain.BaseInfos.People;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PracticeProject.Domain.BaseInfos.Users
 {
@@ -9,7 +7,7 @@ namespace PracticeProject.Domain.BaseInfos.Users
         public int Id { get; set; }
 
         public int PersonId { get; set; }
-        
+
         public Person Person { get; set; }
 
         public Role Role { get; set; }
@@ -28,7 +26,7 @@ namespace PracticeProject.Domain.BaseInfos.Users
 
         public User()
         {
-            
+
         }
     }
 }

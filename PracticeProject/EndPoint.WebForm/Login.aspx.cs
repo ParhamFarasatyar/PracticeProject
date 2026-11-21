@@ -1,11 +1,7 @@
 ﻿using PracticeProject.Application.BaseInfos.UserManagement.LoginUser;
 using PracticeProject.Domain.BaseInfos.Users;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace EndPoint.WebForm
 {
@@ -38,14 +34,12 @@ namespace EndPoint.WebForm
                 Session["IsAuthenticated"] = true;
 
                 if (response.User.Role == Role.Admin)
-                {
                     Response.Redirect("./Administrator.aspx");
-                }
+
                 else
-                {
                     Response.Redirect("./Users.aspx");
-                }
             }
+
             else
             {
                 lblMessage.ForeColor = System.Drawing.Color.Red;

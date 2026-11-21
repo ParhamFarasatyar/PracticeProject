@@ -1,12 +1,7 @@
 ﻿using PracticeProject.Application;
-using PracticeProject.Application.BaseInfos;
 using PracticeProject.Application.BaseInfos.PersonManagement.SearchPersons;
 using PracticeProject.Application.BaseInfos.UserManagement.SearchUsers;
-using PracticeProject.Domain.BaseInfos.People;
 using PracticeProject.Domain.BaseInfos.Users;
-using PracticeProject.Persistance.DataAccess.BaseInfos.Security.BaseInfos.PersonManagement;
-using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 
 namespace PracticeProject.Persistence.DataAccess.BaseInfos.UserManagement

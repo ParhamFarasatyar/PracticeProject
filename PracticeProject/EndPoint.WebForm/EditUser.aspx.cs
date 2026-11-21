@@ -1,15 +1,10 @@
-﻿using PracticeProject.Application.BaseInfos;
-using PracticeProject.Application.BaseInfos.PersonManagement.SearchPersons;
+﻿using PracticeProject.Application.BaseInfos.PersonManagement.SearchPersons;
 using PracticeProject.Application.BaseInfos.UserManagement.GetUserById;
 using PracticeProject.Application.BaseInfos.UserManagement.UpdateUser;
 using PracticeProject.Domain.BaseInfos.People;
 using PracticeProject.Domain.BaseInfos.Users;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace EndPoint.WebForm
 {

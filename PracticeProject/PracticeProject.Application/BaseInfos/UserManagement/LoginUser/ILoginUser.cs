@@ -9,7 +9,6 @@ namespace PracticeProject.Application.BaseInfos.UserManagement.LoginUser
         class LoginUserRequest
         {
             public string Email { get; set; }
-
             public string Password { get; set; }
         }
 

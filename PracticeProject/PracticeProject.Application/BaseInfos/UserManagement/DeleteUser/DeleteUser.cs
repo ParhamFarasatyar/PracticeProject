@@ -1,20 +1,7 @@
-﻿using System;
-using System.Data.Entity.Infrastructure;
-
-namespace PracticeProject.Application.BaseInfos.UserManagement.DeleteUser
+﻿namespace PracticeProject.Application.BaseInfos.UserManagement.DeleteUser
 {
-    public class DeleteUser : IDeleteUser
+    public class DeleteUser(IUserDataAccess userDataAccess, IDb db) : IDeleteUser
     {
-        private readonly IUserDataAccess _userDataAccess;
-
-        private readonly IDb _db;
-
-        public DeleteUser(IUserDataAccess userDataAccess, IDb db)
-        {
-            _userDataAccess = userDataAccess ?? throw new ArgumentNullException(nameof(userDataAccess));
-            _db = db ?? throw new ArgumentNullException(nameof(db));
-        }
-
         public IDeleteUser.Response Execute(IDeleteUser.Request request)
         {
             if (request is null)
@@ -23,8 +10,8 @@ namespace PracticeProject.Application.BaseInfos.UserManagement.DeleteUser
             if (request.Id <= 0)
                 return CreateFailureResponse("ID cannot be zero or negative.");
 
-            _userDataAccess.Delete(request.Id);
-            _db.SaveChanges();
+            userDataAccess.Delete(request.Id);
+            db.SaveChanges();
 
             return new IDeleteUser.Response
             {

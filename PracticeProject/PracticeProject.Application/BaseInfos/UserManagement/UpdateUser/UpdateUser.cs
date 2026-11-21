@@ -1,32 +1,13 @@
 ﻿using PracticeProject.Application.BaseInfos.PersonManagement.SearchPersons;
 using PracticeProject.Application.BaseInfos.Security;
-using PracticeProject.Application.BaseInfos.UserManagement.CreateUser;
 using PracticeProject.Domain.BaseInfos.People;
 using PracticeProject.Domain.BaseInfos.Users;
 using System;
-using System.Data.Entity.Infrastructure;
-using System.Linq;
 
 namespace PracticeProject.Application.BaseInfos.UserManagement.UpdateUser
 {
-    public class UpdateUser : IUpdateUser
+    public class UpdateUser(IUserDataAccess userDataAccess, IDb db, IPasswordHasher passwordHasher, ISearchPersons searchPersons) : IUpdateUser
     {
-        private readonly IUserDataAccess _userDataAccess;
-
-        private readonly IDb _db;
-
-        private readonly IPasswordHasher _passwordHasher;
-
-        private readonly ISearchPersons _searchPersons;
-
-        public UpdateUser(IUserDataAccess userDataAccess, IDb db, IPasswordHasher passwordHasher, ISearchPersons searchPersons)
-        {
-            _userDataAccess = userDataAccess ?? throw new ArgumentNullException(nameof(userDataAccess));
-            _db = db ?? throw new ArgumentNullException(nameof(db));
-            _passwordHasher = passwordHasher ?? throw new ArgumentNullException(nameof(passwordHasher));
-            _searchPersons = searchPersons ?? throw new ArgumentNullException(nameof(searchPersons));
-        }
-
         public IUpdateUser.Response Execute(IUpdateUser.Request request)
         {
             bool isRequestValid = IsRequestValid(request, out User user, out string errorMessage);
@@ -37,10 +18,10 @@ namespace PracticeProject.Application.BaseInfos.UserManagement.UpdateUser
             string validPassword;
             if (!string.IsNullOrWhiteSpace(request.Password))
             {
-                if (_passwordHasher.Verify(request.Password, user.Password))
+                if (passwordHasher.Verify(request.Password, user.Password))
                     validPassword = user.Password;
                 else
-                    validPassword = _passwordHasher.Hash(request.Password);
+                    validPassword = passwordHasher.Hash(request.Password);
             }
             else
                 validPassword = user.Password;
@@ -53,8 +34,8 @@ namespace PracticeProject.Application.BaseInfos.UserManagement.UpdateUser
             user.Email = request.Email ?? user.Email;
             user.Password = validPassword;
 
-            _userDataAccess.Update(user);
-            _db.SaveChanges();
+            userDataAccess.Update(user);
+            db.SaveChanges();
 
             return new IUpdateUser.Response
             {
@@ -120,7 +101,7 @@ namespace PracticeProject.Application.BaseInfos.UserManagement.UpdateUser
                 }
             }
 
-            user = _userDataAccess.GetById(request.Id);
+            user = userDataAccess.GetById(request.Id);
 
             if (user is null)
             {
@@ -128,7 +109,7 @@ namespace PracticeProject.Application.BaseInfos.UserManagement.UpdateUser
                 return false;
             }
 
-            if (_userDataAccess.ExistsByEmail(request.Email, request.Id))
+            if (userDataAccess.ExistsByEmail(request.Email, request.Id))
             {
                 errorMessage = "Email already exists.";
                 return false;

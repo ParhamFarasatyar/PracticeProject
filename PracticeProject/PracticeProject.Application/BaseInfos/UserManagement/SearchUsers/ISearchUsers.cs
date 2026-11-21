@@ -1,7 +1,5 @@
 ﻿using PracticeProject.Application.BaseInfos.PersonManagement.SearchPersons;
-using PracticeProject.Domain.BaseInfos.People;
 using PracticeProject.Domain.BaseInfos.Users;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace PracticeProject.Application.BaseInfos.UserManagement.SearchUsers

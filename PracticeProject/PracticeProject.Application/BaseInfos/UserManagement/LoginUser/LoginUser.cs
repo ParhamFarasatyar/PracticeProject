@@ -3,17 +3,8 @@ using PracticeProject.Domain.BaseInfos.Users;
 
 namespace PracticeProject.Application.BaseInfos.UserManagement.LoginUser
 {
-    public class LoginUser : ILoginUser
+    public class LoginUser(IUserDataAccess userDataAccess, IPasswordHasher passwordHasher) : ILoginUser
     {
-        private readonly IUserDataAccess _userDataAccess;
-        private readonly IPasswordHasher _passwordHasher;
-
-        public LoginUser(IUserDataAccess userDataAccess, IPasswordHasher passwordHasher)
-        {
-            _userDataAccess = userDataAccess;
-            _passwordHasher = passwordHasher;
-        }
-
         public ILoginUser.Response Execute(ILoginUser.LoginUserRequest request)
         {
             bool isRequestValid = IsRequestValid(request, out User user, out string errorMessage);
@@ -45,8 +36,8 @@ namespace PracticeProject.Application.BaseInfos.UserManagement.LoginUser
             }
 
 
-            user = _userDataAccess.GetByEmail(request.Email);
-            if (user is null || !_passwordHasher.Verify(request.Password, user.Password))
+            user = userDataAccess.GetByEmail(request.Email);
+            if (user is null || !passwordHasher.Verify(request.Password, user.Password))
             {
                 errorMessage = "Incorrect email or password.";
                 return false;

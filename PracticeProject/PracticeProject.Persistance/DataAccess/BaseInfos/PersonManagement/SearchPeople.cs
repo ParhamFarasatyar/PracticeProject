@@ -1,10 +1,7 @@
 ﻿using PracticeProject.Application;
 using PracticeProject.Application.BaseInfos.PersonManagement.SearchPersons;
 using PracticeProject.Domain.BaseInfos.People;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace PracticeProject.Persistance.DataAccess.BaseInfos.Security.BaseInfos.PersonManagement
 {
@@ -12,10 +9,8 @@ namespace PracticeProject.Persistance.DataAccess.BaseInfos.Security.BaseInfos.Pe
     {
         private readonly IDb _db;
 
-        public SearchPersons(IDb db)
-        {
-            _db = db;
-        }
+        public SearchPersons(IDb db) => _db = db;
+
         public IQueryable<Person> Execute(ISearchPersons.Request request = null)
         {
             var items = _db.Query<Person>();
@@ -25,7 +20,7 @@ namespace PracticeProject.Persistance.DataAccess.BaseInfos.Security.BaseInfos.Pe
 
         private IQueryable<Person> ApplyFilter(ISearchPersons.Request request, ref IQueryable<Person> items)
         {
-            if(request == null)
+            if (request == null)
                 return items;
 
             if (request.Id.HasValue)
