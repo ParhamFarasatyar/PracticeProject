@@ -7,5 +7,7 @@ namespace PracticeProject.Application.BaseInfos
         public void Delete(int id);
 
         public void Update(Person person);
+
+        public Person GetById(int id);
     }
 }
