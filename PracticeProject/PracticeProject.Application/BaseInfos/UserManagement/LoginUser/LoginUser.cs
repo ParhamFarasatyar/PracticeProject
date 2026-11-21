@@ -1,60 +1,26 @@
 ﻿using PracticeProject.Application.BaseInfos.Security;
+using PracticeProject.Domain.BaseInfo.Exceptions;
 using PracticeProject.Domain.BaseInfos.Users;
 
 namespace PracticeProject.Application.BaseInfos.UserManagement.LoginUser
 {
     public class LoginUser(IUserDataAccess userDataAccess, IPasswordHasher passwordHasher) : ILoginUser
     {
-        public ILoginUser.Response Execute(ILoginUser.LoginUserRequest request)
-        {
-            bool isRequestValid = IsRequestValid(request, out User user, out string errorMessage);
-            if (!isRequestValid)
-                return CreateFailureResponse(errorMessage);
+        public User Execute(ILoginUser.LoginUserRequest request) => ValidateRequest(request);
 
-            return new ILoginUser.Response
-            {
-                IsSuccess = true,
-                Message = "User logged in successfully.",
-                User = user
-            };
-        }
-
-        private bool IsRequestValid(ILoginUser.LoginUserRequest request, out User user, out string errorMessage)
+        private User ValidateRequest(ILoginUser.LoginUserRequest request)
         {
             if (request is null)
-            {
-                errorMessage = "Request cannot be null.";
-                user = null;
-                return false;
-            }
+                throw new NoNullAllowedException("Request cannot be null");
             
             if (request.Email is null || request.Password is null)
-            {
-                errorMessage = "Email or password cannot be null.";
-                user = null;
-                return false;
-            }
+                throw new NoNullAllowedException("Email or password cannot be null");
 
-
-            user = userDataAccess.GetByEmail(request.Email);
+            User user = userDataAccess.GetByEmail(request.Email);
             if (user is null || !passwordHasher.Verify(request.Password, user.Password))
-            {
-                errorMessage = "Incorrect email or password.";
-                return false;
-            }
+                throw new InvalidValueException("Incorrect email or password");
 
-            errorMessage = null;
-            return true;
-        }
-
-        private ILoginUser.Response CreateFailureResponse(string message)
-        {
-            return new ILoginUser.Response
-            {
-                IsSuccess = false,
-                Message = message,
-                User = null
-            };
+            return user;
         }
     }
 }

@@ -25,25 +25,24 @@ namespace EndPoint.WebForm
                 Password = tboxPassword.Text.Trim(),
             };
 
-            var response = LoginUser.Execute(request);
-
-            if (response.IsSuccess)
+            try
             {
-                Session["UserId"] = response.User.Id;
-                Session["UserRole"] = response.User.Role;
+                User user = LoginUser.Execute(request);
+
+                Session["UserId"] = user.Id;
+                Session["UserRole"] = user.Role;
                 Session["IsAuthenticated"] = true;
 
-                if (response.User.Role == Role.Admin)
+                if (user.Role == Role.Admin)
                     Response.Redirect("./Administrator.aspx");
 
                 else
                     Response.Redirect("./Users.aspx");
             }
-
-            else
+            catch (Exception ex)
             {
                 lblMessage.ForeColor = System.Drawing.Color.Red;
-                lblMessage.Text = response.Message;
+                lblMessage.Text = ex.Message;
             }
         }
     }

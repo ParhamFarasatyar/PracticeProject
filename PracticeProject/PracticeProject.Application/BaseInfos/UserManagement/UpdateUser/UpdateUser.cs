@@ -1,19 +1,21 @@
-﻿using PracticeProject.Application.BaseInfos.PersonManagement.SearchPersons;
-using PracticeProject.Application.BaseInfos.Security;
+﻿using PracticeProject.Application.BaseInfos.Security;
+using PracticeProject.Domain.BaseInfo.Exceptions;
 using PracticeProject.Domain.BaseInfos.People;
 using PracticeProject.Domain.BaseInfos.Users;
 using System;
 
 namespace PracticeProject.Application.BaseInfos.UserManagement.UpdateUser
 {
-    public class UpdateUser(IUserDataAccess userDataAccess, IDb db, IPasswordHasher passwordHasher, IPersonDataAccess personDataAccess) : IUpdateUser
+    public class UpdateUser(
+        IUserDataAccess userDataAccess,
+        IDb db, 
+        IPasswordHasher passwordHasher,
+        IPersonDataAccess personDataAccess
+        ) : IUpdateUser
     {
-        public IUpdateUser.Response Execute(IUpdateUser.Request request)
+        public User Execute(IUpdateUser.Request request)
         {
-            bool isRequestValid = IsRequestValid(request, out User user, out string errorMessage);
-
-            if (!isRequestValid)
-                return CreateFailureResponse(errorMessage);
+            User user = ValidateRequest(request);
 
             string validPassword;
             if (!string.IsNullOrWhiteSpace(request.Password))
@@ -37,87 +39,45 @@ namespace PracticeProject.Application.BaseInfos.UserManagement.UpdateUser
             userDataAccess.Update(user);
             db.SaveChanges();
 
-            return new IUpdateUser.Response
-            {
-                IsSuccess = true,
-                Message = "User modified successfully",
-                ModifiedUser = user
-            };
+            return user;
         }
 
-        private IUpdateUser.Response CreateFailureResponse(string message)
-        {
-            return new IUpdateUser.Response
-            {
-                IsSuccess = false,
-                Message = message,
-                ModifiedUser = null
-            };
-        }
-
-        private bool IsRequestValid(IUpdateUser.Request request, out User user, out string errorMessage)
+        private User ValidateRequest(IUpdateUser.Request request)
         {
             if (request is null)
-            {
-                user = null;
-                errorMessage = "Request cannot be null.";
-                return false;
-            }
+                throw new NoNullAllowedException("Request cannot be null");
 
             if (request.Age != null)
             {
                 if (request.Age < 18 || request.Age > 80)
-                {
-                    user = null;
-                    errorMessage = "Age must be higher than 18 and lower than 80.";
-                    return false;
-                }
+                    throw new ValueOutOfRangeException("Age must be higher than 18 and lower than 80");
             }
 
             if (request.Id <= 0)
-            {
-                user = null;
-                errorMessage = "ID cannot be zero or negative.";
-                return false;
-            }
+                throw new InvalidValueException("ID cannot be zero or negative");
 
             if (request.Role != null)
             {
                 if (!Enum.IsDefined(typeof(Role), request.Role))
-                {
-                    user = null;
-                    errorMessage = "Invalid user role.";
-                    return false;
-                }
+                    throw new InvalidValueException("Invalid user role");
             }
 
             if (request.Gender != null)
             {
                 if (!Enum.IsDefined(typeof(Gender), request.Gender))
-                {
-                    user = null;
-                    errorMessage = "Invalid user gender.";
-                    return false;
-                }
+                    throw new InvalidValueException("Invalid user gender");
             }
 
-            user = userDataAccess.GetById(request.Id);
+            User user = userDataAccess.GetById(request.Id);
             user.Person = personDataAccess.GetById(user.PersonId);
 
             if (user is null)
-            {
-                errorMessage = $"No user found with ID {request.Id}";
-                return false;
-            }
+                throw new UserNotFoundException($"No user found with ID {request.Id}");
 
             if (userDataAccess.ExistsByEmail(request.Email, request.Id))
-            {
-                errorMessage = "Email already exists.";
-                return false;
-            }
+                throw new DuplicateEmailException("Email already exists.");
 
-            errorMessage = null;
-            return true;
+            return user;
         }
     }
 }

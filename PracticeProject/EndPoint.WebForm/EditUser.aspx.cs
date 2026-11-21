@@ -85,18 +85,16 @@ namespace EndPoint.WebForm
                 return;
             }
 
-            IUpdateUser.Response response = UpdateUser.Execute(request);
-
-            if (response.IsSuccess)
+            try
             {
-                lblMessage.ForeColor = System.Drawing.Color.Green;
-                lblMessage.Text = response.Message;
+                User modifiedUser = UpdateUser.Execute(request);
+
                 Response.Redirect("./Administrator.aspx");
             }
-            else
+            catch (Exception ex)
             {
                 lblMessage.ForeColor = System.Drawing.Color.Red;
-                lblMessage.Text = response.Message;
+                lblMessage.Text = ex.Message;
             }
         }
     }

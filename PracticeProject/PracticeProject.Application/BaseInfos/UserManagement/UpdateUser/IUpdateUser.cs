@@ -5,7 +5,7 @@ namespace PracticeProject.Application.BaseInfos.UserManagement.UpdateUser
 {
     public interface IUpdateUser
     {
-        Response Execute(Request request);
+        User Execute(Request request);
 
         public class Request
         {
@@ -17,13 +17,6 @@ namespace PracticeProject.Application.BaseInfos.UserManagement.UpdateUser
             public Role? Role { get; set; }
             public string Email { get; set; }
             public string Password { get; set; }
-        }
-
-        public class Response
-        {
-            public bool IsSuccess { get; set; }
-            public string Message { get; set; }
-            public User ModifiedUser { get; set; }
         }
     }
 }
