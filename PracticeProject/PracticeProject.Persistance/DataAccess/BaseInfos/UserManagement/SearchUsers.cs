@@ -8,46 +8,31 @@ using PracticeProject.Persistance.DataAccess.BaseInfos.Security.BaseInfos.Person
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using static PracticeProject.Application.BaseInfos.IUserDataAccess;
 
 namespace PracticeProject.Persistence.DataAccess.BaseInfos.UserManagement
 {
     public class SearchUsers(IDb db, ISearchPersons searchPersons) : ISearchUsers
     {
-        public IQueryable<SearchResult> Execute(ISearchUsers.Request request = null)
-        {
-            var users = db.Query<User>();
+        public IQueryable<User> Respond(ISearchUsers.Request request = null) => Respond(request, db.Query<User>());
 
-            var people = searchPersons.Execute();
-
-            var items =
-                from user in users
-                join person in people
-                    on user.PersonId equals person.Id
-                select new SearchResult
-                {
-                    User = user,
-                    Person = person
-                };
-
-            return ApplyFilter(request, ref items);
-        }
-
-        private IQueryable<SearchResult> ApplyFilter
-            (ISearchUsers.Request request, ref IQueryable<SearchResult> items)
+        private IQueryable<User> Respond(ISearchUsers.Request request, IQueryable<User> items)
         {
             if (request is null)
                 return items;
 
             if (request.Id.HasValue)
-                items = items.Where(r => r.User.Id == request.Id);
+                items = items.Where(r => r.Id == request.Id);
 
             if (!string.IsNullOrWhiteSpace(request.KeyWord))
+                items = items.Where(r => r.Email.Contains(request.KeyWord));
+
+            if (request.PersonRequest is not null)
             {
-                items = items.Where(r =>
-                    r.User.Email.Contains(request.KeyWord) ||
-                    r.Person.FirstName.Contains(request.KeyWord) ||
-                    r.Person.LastName.Contains(request.KeyWord));
+                items =
+                    from user in items
+                    join person in searchPersons.Execute(request.PersonRequest)
+                        on user.PersonId equals person.Id
+                    select user;
             }
 
             return items;
