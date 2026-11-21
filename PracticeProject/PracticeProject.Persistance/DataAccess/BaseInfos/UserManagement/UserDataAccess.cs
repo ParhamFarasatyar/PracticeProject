@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace PracticeProject.Persistence.DataAccess.BaseInfos.UserManagement
 {
-    public class UserDataAccess(IDb db, ISearchUsers searchUsers, ISearchPersons searchPersons) : IUserDataAccess
+    public class UserDataAccess(IDb db, ISearchUsers searchUsers) : IUserDataAccess
     {
         public void Create(User user) => db.Add<User>(user);
 
