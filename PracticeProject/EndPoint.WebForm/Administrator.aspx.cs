@@ -62,11 +62,10 @@ namespace EndPoint.WebForm
                     break;
 
                 case "DeleteUser":
-                    IDeleteUser.Response response =
+                    try
+                    {
                         DeleteUser.Execute(new IDeleteUser.Request { Id = userId });
 
-                    if (response.IsSuccess)
-                    {
                         if (Convert.ToInt32(Session["UserId"]) == userId)
                         {
                             Session["UserId"] = null;
@@ -77,13 +76,13 @@ namespace EndPoint.WebForm
                         }
 
                         BindUsers(tboxSearch.Text.Trim());
-                        lblMessage.Text = "User deleted successfully.";
                         lblMessage.ForeColor = System.Drawing.Color.Green;
+                        lblMessage.Text = "User deleted successfully.";
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        lblMessage.Text = response.Message;
                         lblMessage.ForeColor = System.Drawing.Color.Red;
+                        lblMessage.Text = ex.Message;
                     }
 
                     break;
