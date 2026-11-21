@@ -24,13 +24,22 @@ namespace EndPoint.WebForm
         protected global::System.Web.UI.HtmlControls.HtmlForm adminForm;
 
         /// <summary>
-        /// tboxSearch control.
+        /// tboxSearchEmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tboxSearch;
+        protected global::System.Web.UI.WebControls.TextBox tboxSearchEmail;
+
+        /// <summary>
+        /// tboxSearchFirstNameOrLastName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tboxSearchFirstNameOrLastName;
 
         /// <summary>
         /// btnSearch control.

@@ -22,10 +22,26 @@ namespace EndPoint.WebForm
 
         private void BindUsers(string keyword = "")
         {
-            IQueryable<User> result = SearchUsers.Respond(new ISearchUsers.Request
+            IQueryable<User> result;
+
+            if (string.IsNullOrWhiteSpace(tboxSearchFirstNameOrLastName.Text))
             {
-                KeyWord = keyword
-            });
+                result = SearchUsers.Respond(new ISearchUsers.Request 
+                { 
+                    KeyWord = keyword 
+                });
+            }
+            else
+            {
+                result = SearchUsers.Respond(new ISearchUsers.Request
+                {
+                    KeyWord = keyword,
+                    PersonRequest = new ISearchPersons.Request
+                    {
+                        Keyword = tboxSearchFirstNameOrLastName.Text.Trim()
+                    }
+                });
+            }
 
             if (result is null)
             {
@@ -49,7 +65,7 @@ namespace EndPoint.WebForm
             gvUsers.DataBind();
         }
 
-        protected void btnSearch_Click(object sender, EventArgs e) => BindUsers(tboxSearch.Text.Trim());
+        protected void btnSearch_Click(object sender, EventArgs e) => BindUsers(tboxSearchEmail.Text.Trim());
 
         protected void gvUsers_RowCommand(object sender, GridViewCommandEventArgs e)
         {
@@ -75,7 +91,7 @@ namespace EndPoint.WebForm
                             return;
                         }
 
-                        BindUsers(tboxSearch.Text.Trim());
+                        BindUsers();
                         lblMessage.ForeColor = System.Drawing.Color.Green;
                         lblMessage.Text = "User deleted successfully.";
                     }
