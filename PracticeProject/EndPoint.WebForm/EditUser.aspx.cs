@@ -35,11 +35,11 @@ namespace EndPoint.WebForm
                     return;
                 }
 
-                tboxFirstName.Text = response.Result.Person.FirstName;
-                tboxLastName.Text = response.Result.Person.LastName;
-                tboxAge.Text = response.Result.Person.Age.ToString();
-                tboxEmail.Text = response.Result.User.Email;
-                tboxPassword.Text = response.Result.User.Password;
+                tboxFirstName.Text = response.User.Person.FirstName;
+                tboxLastName.Text = response.User.Person.LastName;
+                tboxAge.Text = response.User.Person.Age.ToString();
+                tboxEmail.Text = response.User.Email;
+                tboxPassword.Text = response.User.Password;
             }
         }
 
