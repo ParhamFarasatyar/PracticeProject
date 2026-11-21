@@ -21,7 +21,6 @@ namespace PracticeProject.Application.BaseInfos.UserManagement.CreateUser
         class Response
         {
             public bool IsSuccess { get; set; }
-            public string Message { get; set; }
             public User User { get; set; }
         }
     }
