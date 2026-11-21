@@ -6,7 +6,7 @@ using System;
 
 namespace PracticeProject.Application.BaseInfos.UserManagement.UpdateUser
 {
-    public class UpdateUser(IUserDataAccess userDataAccess, IDb db, IPasswordHasher passwordHasher, ISearchPersons searchPersons) : IUpdateUser
+    public class UpdateUser(IUserDataAccess userDataAccess, IDb db, IPasswordHasher passwordHasher, IPersonDataAccess personDataAccess) : IUpdateUser
     {
         public IUpdateUser.Response Execute(IUpdateUser.Request request)
         {
@@ -102,6 +102,7 @@ namespace PracticeProject.Application.BaseInfos.UserManagement.UpdateUser
             }
 
             user = userDataAccess.GetById(request.Id);
+            user.Person = personDataAccess.GetById(user.PersonId);
 
             if (user is null)
             {

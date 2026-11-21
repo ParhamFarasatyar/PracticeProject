@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace PracticeProject.Persistence.DataAccess.BaseInfos.UserManagement
 {
-    public class UserDataAccess(IDb db, ISearchUsers searchUsers) : IUserDataAccess
+    public class UserDataAccess(IDb db, ISearchUsers searchUsers, IPersonDataAccess personDataAccess) : IUserDataAccess
     {
         public void Create(User user) => db.Add<User>(user);
 
@@ -20,7 +20,7 @@ namespace PracticeProject.Persistence.DataAccess.BaseInfos.UserManagement
                 return;
 
             db.Remove<User>(user);
-            db.Remove<Person>(user.Person);
+            personDataAccess.Delete(user.PersonId);
         }
 
         public IQueryable<User> GetAll() => searchUsers.Respond(new ISearchUsers.Request
@@ -28,11 +28,14 @@ namespace PracticeProject.Persistence.DataAccess.BaseInfos.UserManagement
             PersonRequest = new ISearchPersons.Request()
         });
 
-        public User GetById(int id) => searchUsers.Respond(new ISearchUsers.Request
+        public User GetById(int id)
         {
-            Id = id,
-            PersonRequest = new ISearchPersons.Request()
-        }).SingleOrDefault(u => u.Id == id);
+            return searchUsers.Respond(new ISearchUsers.Request
+            {
+                Id = id,
+                PersonRequest = new ISearchPersons.Request()
+            }).SingleOrDefault(u => u.Id == id);
+        }
 
         public User GetByEmail(string email) => searchUsers.Respond(new ISearchUsers.Request
         {
@@ -43,7 +46,7 @@ namespace PracticeProject.Persistence.DataAccess.BaseInfos.UserManagement
         public void Update(User user)
         {
             db.Update<User>(user);
-            db.Update<Person>(user.Person);
+            personDataAccess.Update(user.Person);
         }
 
         public bool ExistsByEmail(string email) => searchUsers.Respond(new ISearchUsers.Request
