@@ -9,24 +9,18 @@ namespace PracticeProject.Application.BaseInfos
     {
         void Create(User user);
 
-        SearchResult GetById(int id);
+        User GetById(int id);
 
-        SearchResult GetByEmail(string email);
+        User GetByEmail(string email);
 
-        IQueryable<SearchResult> GetAll();
+        IQueryable<User> GetAll();
 
-        void Update(SearchResult user);
+        void Update(User user);
 
         void Delete(int id);
 
         bool ExistsByEmail(string email);
 
         bool ExistsByEmail(string email, int excludedUserId);
-
-        public class SearchResult
-        {
-            public User User { get; set; }
-            public Person Person { get; set; }
-        }
     }
 }

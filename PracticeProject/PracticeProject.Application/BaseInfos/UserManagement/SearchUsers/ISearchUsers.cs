@@ -8,7 +8,7 @@ namespace PracticeProject.Application.BaseInfos.UserManagement.SearchUsers
 {
     public interface ISearchUsers
     {
-        IQueryable<IUserDataAccess.SearchResult> Execute(Request request = null);
+        IQueryable<User> Respond(Request request = null);
 
         public class Request
         {

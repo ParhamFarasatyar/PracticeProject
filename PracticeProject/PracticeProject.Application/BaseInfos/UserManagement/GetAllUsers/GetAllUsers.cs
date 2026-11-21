@@ -18,7 +18,7 @@ namespace PracticeProject.Application.BaseInfos.UserManagement.GetAllUsers
         {
             IGetAllUsers.Response response = new IGetAllUsers.Response();
 
-            IQueryable<SearchResult> result = _userDataAccess.GetAll();
+            IQueryable<User> result = _userDataAccess.GetAll();
 
             if (!result.Any())
             {
@@ -28,7 +28,7 @@ namespace PracticeProject.Application.BaseInfos.UserManagement.GetAllUsers
             }
 
             response.IsSuccess = true;
-            response.Result = result;
+            response.Users = result;
             return response;
         }
     }
