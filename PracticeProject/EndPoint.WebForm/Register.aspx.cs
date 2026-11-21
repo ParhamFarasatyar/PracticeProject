@@ -31,23 +31,23 @@ namespace EndPoint.WebForm
                 Password = tboxPassword.Text.Trim()
             };
 
-            var response = CreateUserUseCase.Execute(request);
-
-            if (response.IsSuccess)
+            try
             {
-                Session["UserId"] = response.User.Id;
-                Session["UserRole"] = response.User.Role;
+                User createdUser = CreateUserUseCase.Execute(request);
+
+                Session["UserId"] = createdUser.Id;
+                Session["UserRole"] = createdUser.Role;
                 Session["IsAuthenticated"] = true;
 
-                if (response.User.Role == Role.User)
+                if (createdUser.Role == Role.User)
                     Response.Redirect("./Users.aspx");
                 else
                     Response.Redirect("./Administrator.aspx");
             }
-            else
+            catch (Exception ex)
             {
                 lblMessage.ForeColor = System.Drawing.Color.Red;
-                lblMessage.Text = response.Message;
+                lblMessage.Text = ex.Message;
             }
         }
     }

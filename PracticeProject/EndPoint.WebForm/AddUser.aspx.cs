@@ -1,4 +1,5 @@
 ﻿using PracticeProject.Application.BaseInfos.UserManagement.CreateUser;
+using PracticeProject.Domain.BaseInfo.Exceptions;
 using PracticeProject.Domain.BaseInfos.People;
 using PracticeProject.Domain.BaseInfos.Users;
 using System;
@@ -30,15 +31,16 @@ namespace EndPoint.WebForm
                 Password = tboxPassword.Text.Trim()
             };
 
-            ICreateUser.Response response = CreateUser.Execute(request);
+            try
+            {
+                User createdUser = CreateUser.Execute(request);
 
-            if (response.IsSuccess)
                 Response.Redirect("./Administrator.aspx");
-
-            else
+            }
+            catch (Exception ex)
             {
                 lblMessage.ForeColor = System.Drawing.Color.Red;
-                lblMessage.Text = response.Message;
+                lblMessage.Text = ex.Message;
             }
         }
     }
