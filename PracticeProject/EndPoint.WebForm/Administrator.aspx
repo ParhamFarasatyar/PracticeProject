@@ -72,43 +72,43 @@
                 <Columns>
                     <asp:TemplateField HeaderText="ID">
                         <ItemTemplate>
-                            <%# Eval("User.Id") %>
+                            <%# Eval("Id") %>
                         </ItemTemplate>
                     </asp:TemplateField>
 
                     <asp:TemplateField HeaderText="FirstName">
                         <ItemTemplate>
-                            <%# Eval("Person.FirstName") %>
+                            <%# Eval("FirstName") %>
                         </ItemTemplate>
                     </asp:TemplateField>
 
                     <asp:TemplateField HeaderText="LastName">
                         <ItemTemplate>
-                            <%# Eval("Person.LastName") %>
+                            <%# Eval("LastName") %>
                         </ItemTemplate>
                     </asp:TemplateField>
 
                     <asp:TemplateField HeaderText="Age">
                         <ItemTemplate>
-                            <%# Eval("Person.Age") %>
+                            <%# Eval("Age") %>
                         </ItemTemplate>
                     </asp:TemplateField>
 
                     <asp:TemplateField HeaderText="Gender">
                         <ItemTemplate>
-                            <%# Eval("Person.Gender") %>
+                            <%# Eval("Gender") %>
                         </ItemTemplate>
                     </asp:TemplateField>
 
                     <asp:TemplateField HeaderText="Email">
                         <ItemTemplate>
-                            <%# Eval("User.Email") %>
+                            <%# Eval("Email") %>
                         </ItemTemplate>
                     </asp:TemplateField>
 
                     <asp:TemplateField HeaderText="Role">
                         <ItemTemplate>
-                            <%# Eval("User.Role") %>
+                            <%# Eval("Role") %>
                         </ItemTemplate>
                     </asp:TemplateField>
 
@@ -118,7 +118,7 @@
                                 ID="btnEdit"
                                 runat="server"
                                 CommandName="EditUser"
-                                CommandArgument='<%# Eval("User.Id") %>'
+                                CommandArgument='<%# Eval("Id") %>'
                                 CssClass="action-button edit-button"
                                 ToolTip="Edit User">
 
@@ -143,7 +143,7 @@
                                 ID="btnDelete"
                                 runat="server"
                                 CommandName="DeleteUser"
-                                CommandArgument='<%# Eval("User.Id") %>'
+                                CommandArgument='<%# Eval("Id") %>'
                                 CssClass="action-button delete-button"
                                 ToolTip="Delete User"
                                 OnClientClick="return confirm('Are you sure you want to delete this user?');">

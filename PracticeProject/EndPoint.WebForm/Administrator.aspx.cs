@@ -22,20 +22,14 @@ namespace EndPoint.WebForm
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
-            {
                 BindUsers();
-            }
         }
 
         private void BindUsers(string keyword = "")
         {
-            IQueryable<IUserDataAccess.SearchResult> result = SearchUsers.Execute(new ISearchUsers.Request 
-            { 
-                KeyWord = keyword, 
-                PersonRequest = new ISearchPersons.Request
-                {
-                    Keyword = keyword
-                }
+            IQueryable<User> result = SearchUsers.Respond(new ISearchUsers.Request
+            {
+                KeyWord = keyword
             });
 
             if (result is null)
@@ -45,7 +39,16 @@ namespace EndPoint.WebForm
                 return;
             }
 
-            var resultList = result.ToList();
+            var resultList = result.Select(i => new 
+            {
+                i.Id,
+                i.Email,
+                i.Role,
+                i.Person.FirstName,
+                i.Person.LastName,
+                i.Person.Gender,
+                i.Person.Age
+            }).ToList();
 
             gvUsers.DataSource = resultList;
             gvUsers.DataBind();
@@ -67,7 +70,7 @@ namespace EndPoint.WebForm
                     break;
 
                 case "DeleteUser":
-                    IDeleteUser.Response response = 
+                    IDeleteUser.Response response =
                         DeleteUser.Execute(new IDeleteUser.Request { Id = userId });
 
                     if (response.IsSuccess)
