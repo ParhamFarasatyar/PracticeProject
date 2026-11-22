@@ -15,7 +15,7 @@
         <div>
             <div id="searchBox" class="d-flex flex-row mb-3">
                 <asp:TextBox ID="tboxSearchEmail" runat="server" CssClass="form-control" placeholder="Search for user by email" MaxLength="100"></asp:TextBox>
-                <asp:TextBox ID="tboxSearchFirstNameOrLastName" runat="server" CssClass="form-control" placeholder="Search for user firstname or lastname" MaxLength="100"></asp:TextBox>
+                <asp:TextBox ID="tboxSearchFirstNameOrLastName" runat="server" CssClass="form-control" placeholder="Search for user by firstname or lastname" MaxLength="100"></asp:TextBox>
 
                 <asp:LinkButton
                     ID="btnSearch"
