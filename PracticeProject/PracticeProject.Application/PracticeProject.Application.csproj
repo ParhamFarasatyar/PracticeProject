@@ -60,6 +60,8 @@
     <Compile Include="BaseInfos\UserManagement\DeleteUser\IDeleteUser.cs" />
     <Compile Include="BaseInfos\UserManagement\GetUserById\GetUserById.cs" />
     <Compile Include="BaseInfos\UserManagement\GetUserById\IGetUserById.cs" />
+    <Compile Include="BaseInfos\UserManagement\GetUsersPage\GetUsersPage.cs" />
+    <Compile Include="BaseInfos\UserManagement\GetUsersPage\IGetUsersPage.cs" />
     <Compile Include="BaseInfos\UserManagement\LoginUser\ILoginUser.cs" />
     <Compile Include="BaseInfos\UserManagement\LoginUser\LoginUser.cs" />
     <Compile Include="BaseInfos\UserManagement\SearchUsers\ISearchUsers.cs" />
