@@ -2,7 +2,6 @@
 using PracticeProject.Application.BaseInfos.UserManagement.DeleteUser;
 using PracticeProject.Application.BaseInfos.UserManagement.GetUsersPage;
 using PracticeProject.Application.BaseInfos.UserManagement.SearchUsers;
-using PracticeProject.Domain.BaseInfos.Users;
 using System;
 using System.Linq;
 using System.Web.UI.WebControls;
@@ -70,6 +69,7 @@ namespace EndPoint.WebForm
                 i.Id,
                 i.Email,
                 i.Role,
+                i.PersonId,
                 i.Person.FirstName,
                 i.Person.LastName,
                 i.Person.Gender,
@@ -98,7 +98,9 @@ namespace EndPoint.WebForm
 
         protected void gvUsers_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            int userId = Convert.ToInt32(e.CommandArgument);
+            string[] ids = e.CommandArgument.ToString().Split(',');
+            int userId = Convert.ToInt32(ids[0]);
+            int personId = Convert.ToInt32(ids[1]);
 
             switch (e.CommandName)
             {
@@ -109,7 +111,11 @@ namespace EndPoint.WebForm
                 case "DeleteUser":
                     try
                     {
-                        DeleteUser.Execute(new IDeleteUser.Request { Id = userId });
+                        DeleteUser.Execute(new IDeleteUser.Request 
+                        { 
+                            UserId = userId,
+                            PersonId = personId
+                        });
 
                         if (Convert.ToInt32(Session["UserId"]) == userId)
                         {

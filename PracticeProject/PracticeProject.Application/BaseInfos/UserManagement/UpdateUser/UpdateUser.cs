@@ -37,6 +37,7 @@ namespace PracticeProject.Application.BaseInfos.UserManagement.UpdateUser
             user.Password = validPassword;
 
             userDataAccess.Update(user);
+            personDataAccess.Update(user.Person);
             db.SaveChanges();
 
             return user;
