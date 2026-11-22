@@ -71,12 +71,6 @@
 
             <asp:GridView OnRowCommand="gvUsers_RowCommand" CssClass="table table-striped" ID="gvUsers" runat="server" AutoGenerateColumns="false" EmptyDataText="No users found">
                 <Columns>
-                    <asp:TemplateField HeaderText="ID">
-                        <ItemTemplate>
-                            <%# Eval("Id") %>
-                        </ItemTemplate>
-                    </asp:TemplateField>
-
                     <asp:TemplateField HeaderText="FirstName">
                         <ItemTemplate>
                             <%# Eval("FirstName") %>
@@ -168,6 +162,29 @@
                     </asp:TemplateField>
                 </Columns>
             </asp:GridView>
+
+            <div id="pagination">
+                <asp:LinkButton 
+                    ID="btnPrevious" 
+                    runat="server" 
+                    CssClass="pagination-button" 
+                    OnClick="btnPrevious_Click"
+                    Text="Previous"></asp:LinkButton>
+
+                <asp:Label
+                    ID="lblCurrentPage"
+                    runat="server"
+                    CssClass="page-info">
+                </asp:Label>
+
+                <asp:LinkButton
+                    ID="btnNext"
+                    runat="server"
+                    CssClass="pagination-button"
+                    OnClick="btnNext_Click"
+                    Text="Next">
+                </asp:LinkButton>
+            </div>
 
             <asp:Label ID="lblMessage" runat="server" CssClass="message-label"></asp:Label>
         </div>
