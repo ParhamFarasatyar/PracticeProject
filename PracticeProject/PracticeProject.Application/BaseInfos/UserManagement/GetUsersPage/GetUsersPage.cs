@@ -18,7 +18,7 @@ namespace PracticeProject.Application.BaseInfos.UserManagement.GetUsersPage
             if (request is null)
                 request = new IGetUsersPage.Request();
 
-            int pageSize = 10;
+            int pageSize = 5;
             int pageNumber = Math.Max(1, request.PageNumber);
 
             var items = _searchUsers.Respond(request.SearchRequest);
