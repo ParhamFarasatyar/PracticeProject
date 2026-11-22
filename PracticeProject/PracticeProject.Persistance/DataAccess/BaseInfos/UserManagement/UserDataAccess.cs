@@ -2,7 +2,6 @@
 using PracticeProject.Application.BaseInfos;
 using PracticeProject.Application.BaseInfos.PersonManagement.SearchPersons;
 using PracticeProject.Application.BaseInfos.UserManagement.SearchUsers;
-using PracticeProject.Domain.BaseInfos.People;
 using PracticeProject.Domain.BaseInfos.Users;
 using System.Linq;
 
@@ -20,7 +19,6 @@ namespace PracticeProject.Persistence.DataAccess.BaseInfos.UserManagement
                 return;
 
             db.Remove<User>(user);
-            personDataAccess.Delete(user.PersonId);
         }
 
         public IQueryable<User> GetAll() => searchUsers.Respond(new ISearchUsers.Request

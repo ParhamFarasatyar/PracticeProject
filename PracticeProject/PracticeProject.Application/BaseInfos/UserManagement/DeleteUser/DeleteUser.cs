@@ -2,17 +2,18 @@
 
 namespace PracticeProject.Application.BaseInfos.UserManagement.DeleteUser
 {
-    public class DeleteUser(IUserDataAccess userDataAccess, IDb db) : IDeleteUser
+    public class DeleteUser(IUserDataAccess userDataAccess, IDb db, IPersonDataAccess personDataAccess) : IDeleteUser
     {
         public void Execute(IDeleteUser.Request request)
         {
             if (request is null)
                 throw new NoNullAllowedException("Request cannot be null");
 
-            if (request.Id <= 0)
-                throw new InvalidValueException("ID cannot be zero or negative.");
+            if (request.UserId <= 0 || request.PersonId <= 0)
+                throw new InvalidValueException("User ID and Person ID cannot be zero or negative.");
 
-            userDataAccess.Delete(request.Id);
+            userDataAccess.Delete(request.UserId);
+            personDataAccess.Delete(request.PersonId);
             db.SaveChanges();
         }
     }

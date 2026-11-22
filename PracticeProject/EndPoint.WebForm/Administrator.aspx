@@ -138,7 +138,7 @@
                                 ID="btnDelete"
                                 runat="server"
                                 CommandName="DeleteUser"
-                                CommandArgument='<%# Eval("Id") %>'
+                                CommandArgument='<%# Eval("Id") + "," + Eval("PersonId") %>'
                                 CssClass="action-button delete-button"
                                 ToolTip="Delete User"
                                 OnClientClick="return confirm('Are you sure you want to delete this user?');">
