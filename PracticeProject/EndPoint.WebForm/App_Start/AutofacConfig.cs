@@ -14,6 +14,7 @@ using PracticeProject.Application.BaseInfos.UserManagement.GetUserById;
 using PracticeProject.Persistance.DataAccess.BaseInfos.Security.BaseInfos.PersonManagement;
 using PracticeProject.Application.BaseInfos.PersonManagement.SearchPersons;
 using PracticeProject.Persistance.DataAccess.BaseInfos.PersonManagement;
+using PracticeProject.Application.BaseInfos.UserManagement.GetUsersPage;
 
 namespace EndPoint.WebForm.App_Start
 {
@@ -44,6 +45,8 @@ namespace EndPoint.WebForm.App_Start
             builder.RegisterType<SearchPersons>().As<ISearchPersons>().InstancePerRequest();
 
             builder.RegisterType<PersonDataAccess>().As<IPersonDataAccess>().InstancePerRequest();
+
+            builder.RegisterType<GetUsersPage>().As<IGetUsersPage>().InstancePerRequest();
 
             return builder.Build();
         }
