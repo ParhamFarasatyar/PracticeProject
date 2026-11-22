@@ -84,6 +84,10 @@
     <Compile Include="Migrations\202611150612184_ConfigurePasswordLength.Designer.cs">
       <DependentUpon>202611150612184_ConfigurePasswordLength.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202611220443062_RenamePeopleToPersons.cs" />
+    <Compile Include="Migrations\202611220443062_RenamePeopleToPersons.Designer.cs">
+      <DependentUpon>202611220443062_RenamePeopleToPersons.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -119,6 +123,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202611150612184_ConfigurePasswordLength.resx">
       <DependentUpon>202611150612184_ConfigurePasswordLength.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202611220443062_RenamePeopleToPersons.resx">
+      <DependentUpon>202611220443062_RenamePeopleToPersons.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

@@ -7,6 +7,8 @@ namespace PracticeProject.Persistance.EntityConfigurations.People
     {
         public PersonConfiguration()
         {
+            ToTable("Persons");
+
             HasKey(p => p.Id);
 
             Property(p => p.FirstName).IsRequired().HasMaxLength(100);
