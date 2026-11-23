@@ -1,5 +1,6 @@
 ﻿using PracticeProject.Domain.BaseInfo.Exceptions;
 using PracticeProject.Domain.BaseInfos.Users;
+using System.Data;
 
 namespace PracticeProject.Application.BaseInfos.UserManagement.GetUserById
 {
@@ -11,13 +12,13 @@ namespace PracticeProject.Application.BaseInfos.UserManagement.GetUserById
                 throw new NoNullAllowedException("Request cannot be null.");
 
             if (request.Id <= 0)
-                throw new InvalidValueException("ID cannot be zero or negative.");
+                throw new AppException("ID cannot be zero or negative.");
 
             User user = userDataAccess.GetById(request.Id);
             user.Person = personDataAccess.GetById(user.PersonId);
 
             if (user is null)
-                throw new UserNotFoundException($"No user found with ID {request.Id}");
+                throw new AppException($"No user found with ID {request.Id}");
 
             return user;
         }

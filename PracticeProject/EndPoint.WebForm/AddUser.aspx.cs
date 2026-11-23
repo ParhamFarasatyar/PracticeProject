@@ -37,7 +37,7 @@ namespace EndPoint.WebForm
 
                 Response.Redirect("./Administrator.aspx");
             }
-            catch (Exception ex)
+            catch (AppException ex)
             {
                 lblMessage.ForeColor = System.Drawing.Color.Red;
                 lblMessage.Text = ex.Message;

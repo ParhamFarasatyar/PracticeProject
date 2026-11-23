@@ -35,7 +35,7 @@ namespace EndPoint.WebForm
                 tboxEmail.Text = user.Email;
                 tboxPassword.Text = user.Password;
             }
-            catch (InvalidValueException ex)
+            catch (AppException ex)
             {
                 lblMessage.ForeColor = System.Drawing.Color.Red;
                 lblMessage.Text = ex.Message;
@@ -91,7 +91,7 @@ namespace EndPoint.WebForm
 
                 Response.Redirect("./Administrator.aspx");
             }
-            catch (Exception ex)
+            catch (AppException ex)
             {
                 lblMessage.ForeColor = System.Drawing.Color.Red;
                 lblMessage.Text = ex.Message;

@@ -2,6 +2,7 @@
 using PracticeProject.Application.BaseInfos.UserManagement.DeleteUser;
 using PracticeProject.Application.BaseInfos.UserManagement.GetUsersPage;
 using PracticeProject.Application.BaseInfos.UserManagement.SearchUsers;
+using PracticeProject.Domain.BaseInfo.Exceptions;
 using System;
 using System.Linq;
 using System.Web.UI.WebControls;
@@ -130,7 +131,7 @@ namespace EndPoint.WebForm
                         lblMessage.ForeColor = System.Drawing.Color.Green;
                         lblMessage.Text = "User deleted successfully.";
                     }
-                    catch (Exception ex)
+                    catch (AppException ex)
                     {
                         lblMessage.ForeColor = System.Drawing.Color.Red;
                         lblMessage.Text = ex.Message;

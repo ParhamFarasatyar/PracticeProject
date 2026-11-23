@@ -1,4 +1,5 @@
 ﻿using PracticeProject.Application.BaseInfos.UserManagement.LoginUser;
+using PracticeProject.Domain.BaseInfo.Exceptions;
 using PracticeProject.Domain.BaseInfos.Users;
 using System;
 using System.Web.UI;
@@ -39,7 +40,7 @@ namespace EndPoint.WebForm
                 else
                     Response.Redirect("./Users.aspx");
             }
-            catch (Exception ex)
+            catch (AppException ex)
             {
                 lblMessage.ForeColor = System.Drawing.Color.Red;
                 lblMessage.Text = ex.Message;

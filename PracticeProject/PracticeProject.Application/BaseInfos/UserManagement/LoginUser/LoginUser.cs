@@ -1,6 +1,7 @@
 ﻿using PracticeProject.Application.BaseInfos.Security;
 using PracticeProject.Domain.BaseInfo.Exceptions;
 using PracticeProject.Domain.BaseInfos.Users;
+using System.Data;
 
 namespace PracticeProject.Application.BaseInfos.UserManagement.LoginUser
 {
@@ -14,11 +15,11 @@ namespace PracticeProject.Application.BaseInfos.UserManagement.LoginUser
                 throw new NoNullAllowedException("Request cannot be null");
             
             if (request.Email is null || request.Password is null)
-                throw new NoNullAllowedException("Email or password cannot be null");
+                throw new AppException("Email or password cannot be null");
 
             User user = userDataAccess.GetByEmail(request.Email);
             if (user is null || !passwordHasher.Verify(request.Password, user.Password))
-                throw new InvalidValueException("Incorrect email or password");
+                throw new AppException("Incorrect email or password");
 
             return user;
         }

@@ -3,6 +3,7 @@ using PracticeProject.Domain.BaseInfo.Exceptions;
 using PracticeProject.Domain.BaseInfos.People;
 using PracticeProject.Domain.BaseInfos.Users;
 using System;
+using System.Data;
 
 namespace PracticeProject.Application.BaseInfos.UserManagement.UpdateUser
 {
@@ -51,32 +52,32 @@ namespace PracticeProject.Application.BaseInfos.UserManagement.UpdateUser
             if (request.Age != null)
             {
                 if (request.Age < 18 || request.Age > 80)
-                    throw new ValueOutOfRangeException("Age must be higher than 18 and lower than 80");
+                    throw new AppException("Age must be higher than 18 and lower than 80");
             }
 
             if (request.Id <= 0)
-                throw new InvalidValueException("ID cannot be zero or negative");
+                throw new AppException("ID cannot be zero or negative");
 
             if (request.Role != null)
             {
                 if (!Enum.IsDefined(typeof(Role), request.Role))
-                    throw new InvalidValueException("Invalid user role");
+                    throw new AppException("Invalid user role");
             }
 
             if (request.Gender != null)
             {
                 if (!Enum.IsDefined(typeof(Gender), request.Gender))
-                    throw new InvalidValueException("Invalid user gender");
+                    throw new AppException("Invalid user gender");
             }
 
             User user = userDataAccess.GetById(request.Id);
             user.Person = personDataAccess.GetById(user.PersonId);
 
             if (user is null)
-                throw new UserNotFoundException($"No user found with ID {request.Id}");
+                throw new AppException($"No user found with ID {request.Id}");
 
             if (userDataAccess.ExistsByEmail(request.Email, request.Id))
-                throw new DuplicateEmailException("Email already exists.");
+                throw new AppException("Email already exists.");
 
             return user;
         }
