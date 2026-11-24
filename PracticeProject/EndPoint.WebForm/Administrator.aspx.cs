@@ -99,19 +99,21 @@ namespace EndPoint.WebForm
 
         protected void gvUsers_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            string[] ids = e.CommandArgument.ToString().Split(',');
-            int userId = Convert.ToInt32(ids[0]);
-            int personId = Convert.ToInt32(ids[1]);
-
             switch (e.CommandName)
             {
                 case "EditUser":
+                    int userId = Convert.ToInt32(e.CommandArgument);
+
                     Response.Redirect($"./EditUser.aspx?id={userId}");
                     break;
 
                 case "DeleteUser":
                     try
                     {
+                        string[] ids = e.CommandArgument.ToString().Split(',');
+                        userId = Convert.ToInt32(ids[0]);
+                        int personId = Convert.ToInt32(ids[1]);
+
                         DeleteUser.Execute(new IDeleteUser.Request 
                         { 
                             UserId = userId,
