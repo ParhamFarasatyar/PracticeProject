@@ -58,6 +58,7 @@
     <Compile Include="BaseInfos\UserManagement\CreateUser\CreateUserExtensions.cs" />
     <Compile Include="BaseInfos\UserManagement\CreateUser\ICreateUser.cs" />
     <Compile Include="BaseInfos\UserManagement\DeleteUser\DeleteUser.cs" />
+    <Compile Include="BaseInfos\UserManagement\DeleteUser\DeleteUserExtentions.cs" />
     <Compile Include="BaseInfos\UserManagement\DeleteUser\IDeleteUser.cs" />
     <Compile Include="BaseInfos\UserManagement\GetUserById\GetUserById.cs" />
     <Compile Include="BaseInfos\UserManagement\GetUserById\IGetUserById.cs" />
