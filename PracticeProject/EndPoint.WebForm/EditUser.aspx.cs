@@ -27,7 +27,7 @@ namespace EndPoint.WebForm
 
             try
             {
-                User user = GetUserById.Execute(new IGetUserById.Request { Id = userId });
+                User user = GetUserById.Execute(userId);
 
                 tboxFirstName.Text = user.Person.FirstName;
                 tboxLastName.Text = user.Person.LastName;
