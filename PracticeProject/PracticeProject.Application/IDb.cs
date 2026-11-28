@@ -1,23 +1,22 @@
-﻿using PracticeProject.Domain;
-using System;
+﻿using System;
 using System.Linq;
+using PracticeProject.Domain;
 
-namespace PracticeProject.Application
+namespace PracticeProject.Application;
+
+public interface IDb : IDisposable
 {
-    public interface IDb : IDisposable
-    {
-        IQueryable<TEntity> Query<TEntity>() where TEntity : class, IEntity;
+    IQueryable<TEntity> Query<TEntity>() where TEntity : class, IEntity;
 
-        IQueryable<TEntity> Set<TEntity>() where TEntity : class, IEntity;
+    IQueryable<TEntity> Set<TEntity>() where TEntity : class, IEntity;
 
-        TEntity Add<TEntity>(TEntity entity) where TEntity : class, IEntity;
+    TEntity Add<TEntity>(TEntity entity) where TEntity : class, IEntity;
 
-        void Remove<TEntity>(TEntity entity) where TEntity : class, IEntity;
+    void Remove<TEntity>(TEntity entity) where TEntity : class, IEntity;
 
-        void DeleteById<TEntity>(int id) where TEntity: class, IEntity, new();
+    void DeleteById<TEntity>(int id) where TEntity : class, IEntity, new();
 
-        void Update<TEntity>(TEntity entity) where TEntity : class, IEntity;
+    void Update<TEntity>(TEntity entity) where TEntity : class, IEntity;
 
-        int SaveChanges();
-    }
+    int SaveChanges();
 }

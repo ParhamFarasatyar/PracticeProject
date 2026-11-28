@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using PracticeProject.Application.BaseInfos.PersonManagement.SearchPersons;
 using PracticeProject.Domain.BaseInfos.People;
 using PracticeProject.Domain.BaseInfos.Users;
 
@@ -11,7 +10,7 @@ public static class SearchUsersExtensions
     {
         return items.Where(r => r.Id == id);
     }
-    
+
     public static IQueryable<User> FilterByEmail(this IQueryable<User> items, string keyword)
     {
         return items.Where(r => r.Email.Contains(keyword));
@@ -19,9 +18,9 @@ public static class SearchUsersExtensions
 
     public static IQueryable<User> FilterByPerson(this IQueryable<User> items, IQueryable<Person> persons)
     {
-        return from user in items 
-            join person in persons 
-                on user.PersonId equals person.Id 
+        return from user in items
+            join person in persons
+                on user.PersonId equals person.Id
             select user;
     }
 }

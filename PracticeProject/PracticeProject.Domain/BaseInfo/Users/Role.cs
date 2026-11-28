@@ -1,4 +1,8 @@
 ﻿namespace PracticeProject.Domain.BaseInfos.Users
 {
-    public enum Role { Admin, User }
+    public enum Role
+    {
+        Admin,
+        User
+    }
 }

@@ -1,10 +1,21 @@
-﻿using PracticeProject.Domain.BaseInfos.People;
+﻿using System;
+using PracticeProject.Domain.BaseInfos.People;
 
 namespace PracticeProject.Domain.BaseInfos.Users
 {
     public class User : IEntity
     {
-        public int Id { get; set; }
+        public User(Role role, string email, string password, Person person)
+        {
+            Role = role;
+            Email = email;
+            Password = password;
+            Person = person ?? throw new ArgumentNullException(nameof(person));
+        }
+
+        public User()
+        {
+        }
 
         public int PersonId { get; set; }
 
@@ -15,18 +26,6 @@ namespace PracticeProject.Domain.BaseInfos.Users
         public string Email { get; set; }
 
         public string Password { get; set; }
-
-        public User(Role role, string email, string password, Person person)
-        {
-            Role = role;
-            Email = email;
-            Password = password;
-            Person = person ?? throw new System.ArgumentNullException(nameof(person));
-        }
-
-        public User()
-        {
-
-        }
+        public int Id { get; set; }
     }
 }

@@ -1,30 +1,35 @@
-﻿using PracticeProject.Application;
+﻿using System.Linq;
+using PracticeProject.Application;
 using PracticeProject.Application.BaseInfos.PersonManagement.SearchPersons;
 using PracticeProject.Domain.BaseInfos.People;
-using System.Linq;
 
-namespace PracticeProject.Persistence.DataAccess.BaseInfos.Security.BaseInfos.PersonManagement
+namespace PracticeProject.Persistence.DataAccess.BaseInfos.Security.BaseInfos.PersonManagement;
+
+public class SearchPersons : ISearchPersons
 {
-    public class SearchPersons : ISearchPersons
+    private readonly IDb _db;
+
+    public SearchPersons(IDb db)
     {
-        private readonly IDb _db;
+        _db = db;
+    }
 
-        public SearchPersons(IDb db) => _db = db;
+    public IQueryable<Person> Respond(ISearchPersons.Request request = null)
+    {
+        return Respond(request, _db.Query<Person>());
+    }
 
-        public IQueryable<Person> Respond(ISearchPersons.Request request = null) => Respond(request, _db.Query<Person>());
-
-        private IQueryable<Person> Respond(ISearchPersons.Request request, IQueryable<Person> items)
-        {
-            if (request == null)
-                return items;
-
-            if (request.Id.HasValue)
-                items = items.FilterById(request.Id);
-
-            if (!string.IsNullOrEmpty(request.Keyword))
-                items = items.FilterByName(request.Keyword);
-
+    private IQueryable<Person> Respond(ISearchPersons.Request request, IQueryable<Person> items)
+    {
+        if (request == null)
             return items;
-        }
+
+        if (request.Id.HasValue)
+            items = items.FilterById(request.Id);
+
+        if (!string.IsNullOrEmpty(request.Keyword))
+            items = items.FilterByName(request.Keyword);
+
+        return items;
     }
 }

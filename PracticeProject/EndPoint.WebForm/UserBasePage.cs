@@ -1,26 +1,21 @@
-﻿using PracticeProject.Domain.BaseInfos.Users;
-using System;
+﻿using System;
 using System.Web.UI;
+using PracticeProject.Domain.BaseInfos.Users;
 
-namespace EndPoint.WebForm
+namespace EndPoint.WebForm;
+
+public class UserBasePage : Page
 {
-    public class UserBasePage : Page
+    protected override void OnInit(EventArgs e)
     {
-        protected override void OnInit(EventArgs e)
+        base.OnInit(e);
+
+        if (Session["UserId"] is null || Session["UserRole"] is null)
         {
-            base.OnInit(e);
-
-            if (Session["UserId"] is null || Session["UserRole"] is null)
-            {
-                Response.Redirect("./Login.aspx");
-                return;
-            }
-
-            if ((Role)Session["UserRole"] != Role.User)
-            {
-                Response.Redirect("./AccessDenied.aspx");
-                return;
-            }
+            Response.Redirect("./Login.aspx");
+            return;
         }
+
+        if ((Role)Session["UserRole"] != Role.User) Response.Redirect("./AccessDenied.aspx");
     }
 }

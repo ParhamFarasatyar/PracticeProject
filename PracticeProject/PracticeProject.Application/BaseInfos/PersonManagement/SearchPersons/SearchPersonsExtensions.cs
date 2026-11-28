@@ -9,10 +9,10 @@ public static class SearchPersonsExtensions
     {
         return items.Where(r => r.Id == id);
     }
-    
+
     public static IQueryable<Person> FilterByName(this IQueryable<Person> items, string keyword)
     {
-        return items.Where(i => 
+        return items.Where(i =>
             i.FirstName.Contains(keyword) || i.LastName.Contains(keyword));
     }
 }

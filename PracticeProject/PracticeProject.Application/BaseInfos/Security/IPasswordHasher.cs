@@ -1,9 +1,8 @@
-﻿namespace PracticeProject.Application.BaseInfos.Security
-{
-    public interface IPasswordHasher
-    {
-        string Hash(string password);
+﻿namespace PracticeProject.Application.BaseInfos.Security;
 
-        bool Verify(string password, string hashedPassword);
-    }
+public interface IPasswordHasher
+{
+    string Hash(string password);
+
+    bool Verify(string password, string hashedPassword);
 }

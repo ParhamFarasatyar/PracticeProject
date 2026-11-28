@@ -1,54 +1,53 @@
 ﻿using Autofac;
-using PracticeProject.Persistence.Contexts;
 using PracticeProject.Application;
-using PracticeProject.Persistence.DataAccess.BaseInfos.UserManagement;
 using PracticeProject.Application.BaseInfos;
+using PracticeProject.Application.BaseInfos.PersonManagement.SearchPersons;
+using PracticeProject.Application.BaseInfos.Security;
 using PracticeProject.Application.BaseInfos.UserManagement.CreateUser;
+using PracticeProject.Application.BaseInfos.UserManagement.DeleteUser;
+using PracticeProject.Application.BaseInfos.UserManagement.GetUserById;
+using PracticeProject.Application.BaseInfos.UserManagement.GetUsersPage;
 using PracticeProject.Application.BaseInfos.UserManagement.LoginUser;
 using PracticeProject.Application.BaseInfos.UserManagement.SearchUsers;
-using PracticeProject.Application.BaseInfos.UserManagement.DeleteUser;
 using PracticeProject.Application.BaseInfos.UserManagement.UpdateUser;
-using PracticeProject.Persistence.DataAccess.BaseInfos.Security;
-using PracticeProject.Application.BaseInfos.Security;
-using PracticeProject.Application.BaseInfos.UserManagement.GetUserById;
-using PracticeProject.Persistence.DataAccess.BaseInfos.Security.BaseInfos.PersonManagement;
-using PracticeProject.Application.BaseInfos.PersonManagement.SearchPersons;
+using PracticeProject.Persistence.Contexts;
 using PracticeProject.Persistence.DataAccess.BaseInfos.PersonManagement;
-using PracticeProject.Application.BaseInfos.UserManagement.GetUsersPage;
+using PracticeProject.Persistence.DataAccess.BaseInfos.Security;
+using PracticeProject.Persistence.DataAccess.BaseInfos.Security.BaseInfos.PersonManagement;
+using PracticeProject.Persistence.DataAccess.BaseInfos.UserManagement;
 
-namespace EndPoint.WebForm.App_Start
+namespace EndPoint.WebForm.App_Start;
+
+public class AutofacConfig
 {
-    public class AutofacConfig
+    public static IContainer BuildContainer()
     {
-        public static IContainer BuildContainer()
-        {
-            var builder = new ContainerBuilder();
+        var builder = new ContainerBuilder();
 
-            builder.RegisterType<DataBaseContext>().As<IDb>().InstancePerRequest();
+        builder.RegisterType<DataBaseContext>().As<IDb>().InstancePerRequest();
 
-            builder.RegisterType<UserDataAccess>().As<IUserDataAccess>().InstancePerRequest();
+        builder.RegisterType<UserDataAccess>().As<IUserDataAccess>().InstancePerRequest();
 
-            builder.RegisterType<CreateUser>().As<ICreateUser>().InstancePerRequest();
+        builder.RegisterType<CreateUser>().As<ICreateUser>().InstancePerRequest();
 
-            builder.RegisterType<LoginUser>().As<ILoginUser>().InstancePerRequest();
+        builder.RegisterType<LoginUser>().As<ILoginUser>().InstancePerRequest();
 
-            builder.RegisterType<SearchUsers>().As<ISearchUsers>().InstancePerRequest();
+        builder.RegisterType<SearchUsers>().As<ISearchUsers>().InstancePerRequest();
 
-            builder.RegisterType<DeleteUser>().As<IDeleteUser>().InstancePerRequest();
+        builder.RegisterType<DeleteUser>().As<IDeleteUser>().InstancePerRequest();
 
-            builder.RegisterType<UpdateUser>().As<IUpdateUser>().InstancePerRequest();
+        builder.RegisterType<UpdateUser>().As<IUpdateUser>().InstancePerRequest();
 
-            builder.RegisterType<Pbkdf2PasswordHasher>().As<IPasswordHasher>().InstancePerRequest();
+        builder.RegisterType<Pbkdf2PasswordHasher>().As<IPasswordHasher>().InstancePerRequest();
 
-            builder.RegisterType<GetUserById>().As<IGetUserById>().InstancePerRequest();
+        builder.RegisterType<GetUserById>().As<IGetUserById>().InstancePerRequest();
 
-            builder.RegisterType<SearchPersons>().As<ISearchPersons>().InstancePerRequest();
+        builder.RegisterType<SearchPersons>().As<ISearchPersons>().InstancePerRequest();
 
-            builder.RegisterType<PersonDataAccess>().As<IPersonDataAccess>().InstancePerRequest();
+        builder.RegisterType<PersonDataAccess>().As<IPersonDataAccess>().InstancePerRequest();
 
-            builder.RegisterType<GetUsersPage>().As<IGetUsersPage>().InstancePerRequest();
+        builder.RegisterType<GetUsersPage>().As<IGetUsersPage>().InstancePerRequest();
 
-            return builder.Build();
-        }
+        return builder.Build();
     }
 }

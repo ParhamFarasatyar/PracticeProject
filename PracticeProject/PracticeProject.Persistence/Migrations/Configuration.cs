@@ -1,23 +1,20 @@
-﻿namespace PracticeProject.Persistence.Migrations
+﻿using System.Data.Entity.Migrations;
+using PracticeProject.Persistence.Contexts;
+
+namespace PracticeProject.Persistence.Migrations;
+
+internal sealed class Configuration : DbMigrationsConfiguration<DataBaseContext>
 {
-    using System;
-    using System.Data.Entity;
-    using System.Data.Entity.Migrations;
-    using System.Linq;
-
-    internal sealed class Configuration : DbMigrationsConfiguration<PracticeProject.Persistence.Contexts.DataBaseContext>
+    public Configuration()
     {
-        public Configuration()
-        {
-            AutomaticMigrationsEnabled = false;
-        }
+        AutomaticMigrationsEnabled = false;
+    }
 
-        protected override void Seed(PracticeProject.Persistence.Contexts.DataBaseContext context)
-        {
-            //  This method will be called after migrating to the latest version.
+    protected override void Seed(DataBaseContext context)
+    {
+        //  This method will be called after migrating to the latest version.
 
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method
-            //  to avoid creating duplicate seed data.
-        }
+        //  You can use the DbSet<T>.AddOrUpdate() helper extension method
+        //  to avoid creating duplicate seed data.
     }
 }

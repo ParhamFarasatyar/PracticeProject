@@ -1,9 +1,8 @@
 ﻿using PracticeProject.Domain.BaseInfos.Users;
 
-namespace PracticeProject.Application.BaseInfos.UserManagement.GetUserById
+namespace PracticeProject.Application.BaseInfos.UserManagement.GetUserById;
+
+public interface IGetUserById
 {
-    public interface IGetUserById
-    {
-        User Execute(int id);
-    }
+    User Execute(int id);
 }

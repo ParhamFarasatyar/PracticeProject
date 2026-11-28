@@ -1,22 +1,20 @@
 ﻿using PracticeProject.Domain.BaseInfos.Users;
-using System.Linq;
 
-namespace PracticeProject.Application.BaseInfos
+namespace PracticeProject.Application.BaseInfos;
+
+public interface IUserDataAccess
 {
-    public interface IUserDataAccess
-    {
-        void Create(User user);
+    void Create(User user);
 
-        User GetById(int id);
+    User GetById(int id);
 
-        User GetByEmail(string email);
+    User GetByEmail(string email);
 
-        void Update(User user);
+    void Update(User user);
 
-        void Delete(int id);
+    void Delete(int id);
 
-        bool ExistsByEmail(string email);
+    bool ExistsByEmail(string email);
 
-        bool ExistsByEmail(string email, int excludedUserId);
-    }
+    bool ExistsByEmail(string email, int excludedUserId);
 }

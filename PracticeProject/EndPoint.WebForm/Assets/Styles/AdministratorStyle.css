@@ -261,9 +261,9 @@ h1 {
         flex-wrap: wrap;
     }
 
-        #searchBox input[type="text"] {
-            flex-basis: 100%;
-        }
+    #searchBox input[type="text"] {
+        flex-basis: 100%;
+    }
 
     #gvUsers {
         display: block;

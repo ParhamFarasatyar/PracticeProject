@@ -92,10 +92,10 @@ body {
     margin-bottom: 28px;
 }
 
-    .error-code strong {
-        color: #fca5a5;
-        font-weight: 700;
-    }
+.error-code strong {
+    color: #fca5a5;
+    font-weight: 700;
+}
 
 .home-button {
     display: flex;
@@ -153,9 +153,9 @@ body {
         padding: 40px 25px 28px;
     }
 
-        .error-card h1 {
-            font-size: 29px;
-        }
+    .error-card h1 {
+        font-size: 29px;
+    }
 
     .error-icon {
         width: 90px;
