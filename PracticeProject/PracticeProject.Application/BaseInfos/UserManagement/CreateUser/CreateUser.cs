@@ -20,7 +20,22 @@ namespace PracticeProject.Application.BaseInfos.UserManagement.CreateUser
 
         private User ValidateRequest(ICreateUser.Request request)
         {
-            request.Validate();
+            if (request == null)
+                throw new NoNullAllowedException("Request cannot be null");
+
+            if (string.IsNullOrWhiteSpace(request.FirstName) ||
+                string.IsNullOrWhiteSpace(request.Email) ||
+                string.IsNullOrWhiteSpace(request.Password))
+                throw new AppException("Firstname, email, and password cannot be null");
+
+            if (request.Age < 18 || request.Age > 80)
+                throw new AppException("Age value should between 18 and 80.");
+
+            if (request.FirstName.Length > 100 ||
+                (request.LastName != null && request.LastName.Length > 100) ||
+                request.Email.Length > 250 ||
+                request.Password.Length > 150)
+                throw new AppException("One or more fields exceed the maximum allowed length.");
 
             if (userDataAccess.ExistsByEmail(request.Email))
                 throw new AppException("This email address is already registered.");
