@@ -33,7 +33,7 @@ public partial class AddUser : AdminBasePage
 
         try
         {
-            var createdUser = CreateUser.Execute(request);
+            CreateUser.Execute(request);
 
             Response.Redirect("./Administrator.aspx");
         }
