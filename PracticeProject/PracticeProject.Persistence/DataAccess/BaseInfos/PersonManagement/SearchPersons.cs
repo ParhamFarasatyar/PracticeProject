@@ -2,6 +2,7 @@
 using PracticeProject.Application.BaseInfos.PersonManagement.SearchPersons;
 using PracticeProject.Domain.BaseInfos.People;
 using System.Linq;
+using PracticeProject.Application.BaseInfos.Extensions;
 
 namespace PracticeProject.Persistence.DataAccess.BaseInfos.Security.BaseInfos.PersonManagement
 {
@@ -19,13 +20,10 @@ namespace PracticeProject.Persistence.DataAccess.BaseInfos.Security.BaseInfos.Pe
                 return items;
 
             if (request.Id.HasValue)
-                items = items.Where(i => i.Id == request.Id);
+                items = items.FilterById(request.Id);
 
             if (!string.IsNullOrEmpty(request.Keyword))
-                items = 
-                    items.Where(i => 
-                    i.FirstName.Contains(request.Keyword) ||
-                    i.LastName.Contains(request.Keyword));
+                items = items.FilterByName(request.Keyword);
 
             return items;
         }
