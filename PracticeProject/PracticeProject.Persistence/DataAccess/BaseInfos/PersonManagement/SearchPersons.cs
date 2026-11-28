@@ -2,7 +2,6 @@
 using PracticeProject.Application.BaseInfos.PersonManagement.SearchPersons;
 using PracticeProject.Domain.BaseInfos.People;
 using System.Linq;
-using PracticeProject.Application.BaseInfos.Extensions;
 
 namespace PracticeProject.Persistence.DataAccess.BaseInfos.Security.BaseInfos.PersonManagement
 {

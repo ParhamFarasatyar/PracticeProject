@@ -3,7 +3,6 @@ using PracticeProject.Application.BaseInfos.PersonManagement.SearchPersons;
 using PracticeProject.Application.BaseInfos.UserManagement.SearchUsers;
 using PracticeProject.Domain.BaseInfos.Users;
 using System.Linq;
-using PracticeProject.Application.BaseInfos.Extensions;
 
 namespace PracticeProject.Persistence.DataAccess.BaseInfos.UserManagement
 {
@@ -17,13 +16,13 @@ namespace PracticeProject.Persistence.DataAccess.BaseInfos.UserManagement
                 return items;
 
             if (request.Id.HasValue)
-                items = items.FilterById(request?.Id);
+                items = items.FilterById(request.Id);
 
             if (!string.IsNullOrWhiteSpace(request.KeyWord))
                 items = items.FilterByEmail(request.KeyWord);
 
             if (request.PersonRequest is not null)
-                items = items.FilterByPerson(searchPersons, request.PersonRequest);
+                items = items.FilterByPerson(searchPersons.Respond(request.PersonRequest));
 
             return items;
         }

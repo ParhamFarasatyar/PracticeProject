@@ -52,7 +52,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseInfos\Extensions\SearchExtensions.cs" />
     <Compile Include="BaseInfos\IPersonDataAccess.cs" />
     <Compile Include="BaseInfos\PersonManagement\SearchPersons\ISearchPersons.cs" />
     <Compile Include="BaseInfos\PersonManagement\SearchPersons\SearchPersonsExtensions.cs" />
