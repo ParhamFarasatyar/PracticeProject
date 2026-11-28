@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseInfos\Extensions\SearchExtensions.cs" />
     <Compile Include="BaseInfos\IPersonDataAccess.cs" />
     <Compile Include="BaseInfos\PersonManagement\SearchPersons\ISearchPersons.cs" />
     <Compile Include="BaseInfos\Security\IPasswordHasher.cs" />
@@ -82,7 +83,6 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
