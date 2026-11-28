@@ -55,6 +55,7 @@
     <Compile Include="BaseInfos\Extensions\SearchExtensions.cs" />
     <Compile Include="BaseInfos\IPersonDataAccess.cs" />
     <Compile Include="BaseInfos\PersonManagement\SearchPersons\ISearchPersons.cs" />
+    <Compile Include="BaseInfos\PersonManagement\SearchPersons\SearchPersonsExtensions.cs" />
     <Compile Include="BaseInfos\Security\IPasswordHasher.cs" />
     <Compile Include="BaseInfos\UserManagement\CreateUser\ICreateUser.cs" />
     <Compile Include="BaseInfos\UserManagement\DeleteUser\DeleteUser.cs" />
@@ -66,7 +67,7 @@
     <Compile Include="BaseInfos\UserManagement\LoginUser\ILoginUser.cs" />
     <Compile Include="BaseInfos\UserManagement\LoginUser\LoginUser.cs" />
     <Compile Include="BaseInfos\UserManagement\SearchUsers\ISearchUsers.cs" />
-    <Compile Include="BaseInfos\UserManagement\SearchUsers\SearchUserExtensions.cs" />
+    <Compile Include="BaseInfos\UserManagement\SearchUsers\SearchUsersExtensions.cs" />
     <Compile Include="BaseInfos\UserManagement\UpdateUser\IUpdateUser.cs" />
     <Compile Include="BaseInfos\UserManagement\UpdateUser\UpdateUser.cs" />
     <Compile Include="IDb.cs" />

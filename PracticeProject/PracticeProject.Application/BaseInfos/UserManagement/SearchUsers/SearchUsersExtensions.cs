@@ -4,7 +4,7 @@ using PracticeProject.Domain.BaseInfos.Users;
 
 namespace PracticeProject.Application.BaseInfos.UserManagement.SearchUsers;
 
-public static class SearchUserExtensions
+public static class SearchUsersExtensions
 {
     public static IQueryable<User> FilterByEmail(this IQueryable<User> items, string keyword)
     {
