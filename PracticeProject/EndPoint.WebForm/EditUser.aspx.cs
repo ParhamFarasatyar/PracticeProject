@@ -14,7 +14,7 @@ namespace EndPoint.WebForm
     {
         public IGetUserById GetUserById { get; set; }
         public IUpdateUser UpdateUser { get; set; }
-        public int UserId => Request.QueryString.GetId();
+        private int _userId => Request.QueryString.GetId();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -22,7 +22,7 @@ namespace EndPoint.WebForm
                 return;
             try
             {
-                User user = GetUserById.Execute(UserId);
+                User user = GetUserById.Execute(_userId);
 
                 tboxFirstName.Text = user.Person.FirstName;
                 tboxLastName.Text = user.Person.LastName;
@@ -50,7 +50,7 @@ namespace EndPoint.WebForm
             {
                 IUpdateUser.Request request = new IUpdateUser.Request
                 {
-                    Id = UserId,
+                    Id = _userId,
                     FirstName = string.IsNullOrWhiteSpace(tboxFirstName.Text) ? null : tboxFirstName.Text.Trim(),
                     LastName = string.IsNullOrWhiteSpace(tboxLastName.Text) ? null : tboxLastName.Text.Trim(),
                     Age = string.IsNullOrWhiteSpace(tboxAge.Text) ? null : Convert.ToInt32(tboxAge.Text),
