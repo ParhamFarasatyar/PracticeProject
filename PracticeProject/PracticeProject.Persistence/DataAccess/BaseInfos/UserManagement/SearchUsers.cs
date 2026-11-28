@@ -20,16 +20,10 @@ namespace PracticeProject.Persistence.DataAccess.BaseInfos.UserManagement
                 items = items.FilterById(request?.Id);
 
             if (!string.IsNullOrWhiteSpace(request.KeyWord))
-                items = items.Where(r => r.Email.Contains(request.KeyWord));
+                items = items.FilterByEmail(request.KeyWord);
 
             if (request.PersonRequest is not null)
-            {
-                items =
-                    from user in items
-                    join person in searchPersons.Respond(request.PersonRequest)
-                        on user.PersonId equals person.Id
-                    select user;
-            }
+                items = items.FilterByPerson(searchPersons, request.PersonRequest);
 
             return items;
         }

@@ -66,6 +66,7 @@
     <Compile Include="BaseInfos\UserManagement\LoginUser\ILoginUser.cs" />
     <Compile Include="BaseInfos\UserManagement\LoginUser\LoginUser.cs" />
     <Compile Include="BaseInfos\UserManagement\SearchUsers\ISearchUsers.cs" />
+    <Compile Include="BaseInfos\UserManagement\SearchUsers\SearchUserExtensions.cs" />
     <Compile Include="BaseInfos\UserManagement\UpdateUser\IUpdateUser.cs" />
     <Compile Include="BaseInfos\UserManagement\UpdateUser\UpdateUser.cs" />
     <Compile Include="IDb.cs" />
