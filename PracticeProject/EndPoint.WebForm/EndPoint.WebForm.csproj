@@ -208,7 +208,7 @@
       <Project>{da845681-5e67-4349-9879-6bd6bcbbd6b8}</Project>
       <Name>PracticeProject.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\PracticeProject.Persistance\PracticeProject.Persistence.csproj">
+    <ProjectReference Include="..\PracticeProject.Persistence\PracticeProject.Persistence.csproj">
       <Project>{EF77E83F-5E61-4F59-9FF8-244B4E15774E}</Project>
       <Name>PracticeProject.Persistence</Name>
     </ProjectReference>

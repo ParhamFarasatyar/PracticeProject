@@ -8,12 +8,12 @@ using PracticeProject.Application.BaseInfos.UserManagement.LoginUser;
 using PracticeProject.Application.BaseInfos.UserManagement.SearchUsers;
 using PracticeProject.Application.BaseInfos.UserManagement.DeleteUser;
 using PracticeProject.Application.BaseInfos.UserManagement.UpdateUser;
-using PracticeProject.Persistance.DataAccess.BaseInfos.Security;
+using PracticeProject.Persistence.DataAccess.BaseInfos.Security;
 using PracticeProject.Application.BaseInfos.Security;
 using PracticeProject.Application.BaseInfos.UserManagement.GetUserById;
-using PracticeProject.Persistance.DataAccess.BaseInfos.Security.BaseInfos.PersonManagement;
+using PracticeProject.Persistence.DataAccess.BaseInfos.Security.BaseInfos.PersonManagement;
 using PracticeProject.Application.BaseInfos.PersonManagement.SearchPersons;
-using PracticeProject.Persistance.DataAccess.BaseInfos.PersonManagement;
+using PracticeProject.Persistence.DataAccess.BaseInfos.PersonManagement;
 using PracticeProject.Application.BaseInfos.UserManagement.GetUsersPage;
 
 namespace EndPoint.WebForm.App_Start
